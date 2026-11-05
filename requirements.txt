@@ -2,6 +2,7 @@ fastapi>=0.115
 uvicorn[standard]>=0.30
 pydantic-settings>=2.4
 redis>=5.0
+sacrebleu>=2.4
 transformers>=4.44,<5
 # Intel Macs get at most torch 2.2.2 (PyTorch dropped macOS x86_64 wheels after
 # this release), so transformers must stay on 4.x which supports torch >= 2.2.

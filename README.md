@@ -33,6 +33,7 @@ Open http://localhost:8000/docs for the interactive API docs.
 - [x] NLLB-200 EN↔YO translation service (mocked + smoke tests)
 - [x] Redis cache + rate limiting (graceful degradation)
 - [x] Real-model validation on CPU (smoke tests + 10-example battery)
+- [x] Evaluation baseline: chrF eng→yor **37.2**, yor→eng **52.9** (BLEU 29.4/44.2) — full report in [`docs/translation_evaluation.md`](docs/translation_evaluation.md)
 - [x] Engineering journal: [`docs/lessons.md`](docs/lessons.md)
 - [ ] End-to-end API verification with the real model
 - [ ] WhatsApp Cloud API webhook
