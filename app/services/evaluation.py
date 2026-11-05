@@ -4,6 +4,7 @@ chrF is the primary metric here: character n-gram F-score is much more
 stable than BLEU on small test sets and morphologically rich languages
 like Yoruba (BLEU's 4-gram precision is meaningless on ~10 sentences).
 """
+
 import json
 from dataclasses import asdict, dataclass
 from pathlib import Path

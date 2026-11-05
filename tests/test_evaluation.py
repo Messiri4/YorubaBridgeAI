@@ -1,4 +1,5 @@
 """Tests for the evaluation module — metric math only, no model needed."""
+
 import pytest
 
 from app.services.evaluation import EntryResult, score_direction
@@ -6,8 +7,13 @@ from app.services.evaluation import EntryResult, score_direction
 
 def _res(direction: str, ref: str, hyp: str, verified: bool = True) -> EntryResult:
     return EntryResult(
-        id="x", direction=direction, source="s", reference=ref,
-        hypothesis=hyp, verified=verified, latency_ms=1.0,
+        id="x",
+        direction=direction,
+        source="s",
+        reference=ref,
+        hypothesis=hyp,
+        verified=verified,
+        latency_ms=1.0,
     )
 
 

@@ -6,13 +6,13 @@
 
 ## Headline numbers
 
-| Direction | chrF (primary) | BLEU | Entries | Mean latency |
-|---|---|---|---|---|
-| English → Yoruba | **37.2** | 29.4 | 11 (9 verified) | ~4.4 s |
-| Yoruba → English | **52.9** | 44.2 | 9 (8 verified) | ~2.0 s |
+| Direction        | chrF (primary) | BLEU | Entries         | Mean latency |
+| ---------------- | -------------- | ---- | --------------- | ------------ |
+| English → Yoruba | **37.2**       | 29.4 | 11 (9 verified) | ~4.4 s       |
+| Yoruba → English | **52.9**       | 44.2 | 9 (8 verified)  | ~2.0 s       |
 
 **Why chrF leads:** BLEU's 4-gram precision is meaningless on sentences this
-short — a *perfect* single-sentence translation scored BLEU 0.0 in our tests.
+short — a _perfect_ single-sentence translation scored BLEU 0.0 in our tests.
 chrF (character n-gram F-score) degrades gracefully and reflects Yoruba's
 morphology, so chrF is our primary metric; BLEU is reported for convention.
 
@@ -26,15 +26,15 @@ low-resource language is harder than understanding it.
    it's fine" — wrong register). Greetings are highly idiomatic in Yoruba;
    literal translation fails. This is the single biggest quality gap.
 2. **Semantic drift on short questions** — "How are you?" → `Báwo ni nǹkan ṣe
-   rí fún ẹ?` (over-explicit, ~"how do things appear to you?"); reverse
+rí fún ẹ?` (over-explicit, ~"how do things appear to you?"); reverse
    direction rendered `Báwo ni?` as "In what way?" — missing the greeting
    sense. `Eèló ni èyí?` ("how much is this?") came back as **"Is this
    nonsense?"** — a serious mistranslation of a common market phrase.
 3. **Additive style** — "Thank you very much." → `Mo dúpé lọ́wọ́ yín gan-an`
    (adds emphatic `gan-an` not in source; adds first-person `Mo` where the
    Yoruba register uses bare `O ṣé`).
-4. **Tense drift** — `Mo ń lọ` (progressive "I am going") → "I *was* going";
-   `Òjò ń rò` → "It *was* raining". Progressive aspect (ń) is read as past.
+4. **Tense drift** — `Mo ń lọ` (progressive "I am going") → "I _was_ going";
+   `Òjò ń rò` → "It _was_ raining". Progressive aspect (ń) is read as past.
 5. **Diacritics: actually good.** No missing tone marks observed in either
    direction — outputs consistently carry correct tone marks on core
    vocabulary (`ọjà`, `òjò`, `dúpẹ́`, `ṣé`). The earlier suspicion of tone-mark

@@ -100,3 +100,46 @@ fine-tuning (out of scope — we use pretrained only).
 
 **Next milestone:** serve the real model through the FastAPI endpoint and
 verify end-to-end with curl, including cache and 429 behaviour.
+
+---
+
+## Milestone 6 — Evaluation baseline (commit 52a0c61)
+
+- `data/eval/en_yor_eval.json`: 20 hand-built entries across greetings,
+  conversation, questions, expressions; each flagged `verified: true|false`
+  (true = human-confirmed reference, false = provisional).
+- `app/services/evaluation.py`: corpus chrF (primary) + BLEU via sacrebleu;
+  per-direction scoring; latency captured per entry; results JSON written.
+- **Results:** eng→yor chrF **37.2** / BLEU 29.4; yor→eng chrF **52.9** / BLEU 44.2.
+- Full error taxonomy in `docs/translation_evaluation.md`. Key finding:
+  greetings/market phrases are the weakest (idiomatic gaps); diacritics are
+  NOT a problem — tone marks survived every output.
+
+**Learned:** BLEU's 4-gram precision is 0 even for a perfect single-sentence
+translation — that failing test taught the metric-selection lesson better than
+any lecture. chrF is the honest primary metric at this dataset size.
+
+## Milestone 7 — WhatsApp Cloud API webhook (mocked)
+
+New files:
+- `app/services/whatsapp_client.py` — thin Graph API sender
+  (`POST /{phone_number_id}/messages`, Bearer token from settings only).
+- `app/services/whatsapp_webhook.py` — `verify_signature` (HMAC-SHA256 over
+  the RAW request body — re-serializing JSON would break the signature),
+  `extract_text_messages` (entries→changes→values→messages, text-only),
+  `guess_language` (heuristic: Yoruba markers ṣ/ẹ/ọ/gb/ń/…).
+- `app/api/v1/routes_whatsapp.py`:
+  - `GET /api/v1/webhook` — Meta verification handshake (echo hub.challenge).
+  - `POST /api/v1/webhook` — fail-closed order: no app secret → 503 (can't
+    verify anything), bad signature → 403, then translate + reply.
+- 8 new tests (signature vectors, payload parsing, handshake, full mocked
+  pipeline). Suite: **47 passed**.
+
+**Errors hit & fixed:**
+- Tests hit `/webhook` but the router is mounted at `/api/v1/webhook` → 404s.
+- Ordering subtlety: with no app secret configured, ANY signature must 503
+  (fail closed) — the first version returned 403 for unsigned requests,
+  which is wrong because nothing can be verified without the secret.
+
+**Not done (needs Meta developer account, i.e. approval + external signup):**
+real app credentials, public webhook URL (ngrok/deployment), live E2E test.
