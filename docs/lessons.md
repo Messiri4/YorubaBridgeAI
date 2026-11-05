@@ -166,3 +166,32 @@ real app credentials, public webhook URL (ngrok/deployment), live E2E test.
 what a metric delta does and does not prove. Phrase tables are a legitimate
 production MT technique (hybrid RBMT+MT), not cheating — but they only cover
 what you anticipated.
+
+## Milestone 9 — Postgres translation history
+
+- `app/services/history.py`: `HistoryStore` — one table
+  (`translation_history`: langs, texts, latency, cached, override_hit),
+  plain parameterized SQL via psycopg 3, no ORM. Schema bootstraps with
+  `CREATE TABLE IF NOT EXISTS`; any failure degrades to a logged warning
+  and `record()` returns False — persistence can never break translation.
+  `make_history_store()` returns None unless `DATABASE_ENABLED=true`
+  (the API runs fine with no database).
+- Translate route now records every successful translation, including
+  whether it came from the phrase table (`override_hit`).
+- `tests/test_history.py`: 5 mocked tests + 1 integration test marked
+  `integration` (skipped unless `DATABASE_ENABLED=true`; run via
+  `make test-db` after `make db-up`).
+
+**Test-design lessons:**
+- Two of my new tests asserted wrong assumptions: commit is called twice
+  (schema DDL + insert — by design), and my mock's `side_effect` sequence
+  forgot the second DDL call. Fixed the tests, not the code — the code's
+  behaviour is correct.
+- ruff demanded `contextlib.suppress` over try/except-pass, and an explicit
+  `zip(strict=)` — small modernization nits caught automatically.
+
+**Environment limitation (honest):** the live-Postgres integration test
+could NOT run — Docker Desktop on this machine is unresponsive (the
+`docker` CLI hangs even for `docker ps`; port 5432 stays closed). The
+mocked suite fully passes (60 passed). When Docker recovers:
+`make db-up && make test-db`.

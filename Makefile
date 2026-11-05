@@ -22,6 +22,10 @@ test:
 test-smoke:
 	.venv/bin/pytest -m smoke
 
+# Live-Postgres integration tests (requires: make db-up first)
+test-db:
+	DATABASE_ENABLED=true .venv/bin/pytest -m integration
+
 run:
 	.venv/bin/uvicorn app.main:app --reload --port 8000
 

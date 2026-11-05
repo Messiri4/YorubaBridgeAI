@@ -52,6 +52,10 @@ def create_app(load_model: bool = True) -> FastAPI:
         application.state.translation_cache = TranslationCache(redis_client)
         application.state.rate_limiter = RateLimiter(lambda: redis_client)
 
+        from app.services.history import make_history_store
+
+        application.state.history_store = make_history_store()
+
         if load_model:
             from app.services.model_loader import load_nllb
             from app.services.translation import TranslationService

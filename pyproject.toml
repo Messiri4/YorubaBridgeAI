@@ -26,5 +26,6 @@ testpaths = ["tests"]
 addopts = "-q --strict-markers -m 'not smoke'"
 markers = [
     "smoke: tests that download/run the real NLLB model (run via: pytest -m smoke)",
+    "integration: tests needing live infrastructure (run via: make test-db)",
 ]
 filterwarnings = ["ignore::DeprecationWarning"]

@@ -50,6 +50,10 @@ class Settings(BaseSettings):
     # Phrase-base overrides (exact-match table applied before the model)
     phrase_overrides_path: str = "data/phrases/overrides.json"
 
+    # Persistence (Postgres). Disabled by default: the API runs fine
+    # without a database until you set DATABASE_ENABLED=true.
+    database_enabled: bool = False
+
 
 @lru_cache
 def get_settings() -> Settings:

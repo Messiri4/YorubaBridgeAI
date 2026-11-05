@@ -7,6 +7,7 @@ from fastapi import APIRouter, HTTPException, Request
 from app.core.rate_limit import RateLimiter, client_identifier
 from app.models.translation import TranslationRequest, TranslationResponse
 from app.services.cache import TranslationCache
+from app.services.history import HistoryRecord, HistoryStore
 from app.services.translation import TranslationError, TranslationService
 
 logger = logging.getLogger(__name__)
@@ -38,7 +39,7 @@ def translate(payload: TranslationRequest, request: Request) -> TranslationRespo
     if hit is not None:
         return TranslationResponse(**hit, cached=True)
 
-    # 3. Cache miss -> real inference.
+    # 3. Cache miss -> phrase override or model inference.
     try:
         result = get_service(request).translate(
             payload.text,
@@ -48,7 +49,28 @@ def translate(payload: TranslationRequest, request: Request) -> TranslationRespo
     except TranslationError as exc:
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
+    override_hit = (
+        get_service(request).overrides.lookup(
+            payload.text, payload.source_language, payload.target_language
+        )
+        is not None
+    )
     response = TranslationResponse(**result.__dict__, cached=False)
+
+    # 4. Persist history (never breaks the request; store may be disabled).
+    store: HistoryStore | None = getattr(request.app.state, "history_store", None)
+    if store is not None:
+        store.record(
+            HistoryRecord(
+                source_language=payload.source_language,
+                target_language=payload.target_language,
+                source_text=payload.text,
+                translated_text=result.translated_text,
+                latency_ms=result.latency_ms,
+                cached=False,
+                override_hit=override_hit,
+            )
+        )
 
     # 4. Store for next time; the original (non-cached) latency is stored
     #    so repeat consumers see the computation cost, not ~0.0.
