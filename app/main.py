@@ -1,5 +1,6 @@
 """FastAPI application factory and ASGI entrypoint."""
 
+import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
@@ -9,6 +10,8 @@ from app.api.v1.routes_health import router as health_router
 from app.api.v1.routes_translate import router as translate_router
 from app.core.config import get_settings
 from app.core.logging import setup_logging
+
+logger = logging.getLogger(__name__)
 
 
 def create_app(load_model: bool = True) -> FastAPI:
@@ -27,6 +30,27 @@ def create_app(load_model: bool = True) -> FastAPI:
 
     @asynccontextmanager
     async def lifespan(application: FastAPI) -> AsyncIterator[None]:
+        import redis as redis_lib
+
+        from app.core.rate_limit import RateLimiter
+        from app.services.cache import TranslationCache
+
+        # Shared Redis connection pool (None-safe: both components degrade
+        # gracefully when Redis is unreachable).
+        redis_client = None
+        try:
+            redis_client = redis_lib.Redis.from_url(
+                settings.redis_url, decode_responses=True, socket_connect_timeout=2
+            )
+            redis_client.ping()
+            logger.info("Redis connected for caching and rate limiting")
+        except Exception:  # noqa: BLE001
+            redis_client = None
+            logger.warning("Redis unavailable: cache off, in-memory rate limiting")
+
+        application.state.translation_cache = TranslationCache(redis_client)
+        application.state.rate_limiter = RateLimiter(lambda: redis_client)
+
         if load_model:
             from app.services.model_loader import load_nllb
             from app.services.translation import TranslationService

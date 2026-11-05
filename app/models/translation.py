@@ -32,3 +32,4 @@ class TranslationResponse(BaseModel):
     source_language: str
     target_language: str
     latency_ms: float
+    cached: bool = False

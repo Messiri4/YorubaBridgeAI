@@ -35,6 +35,11 @@ class Settings(BaseSettings):
     translation_num_beams: int = 4
     translation_max_input_chars: int = 2000
 
+    # Caching & rate limiting (Redis-backed; degrades gracefully without it)
+    cache_ttl_seconds: int = 3600
+    rate_limit_max_requests: int = 10
+    rate_limit_window_seconds: int = 60
+
     # WhatsApp Cloud API credentials (used in a later milestone)
     whatsapp_token: str = ""
     whatsapp_phone_number_id: str = ""
