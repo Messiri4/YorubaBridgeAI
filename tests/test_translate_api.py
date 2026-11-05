@@ -8,11 +8,11 @@ from fastapi.testclient import TestClient
 def test_translate_endpoint_ok(api_client: TestClient) -> None:
     resp = api_client.post(
         "/api/v1/translate",
-        json={"text": "Good morning", "source_language": "eng", "target_language": "yor"},
+        json={"text": "The mountain is tall", "source_language": "eng", "target_language": "yor"},
     )
     assert resp.status_code == 200
     body: dict[str, Any] = resp.json()
-    assert body["translated_text"] == "Ẹ kú àárọ̀"
+    assert body["translated_text"] == "Ẹ kú àárọ̀"  # mocked model's canned output
     assert body["cached"] is False
     assert body["latency_ms"] >= 0
 

@@ -11,6 +11,20 @@
 | English → Yoruba | **37.2**       | 29.4 | 11 (9 verified) | ~4.4 s       |
 | Yoruba → English | **52.9**       | 44.2 | 9 (8 verified)  | ~2.0 s       |
 
+### After phrase overrides (same eval set, same model)
+
+| Direction        | chrF     | BLEU | Δ chrF |
+| ---------------- | -------- | ---- | ------ |
+| English → Yoruba | **76.2** | 68.8 | +39.0  |
+| Yoruba → English | **90.1** | 86.6 | +37.2  |
+
+The override table (`data/phrases/overrides.json`, 27 curated exact-match
+phrases) fixes the greetings/market-phrase failures identified below and
+returns them in ~0 ms. **Important caveat:** the eval set overlaps with the
+table by design (both were built from the same domains), so these deltas
+measure the table's coverage of known weaknesses, not general model quality.
+A held-out set of table-absent sentences is needed for honest model numbers.
+
 **Why chrF leads:** BLEU's 4-gram precision is meaningless on sentences this
 short — a _perfect_ single-sentence translation scored BLEU 0.0 in our tests.
 chrF (character n-gram F-score) degrades gracefully and reflects Yoruba's

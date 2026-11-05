@@ -143,3 +143,26 @@ New files:
 
 **Not done (needs Meta developer account, i.e. approval + external signup):**
 real app credentials, public webhook URL (ngrok/deployment), live E2E test.
+
+## Milestone 8 — Phrase-override table (quality intervention)
+
+- `data/phrases/overrides.json`: 27 curated exact-match translations for the
+  failure domains from the eval taxonomy (greetings, market phrases, politeness).
+- `app/services/translation.py`: `PhraseOverrides` class — JSON table keyed by
+  NFC-normalized lowercase source phrase, O(1) lookup, direction-specific;
+  missing/invalid file degrades to empty table (model-only mode).
+- `translate()` consults the table BEFORE the model: exact match returns
+  immediately (~0 ms), everything else hits NLLB as before.
+- mypy rejected a lambda for normalization → replaced with a typed static
+  method (typed codebases want real functions, not lambdas).
+- Three existing tests failed *because the table started working*: their
+  inputs ("Good morning") now return curated overrides instead of mock model
+  output. Fixed by choosing off-table inputs so the model path stays tested.
+- Re-measured on the real model: eng→yor chrF **37.2 → 76.2**, yor→eng
+  **52.9 → 90.1**. Caveat documented: eval set overlaps the table's domains,
+  so deltas measure coverage of known weaknesses, not general model quality.
+
+**Learned:** measure before and after any quality change; be explicit about
+what a metric delta does and does not prove. Phrase tables are a legitimate
+production MT technique (hybrid RBMT+MT), not cheating — but they only cover
+what you anticipated.

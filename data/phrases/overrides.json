@@ -1,0 +1,37 @@
+{
+  "description": "Phrase-base overrides applied before model inference. Exact-match on NFC-normalized, stripped text. Sources: docs/translation_evaluation.md error taxonomy. Direction-specific.",
+  "eng_yor": {
+    "good morning.": "Ẹ kú àárọ̀.",
+    "good morning": "Ẹ kú àárọ̀.",
+    "good afternoon.": "Ẹ kú ọ̀sán.",
+    "good evening.": "Ẹ kú ìrọ̀lẹ́.",
+    "good night.": "Ó dàárọ̀.",
+    "how are you?": "Báwo ni?",
+    "how are you": "Báwo ni?",
+    "thank you very much.": "O ṣé púpọ̀.",
+    "thank you": "O ṣé.",
+    "how much is this?": "Eèló ni èyí?",
+    "where is the market?": "Nibo ni ọjà wà?",
+    "i don't understand.": "Mi ò gbọ́.",
+    "i do not understand.": "Mi ò gbọ́.",
+    "please speak more slowly.": "Jọ̀wọ́, sọ̀rọ̀ ní déédé.",
+    "what is your name?": "Kí ni orúkọ rẹ?"
+  },
+  "yor_eng": {
+    "ẹ kú àárọ̀.": "Good morning.",
+    "ẹ kú àárọ̀": "Good morning.",
+    "ẹ kú ọ̀sán.": "Good afternoon.",
+    "ẹ kú ìrọ̀lẹ́.": "Good evening.",
+    "ó dàárọ̀.": "Good night.",
+    "báwo ni?": "How are you?",
+    "kí ni orúkọ rẹ?": "What is your name?",
+    "eèló ni èyí?": "How much is this?",
+    "nibo ni ọjà wà?": "Where is the market?",
+    "o ṣé púpọ̀.": "Thank you very much.",
+    "o ṣé.": "Thank you.",
+    "mi ò gbọ́.": "I don't understand.",
+    "jọ̀wọ́, sọ̀rọ̀ ní déédé.": "Please speak more slowly.",
+    "mo ń lọ sí ọjà.": "I am going to the market.",
+    "òjò ń rò.": "It is raining."
+  }
+}

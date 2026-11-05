@@ -32,13 +32,14 @@ def make_service(
 
 
 def test_translate_happy_path_eng_to_yor() -> None:
+    # Inputs chosen OFF the phrase-override table so the MODEL path runs.
     service, tokenizer, model = make_service([[7, 8, 9]])
-    tokenizer.batch_decode.return_value = ["Ẹ kú àárọ̀"]
+    tokenizer.batch_decode.return_value = ["Ó dàgbà sokè"]
 
-    result = service.translate("Good morning", "eng", "yor")
+    result = service.translate("The mountain is tall", "eng", "yor")
 
     assert isinstance(result, TranslationResult)
-    assert result.translated_text == "Ẹ kú àárọ̀"
+    assert result.translated_text == "Ó dàgbà sokè"
     assert result.source_language == "eng"
     assert result.target_language == "yor"
     assert result.latency_ms >= 0.0
@@ -53,9 +54,9 @@ def test_translate_happy_path_eng_to_yor() -> None:
 
 def test_translate_yor_to_eng_sets_correct_langs() -> None:
     service, tokenizer, model = make_service([[1]])
-    tokenizer.batch_decode.return_value = ["Good morning"]
+    tokenizer.batch_decode.return_value = ["The mountain is tall"]
 
-    service.translate("Ẹ kú àárọ̀", "yor", "eng")
+    service.translate("Òkè náà ga", "yor", "eng")
 
     assert tokenizer.src_lang == "yor_Latn"
     assert tokenizer.convert_tokens_to_ids.call_args.args == ("eng_Latn",)

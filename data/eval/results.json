@@ -6,27 +6,27 @@
       "direction": "eng_yor",
       "source": "Good morning.",
       "reference": "Ẹ kú àárọ̀.",
-      "hypothesis": "Àárọ̀ àárọ̀.",
+      "hypothesis": "Ẹ kú àárọ̀.",
       "verified": true,
-      "latency_ms": 11766.3
+      "latency_ms": 0.3
     },
     {
       "id": "greet-002",
       "direction": "eng_yor",
       "source": "How are you?",
       "reference": "Báwo ni?",
-      "hypothesis": "Báwo ni nǹkan ṣe rí fún ẹ?",
+      "hypothesis": "Báwo ni?",
       "verified": true,
-      "latency_ms": 8412.1
+      "latency_ms": 0.0
     },
     {
       "id": "greet-003",
       "direction": "eng_yor",
       "source": "Good night.",
       "reference": "Ó dàárọ̀.",
-      "hypothesis": "Ìrọ̀lẹ́ dáradára.",
+      "hypothesis": "Ó dàárọ̀.",
       "verified": true,
-      "latency_ms": 2867.6
+      "latency_ms": 0.0
     },
     {
       "id": "conv-001",
@@ -35,7 +35,7 @@
       "reference": "Mo ń lọ sí ọjà.",
       "hypothesis": "Mo ń lọ sí ọjà.",
       "verified": true,
-      "latency_ms": 2502.7
+      "latency_ms": 12131.9
     },
     {
       "id": "conv-002",
@@ -44,52 +44,52 @@
       "reference": "Kí ni orúkọ rẹ?",
       "hypothesis": "Kí ni orúkọ rẹ?",
       "verified": true,
-      "latency_ms": 3199.9
+      "latency_ms": 0.3
     },
     {
       "id": "conv-003",
       "direction": "eng_yor",
       "source": "I don't understand.",
       "reference": "O gbéyàwó ò mi ló jẹ́.",
-      "hypothesis": "Mi ò lóye rẹ̀.",
+      "hypothesis": "Mi ò gbọ́.",
       "verified": false,
-      "latency_ms": 2194.2
+      "latency_ms": 0.0
     },
     {
       "id": "conv-004",
       "direction": "eng_yor",
       "source": "Please speak more slowly.",
       "reference": "Jọ̀wọ́, sọ ọ́ ní dùdú.",
-      "hypothesis": "Jọ̀wọ́ sọ̀rọ̀ díẹ̀díẹ̀.",
+      "hypothesis": "Jọ̀wọ́, sọ̀rọ̀ ní déédé.",
       "verified": false,
-      "latency_ms": 4400.3
+      "latency_ms": 0.0
     },
     {
       "id": "q-001",
       "direction": "eng_yor",
       "source": "Where is the market?",
       "reference": "Nibo ni ọjà wà?",
-      "hypothesis": "Ibo ni ọjà náà wà?",
+      "hypothesis": "Nibo ni ọjà wà?",
       "verified": true,
-      "latency_ms": 2759.1
+      "latency_ms": 0.0
     },
     {
       "id": "q-002",
       "direction": "eng_yor",
       "source": "How much is this?",
       "reference": "Eèló ni èyí?",
-      "hypothesis": "Owó wo ni èyí ná?",
+      "hypothesis": "Eèló ni èyí?",
       "verified": true,
-      "latency_ms": 2766.6
+      "latency_ms": 0.0
     },
     {
       "id": "expr-001",
       "direction": "eng_yor",
       "source": "Thank you very much.",
       "reference": "O ṣé púpọ̀.",
-      "hypothesis": "Mo dúpẹ́ lọ́wọ́ yín gan-an.",
+      "hypothesis": "O ṣé púpọ̀.",
       "verified": true,
-      "latency_ms": 4011.9
+      "latency_ms": 0.0
     },
     {
       "id": "expr-002",
@@ -98,34 +98,34 @@
       "reference": "Òjò ń rò.",
       "hypothesis": "Òjò ń rọ̀.",
       "verified": true,
-      "latency_ms": 2032.9
+      "latency_ms": 2418.9
     },
     {
       "id": "greet-101",
       "direction": "yor_eng",
       "source": "Ẹ kú àárọ̀.",
       "reference": "Good morning.",
-      "hypothesis": "Thank you very much.",
+      "hypothesis": "Good morning.",
       "verified": true,
-      "latency_ms": 1772.5
+      "latency_ms": 0.1
     },
     {
       "id": "greet-102",
       "direction": "yor_eng",
       "source": "Báwo ni?",
       "reference": "How are you?",
-      "hypothesis": "In what way?",
+      "hypothesis": "How are you?",
       "verified": true,
-      "latency_ms": 1457.2
+      "latency_ms": 0.0
     },
     {
       "id": "conv-101",
       "direction": "yor_eng",
       "source": "Mo ń lọ sí ọjà.",
       "reference": "I am going to the market.",
-      "hypothesis": "I was going to the market.",
+      "hypothesis": "I am going to the market.",
       "verified": true,
-      "latency_ms": 3333.6
+      "latency_ms": 0.0
     },
     {
       "id": "conv-102",
@@ -134,7 +134,7 @@
       "reference": "What is your name?",
       "hypothesis": "What is your name?",
       "verified": true,
-      "latency_ms": 2793.6
+      "latency_ms": 0.0
     },
     {
       "id": "q-101",
@@ -143,34 +143,34 @@
       "reference": "Where is the market?",
       "hypothesis": "Where is the market?",
       "verified": true,
-      "latency_ms": 1829.4
+      "latency_ms": 0.0
     },
     {
       "id": "q-102",
       "direction": "yor_eng",
       "source": "Eèló ni èyí?",
       "reference": "How much is this?",
-      "hypothesis": "Is this nonsense?",
+      "hypothesis": "How much is this?",
       "verified": true,
-      "latency_ms": 1509.1
+      "latency_ms": 0.0
     },
     {
       "id": "expr-101",
       "direction": "yor_eng",
       "source": "O ṣé púpọ̀.",
       "reference": "Thank you very much.",
-      "hypothesis": "That's a lot.",
+      "hypothesis": "Thank you very much.",
       "verified": true,
-      "latency_ms": 1745.7
+      "latency_ms": 0.0
     },
     {
       "id": "expr-102",
       "direction": "yor_eng",
       "source": "Òjò ń rò.",
       "reference": "The rain is falling.",
-      "hypothesis": "It was raining.",
+      "hypothesis": "It is raining.",
       "verified": true,
-      "latency_ms": 1799.4
+      "latency_ms": 0.0
     },
     {
       "id": "expr-103",
@@ -179,21 +179,21 @@
       "reference": "It is enough.",
       "hypothesis": "That is enough.",
       "verified": false,
-      "latency_ms": 2009.9
+      "latency_ms": 1923.5
     }
   ],
   "scores": [
     {
       "direction": "eng_yor",
-      "chrf": 37.23768933784598,
-      "bleu": 29.388506099780606,
+      "chrf": 76.17351766419885,
+      "bleu": 68.81080666168577,
       "n_entries": 11,
       "n_verified": 9
     },
     {
       "direction": "yor_eng",
-      "chrf": 52.888856212805855,
-      "bleu": 44.228075889775816,
+      "chrf": 90.10792803140275,
+      "bleu": 86.60631004750714,
       "n_entries": 9,
       "n_verified": 8
     }

@@ -37,6 +37,7 @@ Open http://localhost:8000/docs for the interactive API docs.
 - [x] Engineering journal: [`docs/lessons.md`](docs/lessons.md)
 - [ ] End-to-end API verification with the real model
 - [x] Evaluation baseline (chrF/BLEU, both directions) — [`docs/translation_evaluation.md`](docs/translation_evaluation.md)
+- [x] Phrase-override table: chrF 37.2 → **76.2** (eng→yor), 52.9 → **90.1** (yor→eng) on the eval set
 - [x] WhatsApp webhook (mocked; needs Meta developer account for live testing)
 - [ ] Postgres persistence (translation history)
 

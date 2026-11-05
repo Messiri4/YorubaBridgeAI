@@ -47,6 +47,9 @@ class Settings(BaseSettings):
     whatsapp_app_secret: str = ""
     whatsapp_api_version: str = "v20.0"
 
+    # Phrase-base overrides (exact-match table applied before the model)
+    phrase_overrides_path: str = "data/phrases/overrides.json"
+
 
 @lru_cache
 def get_settings() -> Settings:
