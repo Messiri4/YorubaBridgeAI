@@ -1,4 +1,5 @@
 """Health check endpoints for liveness/readiness probes."""
+
 from typing import Any
 
 from fastapi import APIRouter

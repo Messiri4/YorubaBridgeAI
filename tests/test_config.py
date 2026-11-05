@@ -1,4 +1,5 @@
 """Tests for the typed settings object."""
+
 from app.core.config import Settings
 
 

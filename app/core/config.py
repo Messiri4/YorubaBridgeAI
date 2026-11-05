@@ -3,6 +3,7 @@
 Why pydantic-settings: it validates types at startup, so a misconfigured
 service fails fast with a clear error instead of at request time.
 """
+
 from functools import lru_cache
 
 from pydantic_settings import BaseSettings, SettingsConfigDict
@@ -25,6 +26,14 @@ class Settings(BaseSettings):
 
     database_url: str = "postgresql+psycopg://localhost/yorubabridge"
     redis_url: str = "redis://localhost:6379/0"
+
+    # Translation model settings (NLLB-200 distilled 600M)
+    # NOTE: facebook/nllb-* checkpoints are CC-BY-NC 4.0 (non-commercial).
+    # Override via .env to swap checkpoints (e.g. an open-licensed one) later.
+    translation_model_id: str = "facebook/nllb-200-distilled-600M"
+    translation_max_new_tokens: int = 256
+    translation_num_beams: int = 4
+    translation_max_input_chars: int = 2000
 
     # WhatsApp Cloud API credentials (used in a later milestone)
     whatsapp_token: str = ""

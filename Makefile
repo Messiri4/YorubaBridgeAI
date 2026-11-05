@@ -18,6 +18,10 @@ format:
 test:
 	.venv/bin/pytest
 
+# Real-model tests (downloads ~2.4 GB on first run, needs network)
+test-smoke:
+	.venv/bin/pytest -m smoke
+
 run:
 	.venv/bin/uvicorn app.main:app --reload --port 8000
 

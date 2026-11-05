@@ -23,5 +23,8 @@ ignore_missing_imports = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q --strict-markers"
+addopts = "-q --strict-markers -m 'not smoke'"
+markers = [
+    "smoke: tests that download/run the real NLLB model (run via: pytest -m smoke)",
+]
 filterwarnings = ["ignore::DeprecationWarning"]
