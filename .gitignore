@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+.coverage
+dist/
+
+# Secrets
+.env
+
+# Model artifacts (never commit large weights)
+models_cache/
+*.safetensors
+*.bin
+
+# OS
+.DS_Store
