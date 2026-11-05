@@ -26,3 +26,22 @@ Open http://localhost:8000/docs for the interactive API docs.
 | `make lint`    | ruff + mypy                       |
 | `make format`  | Auto-format with ruff             |
 | `make db-up`   | Start Postgres + Redis containers |
+
+## Implementation progress
+
+- [x] Project skeleton, tooling, CI-ready config
+- [x] NLLB-200 EN↔YO translation service (mocked + smoke tests)
+- [x] Redis cache + rate limiting (graceful degradation)
+- [x] Real-model validation on CPU (smoke tests + 10-example battery)
+- [x] Engineering journal: [`docs/lessons.md`](docs/lessons.md)
+- [ ] End-to-end API verification with the real model
+- [ ] WhatsApp Cloud API webhook
+- [ ] Postgres persistence (translation history)
+
+## Note for Intel Mac users
+
+`facebook/nllb-200-distilled-600M` ships only a pickle (`.bin`) checkpoint,
+which recent transformers refuses to load with torch < 2.6 (CVE-2025-32434).
+Intel Macs are capped at torch 2.2.2, so a one-time conversion to safetensors
+is required — see `docs/lessons.md` Milestone 4. Point
+`TRANSLATION_MODEL_ID` in `.env` at the converted directory.
