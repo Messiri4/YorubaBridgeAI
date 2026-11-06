@@ -1,13 +1,14 @@
 """FastAPI application factory and ASGI entrypoint."""
-
 import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
 
 from app.api.v1.routes_health import router as health_router
 from app.api.v1.routes_translate import router as translate_router
+from app.api.v1.routes_voice import router as voice_router
 from app.api.v1.routes_whatsapp import router as whatsapp_router
 from app.core.config import get_settings
 from app.core.logging import setup_logging
@@ -69,6 +70,19 @@ def create_app(load_model: bool = True) -> FastAPI:
     app.include_router(health_router)
     app.include_router(translate_router, prefix="/api/v1")
     app.include_router(whatsapp_router, prefix="/api/v1")
+    app.include_router(voice_router, prefix="/api/v1")
+
+    # Speech service is lazy-loading; construction is cheap.
+    from app.services.speech import SpeechService
+
+    app.state.speech_service = SpeechService()
+
+    # Local demo UI (single static page; no template engine needed).
+    from fastapi.responses import FileResponse
+
+    @app.get("/", include_in_schema=False)
+    def index() -> FileResponse:
+        return FileResponse(Path(__file__).parent / "static" / "index.html")
     return app
 
 

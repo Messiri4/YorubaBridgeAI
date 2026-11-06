@@ -47,6 +47,10 @@ class Settings(BaseSettings):
     whatsapp_app_secret: str = ""
     whatsapp_api_version: str = "v20.0"
 
+    # Voice notes (STT). 'tiny' fits CPU/RAM budget; override in .env if you
+    # upgrade hardware.
+    speech_model_size: str = "tiny"
+
     # Phrase-base overrides (exact-match table applied before the model)
     phrase_overrides_path: str = "data/phrases/overrides.json"
 

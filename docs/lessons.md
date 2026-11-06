@@ -195,3 +195,38 @@ could NOT run — Docker Desktop on this machine is unresponsive (the
 `docker` CLI hangs even for `docker ps`; port 5432 stays closed). The
 mocked suite fully passes (60 passed). When Docker recovers:
 `make db-up && make test-db`.
+
+## Milestone 10 — FLORES-200 held-out evaluation
+
+**Dataset:** official Meta FLORES-200 release (CC-BY-SA 4.0), dev (997 sents)
+and devtest (1012 sents) aligned EN–YO pairs; we use 60/80-line prefixes
+(`data/flores/`). FLORES is Wikipedia/news-domain formal text — deliberately
+outside the phrase table's chat/commerce domain, making it a genuine
+held-out, leakage-free test.
+
+**Configuration:** beams=2 (CPU latency trade-off, documented), same model.
+
+**Result (dev split, 40 sents/direction):**
+
+| Config | eng→yor chrF | yor→eng chrF |
+|---|---|---|
+| baseline (model only) | 27.8 | ~34 (completed after this entry was written; see results JSON) |
+| full system (overrides) | 27.8 | same |
+
+**Finding, stated honestly:** on held-out FLORES text the phrase-override
+table provides **zero accuracy improvement** — baseline == full system, as
+predicted, because no FLORES sentence matches the 27 curated chat-domain
+phrases. The table's real value is: (a) human-verified correctness on the
+WhatsApp domain phrases it covers, (b) ~0 ms latency on those phrases. It is
+a domain-specific patch, not a general quality improvement — and any claim
+otherwise would have been the data-leakage trap this evaluation avoided.
+
+**Model-quality reality check:** chrF ≈ 28 (eng→yor) on formal text vs ≈ 76
+on our chat-domain eval set. NLLB-600M on CPU is far stronger at short
+conversational translation than at translating formal paragraph-style text.
+This is the fundamental limit of the pretrained-600M-without-training mandate.
+
+**Test-design lesson:** my rate-limit test intermittently failed because
+fixed-window counters shard at each window edge — a test issuing requests
+across a boundary legitimately sees a fresh bucket. Fixed by pinning
+`RATE_LIMIT_WINDOW_SECONDS=3600` in the test (product behaviour unchanged).
