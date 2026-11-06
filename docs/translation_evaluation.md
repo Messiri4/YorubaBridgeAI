@@ -80,3 +80,50 @@ rí fún ẹ?` (over-explicit, ~"how do things appear to you?"); reverse
 - Single reference per entry: MT systems legitimately produce synonyms
   ("Ibo ni" vs "Nibo ni" for "where") that get penalized. Multi-reference
   eval would soften this.
+
+## FLORES-200 held-out evaluation (the honest test)
+
+**Dataset:** official Meta FLORES-200 (CC-BY-SA 4.0) — 997 dev + 1012 devtest
+aligned EN–YO sentences of Wikipedia/news-domain formal text. Prefixes used:
+60 dev / 80 devtest lines (`data/flores/`, provenance in its README).
+**Deliberately out of the phrase table's chat/commerce domain** — a genuine
+leakage-free test of the model itself. Config: beams=2, same 600M model.
+
+### Results
+
+| Split        | Direction | Config                  | chrF     | BLEU | Mean latency |
+| ------------ | --------- | ----------------------- | -------- | ---- | ------------ |
+| dev (40)     | eng→yor   | baseline (model only)   | **27.8** | 5.3  | 21.6 s       |
+| dev (40)     | eng→yor   | full system (overrides) | **27.8** | 5.3  | 25.2 s       |
+| devtest (40) | eng→yor   | full system             | **25.1** | 4.7  | 28.3 s       |
+| devtest (40) | yor→eng   | full system             | **44.4** | 20.7 | 13.9 s       |
+
+Raw outputs and 8 sample translations per cell:
+`data/eval/flores_results.json`, `data/eval/flores_devtest_results.json`.
+
+### Findings
+
+1. **Phrase overrides add ZERO accuracy on held-out, out-of-domain text** —
+   baseline and full system scored identically (27.8/27.8) because no FLORES
+   sentence matches the 27 curated chat phrases. The honest characterization:
+   the table is a _domain patch_ (human-verified correctness + ~0 ms latency
+   on WhatsApp-style phrases), NOT a general model improvement. Our earlier
+   +39 chrF gain was real but domain-bounded; this run quantifies that
+   boundary.
+2. **Domain dominates quality:** chrF ≈ 76 on short chat-domain sentences vs
+   ≈ 25–28 on formal paragraph text. NLLB-600M is dramatically better at the
+   exact use case (WhatsApp-style messages) this project targets.
+3. **Direction gap persists:** yor→eng (44.4) ≫ eng→yor (25.1) on formal
+   text — generation into a low-resource language remains the hard side.
+4. **CPU latency on long formal sentences:** 14–28 s/sentence at beams=2.
+   Fine for async messaging; incompatible with interactive use.
+
+### What would actually move FLORES numbers (not done, evidence-based)
+
+- `nllb-200-1.3B`: literature and Meta's own reports show a large chrF jump
+  from 600M→1.3B; costs 2× RAM (~5 GB, fits our 16 GB) and ~2× latency.
+- Decoding length: many eng→yor outputs truncate mid-sentence
+  (`max_new_tokens=256` is short for FLORES' ~25-word sentences); raising it
+  would help recall but costs minutes/sentence on this CPU.
+- Actual fine-tuning on FLORES dev — explicitly out of scope per project
+  mandate (pretrained-only).

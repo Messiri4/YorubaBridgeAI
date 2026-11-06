@@ -1,0 +1,104 @@
+{
+  "model": "facebook/nllb-200-distilled-600M",
+  "split": "devtest",
+  "n": 40,
+  "beams": 2,
+  "directions": {
+    "eng_yor": {
+      "chrf": 25.13,
+      "bleu": 4.68,
+      "mean_latency_ms": 28269.4,
+      "wall_s": 1130.8,
+      "samples": [
+        {
+          "src": "\"We now have 4-month-old mice that are non-diabetic that used to be diabetic,\" he added.",
+          "ref": "“Ní báyìí a ní àwọn ẹku olóṣù mẹ́rin tí kò ní dayabẹ́tìsì tẹ́lẹ̀tẹ́lẹ̀ tó ti ní ayabẹ́tìsì̀,” o ṣe àfikún.",
+          "hyp": "Ó fi kún un pé: \"A ti ní àwọn ọ̀dọ́ ọ̀dọ́ tó ti pé oṣù mẹ́rin báyìí tí kò ní àrùn àtọ̀gbẹ, àmọ́ tí wọ́n ti ní àrùn àtọ̀gbẹ tẹ́lẹ̀."
+        },
+        {
+          "src": "Dr. Ehud Ur, professor of medicine at Dalhousie University in Halifax, Nova Scotia and chair of the clinical and scientific division of the Canadian Diabetes Association cautioned that the research is still in its early days.",
+          "ref": "Dókítà Ehud, akọ́ṣẹmọṣẹ́ ìmọ̀ ogun ní ilé ẹ̀kọ́ gíga Dalhousie ní Halifax, Nova Scotia àti alága ìpín ti ìṣègùn àti ìmọ̀ síẹ̀nsì ti Ẹgbé Ìtọ ṣúggà ti Ará Ìlú Canada sọ pé ìwádìí náà ṣì jẹ́ tuntun.",
+          "hyp": "Dókítà Ehud Ur, tó jẹ́ ọ̀jọ̀gbọ́n nípa ìṣègùn ní Yunifásítì Dalhousie ní ìlú Halifax, ní ìpínlẹ̀ Nova Scotia, tó sì tún jẹ́ alága ẹgbẹ́ onímọ̀ sáyẹ́ǹsì tó ń bójú tó àrùn àtọ̀gbẹ ní orílẹ̀-èdè Kánádà kìlọ̀ pé ìwádìí náà ṣì wà ní ìbẹ̀rẹ̀pẹ̀pẹ̀."
+        },
+        {
+          "src": "Like some other experts, he is skeptical about whether diabetes can be cured, noting that these findings have no relevance to people who already have Type 1 diabetes.",
+          "ref": "Bí àwọn àkọ́ṣẹ́mọṣẹ́, ó ṣiyèméjì bóyá àrùn ìtọ ṣúgá lè ní ìwòsàn, tí ó sì mọ̀ pé kò wúlò fún àwọn tó bá ní àrùn ìtọ ṣúgá Type 1.",
+          "hyp": "Bíi ti àwọn ògbógi mìíràn, ó máa ń ṣiyèméjì bóyá a lè wo àrùn àtọ̀gbẹ sàn, ó sì sọ pé àwọn àbá yìí kò kan àwọn tó ti ní àrùn àtọ̀gbẹ Oríṣi Kìíní."
+        },
+        {
+          "src": "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+          "ref": "Ní ọjọ́ Ajé, Sara Danius, akọ̀wé àgbà ti ẹgbẹ́ Nobel fún ìtàn àròsọ ní ilé ẹ̀ka Swedin, tí wọ́n kéde ní ètò kan lóri rẹ́díò lóri rẹ́díò Svergies ní Sweden, àwọn ẹgbk kò lè dé ọ̀dọ̀ BobDylan nípa bíborí ní 2016 Nobel Prize Literature, ó ti rẹ̀ wọ́n láti kàn si.",
+          "hyp": "Ní ọjọ́ Monday, Sara Danius, akọ̀wé tí ó wà láàyè fún Ìgbìmọ̀ Nobel fún Ẹ̀kọ̀ọ́ ní Ilé Ẹ̀kọ́ Swideni, kéde ní gbangba nígbà ìtòlẹ́sẹẹsẹ rédíò kan lórí Sveriges Radio ní Sweden pé ìgbìmọ̀ náà, tí kò lè bá Bob Dylan pàdé ní tààràtà nípa bí ó ṣe gba Ẹ̀bùn Nobel fún Ẹ̀kọ̀ọ́ ní ọdún 2016, ti fi gbogbo ìsapá rẹ̀ sílẹ̀ láti bá a sọ̀rọ̀."
+        },
+        {
+          "src": "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\"",
+          "ref": "Daniusi wipe, “Nisin a o se nkankan. Mo ti meeli ranse mo de ti pe si awon ajo sise timo timo re won de fun mi lesi to loyaya. Fun igba yi, o daniloju pe iyen ti to.”",
+          "hyp": "Danius sọ pé, \"Ní báyìí, a kò ṣe nǹkan kan. Mo ti pe, mo sì ti fi imeeli ránṣẹ́ sí òṣìṣẹ́ tó sún mọ́ mi jù lọ, mo sì ti rí ìdáhùn tó dáa gbà."
+        },
+        {
+          "src": "Previously, Ring's CEO, Jamie Siminoff, remarked the company started when his doorbell wasn't audible from his shop in his garage.",
+          "ref": "Tẹ́lẹ̀rí, olùdarí àgbà iléeṣẹ́ Ring, Jamie Siminoff ní iléeṣẹ́ náà bẹ̀rẹ̀ iṣẹ́ nígbà tí aago ẹnu ọ̀nà òhun kò dún sókè látinú ṣọ́ọ̀bù dé inú gáràjì.",
+          "hyp": "Ṣáájú ìgbà yẹn, Jamie Siminoff, tí í ṣe ọ̀gá àgbà fún Ring, sọ pé ilé iṣẹ́ náà bẹ̀rẹ̀ nígbà tí a kò gbọ́ sí i nínú ilé ìtajà tó wà nínú yàrá rẹ̀."
+        },
+        {
+          "src": "He built a WiFi door bell, he said.",
+          "ref": "O ko ago ilekun WiFi, O wi.",
+          "hyp": "Ó sọ pé òun ti kọ́ àtẹ́lẹ́kùn WiFi."
+        },
+        {
+          "src": "Siminoff said sales boosted after his 2013 appearance in a Shark Tank episode where the show panel declined funding the startup.",
+          "ref": "Siminoff sọ pé ọjà lọ sókè lẹ́yìn tí òun hàn nínú eré Shark Tank lọ́dún 2013, ní ibi tí àwọn aláṣẹ eré ti ṣẹ́ pẹ̀ẹ́ lórí ìkówó lé eré ìbẹ̀rẹ̀.",
+          "hyp": "Siminoff sọ pe awọn tita pọ si lẹhin ifarahan rẹ ni ọdun 2013 ninu iṣẹlẹ Shark Tank nibiti igbimọ ifihan naa kọ lati ṣe ifowopamọ ibẹrẹ naa."
+        }
+      ]
+    },
+    "yor_eng": {
+      "chrf": 44.44,
+      "bleu": 20.71,
+      "mean_latency_ms": 13889.8,
+      "wall_s": 555.6,
+      "samples": [
+        {
+          "src": "“Ní báyìí a ní àwọn ẹku olóṣù mẹ́rin tí kò ní dayabẹ́tìsì tẹ́lẹ̀tẹ́lẹ̀ tó ti ní ayabẹ́tìsì̀,” o ṣe àfikún.",
+          "ref": "\"We now have 4-month-old mice that are non-diabetic that used to be diabetic,\" he added.",
+          "hyp": "Now we have four months of pre-baptized, non-baptized chicks who have been baptized, you added."
+        },
+        {
+          "src": "Dókítà Ehud, akọ́ṣẹmọṣẹ́ ìmọ̀ ogun ní ilé ẹ̀kọ́ gíga Dalhousie ní Halifax, Nova Scotia àti alága ìpín ti ìṣègùn àti ìmọ̀ síẹ̀nsì ti Ẹgbé Ìtọ ṣúggà ti Ará Ìlú Canada sọ pé ìwádìí náà ṣì jẹ́ tuntun.",
+          "ref": "Dr. Ehud Ur, professor of medicine at Dalhousie University in Halifax, Nova Scotia and chair of the clinical and scientific division of the Canadian Diabetes Association cautioned that the research is still in its early days.",
+          "hyp": "Dr. Ehud, a professor of military science at Dalhousie College in Halifax, Nova Scotia and chairman of the department of medicine and neuroscience of the Canadian Citizens' Association, said the study was still relatively new."
+        },
+        {
+          "src": "Bí àwọn àkọ́ṣẹ́mọṣẹ́, ó ṣiyèméjì bóyá àrùn ìtọ ṣúgá lè ní ìwòsàn, tí ó sì mọ̀ pé kò wúlò fún àwọn tó bá ní àrùn ìtọ ṣúgá Type 1.",
+          "ref": "Like some other experts, he is skeptical about whether diabetes can be cured, noting that these findings have no relevance to people who already have Type 1 diabetes.",
+          "hyp": "Like the authorities, he doubted the cure for diabetes and knew that it was not beneficial for people with Type 1 diabetes."
+        },
+        {
+          "src": "Ní ọjọ́ Ajé, Sara Danius, akọ̀wé àgbà ti ẹgbẹ́ Nobel fún ìtàn àròsọ ní ilé ẹ̀ka Swedin, tí wọ́n kéde ní ètò kan lóri rẹ́díò lóri rẹ́díò Svergies ní Sweden, àwọn ẹgbk kò lè dé ọ̀dọ̀ BobDylan nípa bíborí ní 2016 Nobel Prize Literature, ó ti rẹ̀ wọ́n láti kàn si.",
+          "ref": "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+          "hyp": "On Monday, Sara Danius, secretary-general of the Swedish Nobel Prize for Fiction, announced in a radio program on Svergies radio in Sweden, that the media could not reach BobDylan by winning the 2016 Nobel Prize for Literature, they were tired of contacting him."
+        },
+        {
+          "src": "Daniusi wipe, “Nisin a o se nkankan. Mo ti meeli ranse mo de ti pe si awon ajo sise timo timo re won de fun mi lesi to loyaya. Fun igba yi, o daniloju pe iyen ti to.”",
+          "ref": "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\"",
+          "hyp": "Danius said, \"I'm going to do something. I've already sent me a letter to the organizers of the event and they've come to me in the morning. For now, you're making sure that it's enough."
+        },
+        {
+          "src": "Tẹ́lẹ̀rí, olùdarí àgbà iléeṣẹ́ Ring, Jamie Siminoff ní iléeṣẹ́ náà bẹ̀rẹ̀ iṣẹ́ nígbà tí aago ẹnu ọ̀nà òhun kò dún sókè látinú ṣọ́ọ̀bù dé inú gáràjì.",
+          "ref": "Previously, Ring's CEO, Jamie Siminoff, remarked the company started when his doorbell wasn't audible from his shop in his garage.",
+          "hyp": "Next, Ring's CEO Jamie Siminoff said the company started operations when the doorbell didn't ring from the store to the garage."
+        },
+        {
+          "src": "O ko ago ilekun WiFi, O wi.",
+          "ref": "He built a WiFi door bell, he said.",
+          "hyp": "It's not a WiFi bottle, he said."
+        },
+        {
+          "src": "Siminoff sọ pé ọjà lọ sókè lẹ́yìn tí òun hàn nínú eré Shark Tank lọ́dún 2013, ní ibi tí àwọn aláṣẹ eré ti ṣẹ́ pẹ̀ẹ́ lórí ìkówó lé eré ìbẹ̀rẹ̀.",
+          "ref": "Siminoff said sales boosted after his 2013 appearance in a Shark Tank episode where the show panel declined funding the startup.",
+          "hyp": "Siminoff said the market surged after his appearance in the 2013 game Shark Tank, where the game's executives had long been out of print for the opening game."
+        }
+      ]
+    }
+  }
+}
