@@ -6,6 +6,7 @@ loading details, which keeps it unit-testable with mocks.
 """
 
 import logging
+import os
 from dataclasses import dataclass
 from typing import Any
 
@@ -51,6 +52,19 @@ def load_nllb(model_id: str | None = None) -> LoadedModel:
 
     # Use GPU when available; NLLB-600M runs comfortably on CPU too.
     device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    # Honor a local checkpoint directory (e.g. a safetensors snapshot built
+    # from an already-downloaded HF cache). This avoids re-downloading weights
+    # and lets torch<2.6 environments load safetensors instead of .bin.
+    if os.path.isdir(model_id):
+        logger.info(
+            "Loading translation model from local path '%s' on %s ...", model_id, device
+        )
+        tokenizer = NllbTokenizerFast.from_pretrained(model_id)
+        model = AutoModelForSeq2SeqLM.from_pretrained(model_id).to(device)
+        model.eval()
+        logger.info("Model loaded: %s (device=%s)", model_id, device)
+        return LoadedModel(model=model, tokenizer=tokenizer, device=device)
 
     logger.info("Loading translation model '%s' on %s ...", model_id, device)
     tokenizer = NllbTokenizerFast.from_pretrained(model_id)

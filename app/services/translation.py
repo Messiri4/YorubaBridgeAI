@@ -23,9 +23,17 @@ LANGUAGE_CODES = frozenset(SUPPORTED_LANGUAGES)
 class PhraseOverrides:
     """Exact-match translation table loaded from a JSON file.
 
-    Keys are NFC-normalized lowercase source phrases; lookup is O(1).
-    A missing/invalid file degrades to an empty table (model-only).
+    Keys are NFC-normalized, punctuation-stripped, lowercased source
+    phrases; lookup is O(1). Final punctuation and case are ignored so
+    that e.g. "Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi." hits the same key as a plain
+    greeting form where appropriate. A missing/invalid file degrades to
+    an empty table (model-only).
     """
+
+    # Characters ignored when building/looking up table keys. NLLB's
+    # SentencePiece treats '.' and ',' as separate tokens, so a trailing
+    # period must NOT make an otherwise-identical phrase miss the table.
+    _STRIPPED_CHARS = str.maketrans("", "", ".,!?;:")
 
     def __init__(self, path: str | None = None) -> None:
         import json
@@ -50,10 +58,17 @@ class PhraseOverrides:
 
     @staticmethod
     def _normalize(text: str) -> str:
-        """NFC-normalize, strip and lowercase a phrase for table lookup."""
+        """NFC-normalize, strip punctuation, collapse and lowercase a phrase.
+
+        Root cause of the "Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi." → "Thank you, my friend."
+        bug: the old normalizer kept '.' and ',', so a comma-separated
+        greeting missed its exact-match key and fell through to NLLB, which
+        renders "ẹ kú ìrọ̀lẹ́" as "thank you" in compound sentences.
+        """
         import unicodedata
 
-        return unicodedata.normalize("NFC", text).strip().lower()
+        text = unicodedata.normalize("NFC", text).translate(PhraseOverrides._STRIPPED_CHARS)
+        return " ".join(text.split()).strip().lower()
 
     def lookup(self, text: str, source_language: str, target_language: str) -> str | None:
         """Return the override translation, or None when no exact match."""
@@ -187,11 +202,16 @@ class TranslationService:
         forced_bos = tokenizer.convert_tokens_to_ids(tgt)
 
         # 3. Autoregressive beam-search generation.
+        # Config note (FLORES dev experiment, data/eval/decoding_exp_dev.json):
+        # length_penalty=1.1 + higher max_new_tokens gave a small, consistent
+        # eng→yor chrF++ gain over lp=1.0 (26.45 vs 26.20, n=30) with no extra
+        # truncation; beams=8 scored *worse* (25.87) at +60% latency. Kept at 4.
         generated = model.generate(
             **inputs,
             forced_bos_token_id=forced_bos,
             max_new_tokens=self._settings.translation_max_new_tokens,
             num_beams=self._settings.translation_num_beams,
+            length_penalty=self._settings.translation_length_penalty,
         )
 
         # 4. Detokenize. skip_special_tokens drops </s> and language tags;
