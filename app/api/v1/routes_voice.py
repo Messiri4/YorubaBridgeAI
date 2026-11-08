@@ -1,4 +1,5 @@
 """POST /api/v1/voice-translate — voice note in, translated text out."""
+
 import logging
 import tempfile
 from pathlib import Path
@@ -57,6 +58,9 @@ async def voice_translate(request: Request, audio: UploadFile) -> TranslationRes
     response = TranslationResponse(**result.__dict__, cached=False)
     logger.info(
         "Voice note %.1fs -> '%s' (%s) -> '%s'",
-        transcript.duration_s, transcript.text, transcript.flores_code, result.translated_text,
+        transcript.duration_s,
+        transcript.text,
+        transcript.flores_code,
+        result.translated_text,
     )
     return response

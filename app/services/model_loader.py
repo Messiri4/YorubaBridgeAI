@@ -57,9 +57,7 @@ def load_nllb(model_id: str | None = None) -> LoadedModel:
     # from an already-downloaded HF cache). This avoids re-downloading weights
     # and lets torch<2.6 environments load safetensors instead of .bin.
     if os.path.isdir(model_id):
-        logger.info(
-            "Loading translation model from local path '%s' on %s ...", model_id, device
-        )
+        logger.info("Loading translation model from local path '%s' on %s ...", model_id, device)
         tokenizer = NllbTokenizerFast.from_pretrained(model_id)
         model = AutoModelForSeq2SeqLM.from_pretrained(model_id).to(device)
         model.eval()

@@ -1,4 +1,5 @@
 """Tests for the voice pipeline — Whisper mocked; model mocked."""
+
 import io
 from unittest.mock import MagicMock
 
@@ -22,8 +23,10 @@ def voice_client() -> TestClient:
     from app.services.translation import TranslationResult
 
     translator.translate.return_value = TranslationResult(
-        translated_text="Mo ń lọ sí ọjà", source_language="eng",
-        target_language="yor", latency_ms=1.0,
+        translated_text="Mo ń lọ sí ọjà",
+        source_language="eng",
+        target_language="yor",
+        latency_ms=1.0,
     )
     app.state.speech_service = speech
     app.state.translation_service = translator
@@ -97,7 +100,8 @@ def test_whisper_tiny_transcribes_real_english_audio() -> None:
         wav = Path(tmp) / "hello.wav"
         subprocess.run(
             ["say", "-o", str(wav), "--data-format=LEI16@22050", "Hello, how are you today?"],
-            check=True, capture_output=True,
+            check=True,
+            capture_output=True,
         )
         from app.services.model_loader import load_nllb
         from app.services.speech import SpeechService
@@ -107,7 +111,5 @@ def test_whisper_tiny_transcribes_real_english_audio() -> None:
         assert transcript.flores_code == "eng"
         assert "hello" in transcript.text.lower()
 
-        result = TranslationService(load_nllb()).translate(
-            transcript.text, "eng", "yor"
-        )
+        result = TranslationService(load_nllb()).translate(transcript.text, "eng", "yor")
         assert result.translated_text.strip()

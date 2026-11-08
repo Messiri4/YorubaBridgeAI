@@ -73,7 +73,7 @@ First run downloads the model (see the Intel-Mac note below).
 - [x] Phrase-override table (in-domain chrF 37.2→76.2 / 52.9→90.1)
 - [x] Local web UI (`/`)
 - [x] Voice-note translation (faster-whisper + `/api/v1/voice-translate`)
-- [x] WhatsApp webhook (mock-tested; live needs Meta credentials)
+- [x] WhatsApp webhook + deduplication + per-sender rate limiting (mock-tested; live needs Meta credentials) — [`docs/whatsapp.md`](docs/whatsapp.md)
 - [x] Postgres history (live test pending Docker repair)
 - [ ] Live WhatsApp E2E (blocked: Meta developer account)
 - [ ] Voice output (TTS) for replies

@@ -2,7 +2,10 @@
 
 import hashlib
 import hmac
+import logging
 from typing import Any
+
+logger = logging.getLogger(__name__)
 
 
 def verify_signature(app_secret: str, request_body: bytes, signature_header: str | None) -> bool:
@@ -30,26 +33,32 @@ def verify_signature(app_secret: str, request_body: bytes, signature_header: str
     return hmac.compare_digest(expected, provided)
 
 
-def extract_text_messages(payload: dict[str, Any]) -> list[tuple[str, str]]:
-    """Pull (sender_number, text) pairs out of a webhook payload.
+def extract_text_messages(payload: dict[str, Any]) -> list[dict[str, str]]:
+    """Pull message records out of a webhook payload.
 
     Meta's payload nests entries -> changes -> values -> messages. Text
-    messages carry a `text.body`; reactions/system messages are skipped.
+    messages carry a `text.body`; reactions/system messages are skipped
+    gracefully (they are unsupported but never fail the request).
 
     Returns:
-        List of (wa_id of sender, message text).
+        List of dicts: {message_id, sender, text} (text may be empty for
+            unsupported types, which callers skip).
     """
-    out: list[tuple[str, str]] = []
+    out: list[dict[str, str]] = []
     for entry in payload.get("entry", []):
         for change in entry.get("changes", []):
             value = change.get("value", {})
             for message in value.get("messages", []):
+                sender = message.get("from", "")
+                message_id = message.get("id", "")
                 if message.get("type") != "text":
+                    # Unsupported type (image/voice/sticker/...): ignore
+                    # gracefully but log once per delivery for observability.
+                    logger.info("Ignoring unsupported message type '%s'", message.get("type"))
                     continue
                 body = message.get("text", {}).get("body", "")
-                sender = message.get("from", "")
                 if body and sender:
-                    out.append((sender, body))
+                    out.append({"message_id": message_id, "sender": sender, "text": body})
     return out
 
 

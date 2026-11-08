@@ -24,7 +24,6 @@ def test_rate_limit_returns_429(api_client: TestClient) -> None:
     # Force a long window so the test cannot straddle a bucket boundary
     # (fixed-window counters shard at each window edge — genuine product
     # behaviour, but nondeterministic in a fast test loop).
-    import os
 
     os.environ["RATE_LIMIT_WINDOW_SECONDS"] = "3600"
     get_settings.cache_clear()

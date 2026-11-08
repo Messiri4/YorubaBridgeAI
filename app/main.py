@@ -1,4 +1,5 @@
 """FastAPI application factory and ASGI entrypoint."""
+
 import logging
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
@@ -53,6 +54,10 @@ def create_app(load_model: bool = True) -> FastAPI:
         application.state.translation_cache = TranslationCache(redis_client)
         application.state.rate_limiter = RateLimiter(lambda: redis_client)
 
+        from app.services.whatsapp_dedup import MessageDeduplicator
+
+        application.state.wa_dedup = MessageDeduplicator(lambda: redis_client)
+
         from app.services.history import make_history_store
 
         application.state.history_store = make_history_store()
@@ -83,6 +88,7 @@ def create_app(load_model: bool = True) -> FastAPI:
     @app.get("/", include_in_schema=False)
     def index() -> FileResponse:
         return FileResponse(Path(__file__).parent / "static" / "index.html")
+
     return app
 
 

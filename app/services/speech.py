@@ -6,6 +6,7 @@ a speaker can leave a note in either language and we detect which.
 
 Latency on Intel CPU: roughly real-time or a bit faster for short notes.
 """
+
 import logging
 from dataclasses import dataclass
 from typing import Any

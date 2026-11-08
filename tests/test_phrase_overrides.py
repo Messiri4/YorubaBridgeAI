@@ -112,6 +112,7 @@ def test_lookup_ignores_trailing_and_inner_punctuation(tmp_path: "object") -> No
     # Punctuation-stripping must not create false matches on different words.
     assert table.lookup("Ẹ kú àárọ̀, ọ̀rẹ́ mi.", "yor", "eng") is None
 
+
 def test_no_false_match_when_recipient_differs(tmp_path: "object") -> None:
     """Punctuation-stripping must not over-generalize: 'ẹ kú àárọ̀, àbúrò mi.'
     (different addressee) must NOT hit the '... ọ̀rẹ́ mi' entry."""
@@ -156,14 +157,8 @@ def test_diacritics_distinguish_phrases(tmp_path: "object") -> None:
 def test_inner_comma_does_not_create_cross_greeting_collisions() -> None:
     """Each greeting+addressee pair maps only to its own greeting;
     'ẹ kú ìrọ̀lẹ́ ọ̀rẹ́ mi' must not resolve to the morning entry."""
-    assert (
-        PhraseOverrides._normalize("Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi.")
-        == "ẹ kú ìrọ̀lẹ́ ọ̀rẹ́ mi"
-    )
-    assert (
-        PhraseOverrides._normalize("Ẹ kú àárọ̀, ọ̀rẹ́ mi.")
-        == "ẹ kú àárọ̀ ọ̀rẹ́ mi"
-    )
+    assert PhraseOverrides._normalize("Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi.") == "ẹ kú ìrọ̀lẹ́ ọ̀rẹ́ mi"
+    assert PhraseOverrides._normalize("Ẹ kú àárọ̀, ọ̀rẹ́ mi.") == "ẹ kú àárọ̀ ọ̀rẹ́ mi"
     assert PhraseOverrides._normalize("Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi.") != PhraseOverrides._normalize(
         "Ẹ kú àárọ̀, ọ̀rẹ́ mi."
     )
