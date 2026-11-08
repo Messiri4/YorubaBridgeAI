@@ -33,6 +33,7 @@ class Settings(BaseSettings):
     translation_model_id: str = "facebook/nllb-200-distilled-600M"
     translation_max_new_tokens: int = 256
     translation_num_beams: int = 4
+    translation_length_penalty: float = 1.1
     translation_max_input_chars: int = 2000
 
     # Caching & rate limiting (Redis-backed; degrades gracefully without it)

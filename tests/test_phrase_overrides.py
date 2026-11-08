@@ -88,3 +88,82 @@ def test_nfc_composed_and_decomposed_keys_match(tmp_path: "object") -> None:
     )
     table = PhraseOverrides(str(path))
     assert table.lookup("Báwo ni?", "yor", "eng") == "How are you?"
+
+
+def test_lookup_ignores_trailing_and_inner_punctuation(tmp_path: "object") -> None:
+    """Regression: 'Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi.' once missed its exact-match key
+    because '.'/',' poisoned normalization, falling through to the model
+    which mistranslated it as 'Thank you, my friend.'"""
+    import json
+
+    path = tmp_path / "greet.json"
+    path.write_text(
+        json.dumps(
+            {"yor_eng": {"ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi.": "Good evening, my friend."}},
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    table = PhraseOverrides(str(path))
+    # Exact source, plus punctuation/case/spacing variants, all hit.
+    assert table.lookup("Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi.", "yor", "eng") == "Good evening, my friend."
+    assert table.lookup("ẹ kú ìrọ̀lẹ́ ọ̀rẹ́ mi", "yor", "eng") == "Good evening, my friend."
+    assert table.lookup("Ẹ KÚ ÌRỌ̀LẸ́, Ọ̀RẸ́ MI.", "yor", "eng") == "Good evening, my friend."
+    # Punctuation-stripping must not create false matches on different words.
+    assert table.lookup("Ẹ kú àárọ̀, ọ̀rẹ́ mi.", "yor", "eng") is None
+
+def test_no_false_match_when_recipient_differs(tmp_path: "object") -> None:
+    """Punctuation-stripping must not over-generalize: 'ẹ kú àárọ̀, àbúrò mi.'
+    (different addressee) must NOT hit the '... ọ̀rẹ́ mi' entry."""
+    import json
+
+    path = tmp_path / "coll.json"
+    path.write_text(
+        json.dumps(
+            {
+                "yor_eng": {
+                    "ẹ kú àárọ̀ ọ̀rẹ́ mi": "Good morning, my friend.",
+                    "ẹ kú àárọ̀": "Good morning.",
+                }
+            },
+            ensure_ascii=False,
+        ),
+        encoding="utf-8",
+    )
+    table = PhraseOverrides(str(path))
+    assert table.lookup("Ẹ kú àárọ̀, ọ̀rẹ́ mi.", "yor", "eng") == "Good morning, my friend."
+    assert table.lookup("Ẹ kú àárọ̀, àbúrò mi.", "yor", "eng") is None
+    assert table.lookup("Ẹ kú àárọ̀. Àbúrò mi.", "yor", "eng") is None
+
+
+def test_diacritics_distinguish_phrases(tmp_path: "object") -> None:
+    """Tone marks remain meaningful: stripping punctuation must not blur
+    minimal pairs that differ only by diacritics (ọ̀sán 'afternoon' vs
+    unrelated tone patterns). NFC + case folding are the ONLY
+    equivalence transforms; tone marks are preserved."""
+    import json
+
+    path = tmp_path / "dia.json"
+    path.write_text(
+        json.dumps({"yor_eng": {"ẹ kú ọ̀sán": "Good afternoon."}}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    table = PhraseOverrides(str(path))
+    assert table.lookup("Ẹ kú ọ̀sán.", "yor", "eng") == "Good afternoon."
+    assert table.lookup("Ẹ kú ọsan.", "yor", "eng") is None  # missing tone marks
+
+
+def test_inner_comma_does_not_create_cross_greeting_collisions() -> None:
+    """Each greeting+addressee pair maps only to its own greeting;
+    'ẹ kú ìrọ̀lẹ́ ọ̀rẹ́ mi' must not resolve to the morning entry."""
+    assert (
+        PhraseOverrides._normalize("Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi.")
+        == "ẹ kú ìrọ̀lẹ́ ọ̀rẹ́ mi"
+    )
+    assert (
+        PhraseOverrides._normalize("Ẹ kú àárọ̀, ọ̀rẹ́ mi.")
+        == "ẹ kú àárọ̀ ọ̀rẹ́ mi"
+    )
+    assert PhraseOverrides._normalize("Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi.") != PhraseOverrides._normalize(
+        "Ẹ kú àárọ̀, ọ̀rẹ́ mi."
+    )

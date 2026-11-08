@@ -1,0 +1,17 @@
+{
+  "baseline beams=4 maxnew=256 lp=1.0": {
+    "chrfpp": 26.2,
+    "bleu": 5.02,
+    "lat_ms": 12715.3
+  },
+  "beams=4 maxnew=400 lp=1.1": {
+    "chrfpp": 26.45,
+    "bleu": 5.03,
+    "lat_ms": 15062.2
+  },
+  "beams=8 maxnew=400 lp=1.1": {
+    "chrfpp": 25.87,
+    "bleu": 4.35,
+    "lat_ms": 20584.9
+  }
+}
