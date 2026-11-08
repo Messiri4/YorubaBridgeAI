@@ -140,3 +140,51 @@ osascript -e 'quit app "Docker"'
 
 `.env` needs: `DATABASE_URL=postgresql://yoruba:<password>@localhost:5432/yorubabridge`,
 `REDIS_URL=redis://localhost:6379/0`, `DATABASE_ENABLED=true`.
+
+## 8. Recovery-from-shutdown procedure
+
+After an unexpected Mac shutdown, containers exit with code 255 and the daemon
+is not running. Recovery takes about two minutes:
+
+1. **Free-disk sanity check** — `df -h /System/Volumes/Data`. If free space is
+   below ~5 GiB, free regenerable caches first; Docker Desktop misbehaves on a
+   full disk (this caused the original outage, see §1).
+2. **Start Docker Desktop** — `open -a Docker`, wait ~45 s, then confirm the
+   daemon answers: `curl --unix-socket ~/.docker/run/docker.sock
+   http://localhost/_ping` → `OK`.
+3. **Start the project services** — `docker compose up -d postgres redis`.
+   Verify: `docker exec yorubabridgeai-infra-postgres-1 pg_isready -U yoruba`
+   and `docker exec yorubabridgeai-infra-redis-1 redis-cli ping`. Volumes
+   survive the reboot; no data is lost.
+4. **Check the Python environment** — if a previous `.venv` build was
+   interrupted (only pip/setuptools present), rebuild it with binary wheels
+   only, so nothing compiles from source:
+
+   ```bash
+   cd /Users/user/Desktop/WORK/AI-projects/YorubaBridgeAI-infra
+   .venv/bin/python3 -m pip install --only-binary :all: -r requirements-dev.txt
+   ```
+
+   All dependencies in `requirements.txt`, including `sentencepiece` (0.2.x
+   ships prebuilt macOS x86_64 wheels), resolve without compilation. If pip
+   ever falls back to building SentencePiece from source, it means the disk is
+   full or pip's cache forced an sdist — stop and free space rather than
+   compiling.
+5. **Verify the application** — `pytest tests` (expect 65 passed, 1 skipped)
+   and a `/health` request against `create_app()` returning 200 with
+   "Redis connected" in the log.
+
+### 2026-11-07 post-shutdown verification results
+
+- `.venv` rebuilt with `--only-binary :all:`; sentencepiece 0.2.2, torch 2.2.2,
+  transformers 4.57.6 all import; no source builds.
+- Tests with the infra worktree's own interpreter: **65 passed, 1 skipped,
+  3 deselected**.
+- Real-service checks (infra venv, real Postgres/Redis containers):
+  - Postgres: insert + readback with Yoruba diacritics, degrade-safe failure,
+    successful recovery insert.
+  - Redis: cache miss → hit matching payload, TTL expiry, outage degrade to
+    disabled cache, rate limiter 10 OK then 429.
+  - `/health` → 200 `{'status': 'ok'}` with Redis connected.
+- NLLB weights untouched (HF cache 4.6 GB + quality worktree's 2.3 GB local
+  copy). Docker volumes untouched.
