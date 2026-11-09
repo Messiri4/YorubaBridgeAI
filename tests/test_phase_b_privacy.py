@@ -183,7 +183,8 @@ def test_filter_survives_uvicorn_style_reconfiguration(
     setup_logging("INFO")  # our app import — happens AFTER uvicorn config
 
     uv_acc.info(
-        "GET /api/v1/webhook?hub.mode=subscribe&hub.verify_token=REALTOKEN123&hub.challenge=C1 HTTP/1.1 200"
+        "GET /api/v1/webhook?hub.mode=subscribe"
+        "&hub.verify_token=REALTOKEN123&hub.challenge=C1 HTTP/1.1 200"
     )
     out = stream.getvalue()
     assert "REALTOKEN123" not in out, "verify token leaked through uvicorn's own handler"
