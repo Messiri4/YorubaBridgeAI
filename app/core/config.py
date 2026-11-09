@@ -58,6 +58,7 @@ class Settings(BaseSettings):
     # Persistence (Postgres). Disabled by default: the API runs fine
     # without a database until you set DATABASE_ENABLED=true.
     database_enabled: bool = False
+    retention_days: int = 30
 
 
 @lru_cache

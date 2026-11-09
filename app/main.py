@@ -60,7 +60,30 @@ def create_app(load_model: bool = True) -> FastAPI:
 
         from app.services.history import make_history_store
 
-        application.state.history_store = make_history_store()
+        history_store = make_history_store()
+        application.state.history_store = history_store
+
+        # Automatic retention: if history is enabled, delete rows older than
+        # RETENTION_DAYS once at startup and then daily. Runs in the
+        # event loop; failures are logged, never raised (history.py).
+        if history_store is not None:
+            import asyncio
+
+            from app.services.history import RetentionCleanup
+
+            cleanup = RetentionCleanup(
+                connection_factory=history_store._connection_factory,  # noqa: SLF001
+                retention_days=settings.retention_days,
+            )
+
+            async def _retention_loop() -> None:
+                # to_thread keeps the blocking psycopg I/O OFF the event
+                # loop so the API stays responsive during cleanup.
+                while True:
+                    await asyncio.to_thread(cleanup.cleanup)
+                    await asyncio.sleep(24 * 3600)
+
+            application.state.retention_task = asyncio.create_task(_retention_loop())
 
         if load_model:
             from app.services.model_loader import load_nllb
@@ -69,7 +92,10 @@ def create_app(load_model: bool = True) -> FastAPI:
             loaded = load_nllb()
             application.state.translation_service = TranslationService(loaded)
         yield
-        # (No teardown needed yet; model lives for the process lifetime.)
+        # Teardown: cancel the retention loop if one was scheduled.
+        task = getattr(application.state, "retention_task", None)
+        if task is not None:
+            task.cancel()
 
     app = FastAPI(title=settings.app_name, version="0.1.0", lifespan=lifespan)
     app.include_router(health_router)
@@ -78,8 +104,10 @@ def create_app(load_model: bool = True) -> FastAPI:
     app.include_router(voice_router, prefix="/api/v1")
 
     # Speech service is lazy-loading; construction is cheap.
+    from app.api.v1.routes_voice import purge_stale_audio
     from app.services.speech import SpeechService
 
+    purge_stale_audio()  # remove leftovers from a previous abnormal exit
     app.state.speech_service = SpeechService()
 
     # Local demo UI (single static page; no template engine needed).
