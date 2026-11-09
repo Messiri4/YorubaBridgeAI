@@ -81,13 +81,15 @@ def test_contact_email_present() -> None:
         assert CONTACT_EMAIL in html, f"{url} is missing the contact email"
 
 
-def test_effective_date_placeholder_is_flagged() -> None:
-    """Privacy and terms must keep the marked publication-date placeholder."""
+def test_effective_date_is_finalized() -> None:
+    """Privacy and terms carry the publication effective date - no blockers."""
     for url in ("/privacy", "/terms"):
         html = PAGES[url].read_text(encoding="utf-8")
-        assert 'data-launch-blocker="effective-date"' in html, (
-            f"{url} lost the launch-blocker marker"
+        assert "November 8, 2026" in html, (
+            f"{url} is missing the November 8, 2026 effective date"
         )
+        assert "data-launch-blocker" not in html, f"{url} still has a launch blocker"
+        assert "TO BE SET ON PUBLICATION" not in html, f"{url} still has placeholder text"
 
 
 def test_privacy_clarifies_local_voice_transcription() -> None:
