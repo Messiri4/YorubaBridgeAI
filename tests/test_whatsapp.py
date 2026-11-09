@@ -129,14 +129,23 @@ def test_webhook_post_rejects_bad_signature() -> None:
 
 
 def test_webhook_post_rejects_when_unconfigured() -> None:
+    # `.env` now contains a real app secret, so force the unconfigured state.
+    import os
+
+    from app.core.config import get_settings
     from app.main import create_app
 
-    app = create_app(load_model=False)
-    client = TestClient(app)
-    resp = client.post(
-        "/api/v1/webhook", content=b"{}", headers={"X-Hub-Signature-256": "sha256=x"}
-    )
-    assert resp.status_code == 503
+    os.environ["WHATSAPP_APP_SECRET"] = ""
+    get_settings.cache_clear()
+    try:
+        app = create_app(load_model=False)
+        resp = TestClient(app).post(
+            "/api/v1/webhook", content=b"{}", headers={"X-Hub-Signature-256": "sha256=x"}
+        )
+        assert resp.status_code == 503
+    finally:
+        os.environ.pop("WHATSAPP_APP_SECRET", None)
+        get_settings.cache_clear()
 
 
 def test_webhook_verification_handshake() -> None:
@@ -161,6 +170,16 @@ def test_webhook_verification_handshake() -> None:
         )
         assert resp.status_code == 200
         assert resp.text == "CH123"
+        # timing-safe comparison: wrong token must NOT echo the challenge
+        bad = client.get(
+            "/api/v1/webhook",
+            params={
+                "hub.mode": "subscribe",
+                "hub.verify_token": "wrong",
+                "hub.challenge": "CH123",
+            },
+        )
+        assert bad.status_code == 403
     finally:
         os.environ.pop("WHATSAPP_VERIFY_TOKEN", None)
         get_settings.cache_clear()

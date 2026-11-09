@@ -8,6 +8,8 @@ Privacy: message contents and phone numbers are NEVER logged — only
 counts and coarse outcomes.
 """
 
+import hashlib
+import hmac
 import json
 import logging
 
@@ -24,6 +26,17 @@ logger = logging.getLogger(__name__)
 router = APIRouter(tags=["whatsapp"])
 
 
+def _correlation_id(msg: dict[str, str]) -> str:
+    """Stable per-message correlation id that leaks nothing personal.
+
+    The wamid is opaque but could still be correlated with Meta logs; a
+    truncated SHA-256 keeps debugging useful while being non-reversible
+    for our purposes.
+    """
+    digest = hashlib.sha256(msg.get("message_id", "").encode("utf-8")).hexdigest()[:12]
+    return digest
+
+
 def _split_direction(source: str) -> tuple[str, str]:
     """Map detected source language to (source_code, target_code)."""
     return ("yor", "eng") if source == "yor" else ("eng", "yor")
@@ -37,11 +50,12 @@ def verify_subscription(request: Request) -> Response:
     """
     settings = get_settings()
     params = request.query_params
-    if (
-        params.get("hub.mode") == "subscribe"
-        and params.get("hub.verify_token") == settings.whatsapp_verify_token
-        and settings.whatsapp_verify_token
-    ):
+    expected_token = settings.whatsapp_verify_token
+    provided_token = params.get("hub.verify_token", "")
+    # compare_digest: constant-time, timing-attack safe. hmac.compare_digest
+    # requires both args to be str-or-bytes of the same type.
+    token_ok = bool(expected_token) and hmac.compare_digest(expected_token, provided_token or "")
+    if params.get("hub.mode") == "subscribe" and token_ok:
         return Response(content=params.get("hub.challenge", ""), media_type="text/plain")
     raise HTTPException(status_code=403, detail="Webhook verification failed")
 
@@ -116,10 +130,20 @@ async def receive_message(request: Request) -> dict[str, object]:
             replied += 1
         except TranslationError as exc:
             failed += 1
+            # TranslationError messages are service-authored (language codes,
+            # length limits) — safe by construction, no user content.
             logger.warning("Translation rejected for a message: %s", exc)
-        except Exception:  # noqa: BLE001 - one bad message must not fail the batch
+        except Exception as exc:  # noqa: BLE001 - one bad message must not fail the batch
             failed += 1
-            logger.exception("Failed to process a WhatsApp message")
+            # PRIVACY: never log tracebacks here — exception messages and
+            # stack frames can embed user message text or identifiers.
+            # Log only the exception class and a per-message correlation id.
+            logger.error(
+                "Message processing failed: %s (correlation_id=%s)",
+                type(exc).__name__,
+                _correlation_id(msg),
+            )
+            logger.debug("Full exception detail suppressed for privacy")
 
     logger.info(
         "Webhook batch: %d received, %d deduped, %d replied, %d failed",
