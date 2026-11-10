@@ -1,0 +1,49 @@
+{
+  "source_csv": "beams_ab_20261109T231413Z.csv",
+  "n_predictions": 120,
+  "thresholds": {
+    "low_chrf": 30.0,
+    "beam_token_jaccard": 0.5,
+    "short_ratio": 0.5,
+    "long_ratio": 2.0,
+    "overshoot_ratio": 1.8
+  },
+  "disclaimer": "All findings are heuristic warnings for human review, not verdicts.",
+  "findings_by_direction_category": {
+    "eng_yor|BEAM_DIVERGENCE": 4,
+    "eng_yor|ENTITY_MISSING": 41,
+    "eng_yor|LOW_CHRF": 38,
+    "eng_yor|NUMBER_CHANGED": 5,
+    "eng_yor|NUMBER_MISSING": 4,
+    "eng_yor|REF_DIGIT_MISMATCH": 12,
+    "eng_yor|REF_NO_DIACRITICS": 60,
+    "eng_yor|REPEATED_NGRAM": 48,
+    "eng_yor|TOO_LONG": 2,
+    "eng_yor|UNTRANSLATED": 16,
+    "yor_eng|BEAM_DIVERGENCE": 2,
+    "yor_eng|ENTITY_MISSING": 15,
+    "yor_eng|LOW_CHRF": 5,
+    "yor_eng|NUMBER_CHANGED": 10,
+    "yor_eng|REF_DIGIT_MISMATCH": 12,
+    "yor_eng|REPEATED_NGRAM": 18,
+    "yor_eng|UNTRANSLATED": 22
+  },
+  "by_severity": {
+    "medium": 207,
+    "info": 90,
+    "high": 15,
+    "low": 2
+  },
+  "by_kind": {
+    "model": 230,
+    "reference": 84
+  },
+  "mean_chrf_by_direction_config": {
+    "yor_eng|beams=4": 46.17,
+    "eng_yor|beams=4": 28.59,
+    "eng_yor|beams=2": 27.63,
+    "yor_eng|beams=2": 46.93
+  },
+  "rows_flagged": 104,
+  "rows_total": 120
+}
