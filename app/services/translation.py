@@ -3,9 +3,27 @@
 Business logic lives here; model construction lives in `model_loader.py`.
 The service depends on the `LoadedModel` bundle, so unit tests can inject
 mocks and run without downloading anything.
+
+Integration (branch integration/translation-improvements):
+- reversible numeric/identifier protection (app/services/protection.py)
+  with structured failure reporting and an explicit unprotected-retry
+  contract (`with_unprotected_fallback`); unresolved placeholders are
+  NEVER returned to API users — on restoration failure the plain model
+  output is regenerated without protection, and as a last resort every
+  residual sentinel is stripped before the response leaves the service.
+- context-aware verified-term glossary (app/services/glossary.py),
+  applied AFTER restoration so placeholders cannot shadow terms, and
+  token-span based so it can never corrupt protected expressions.
+- Yoruba NFC normalization + orthography auditing and the tone-restoration
+  interface (PassThroughRestorer default; no diacritics are fabricated),
+  wired only for Yoruba TARGET output.
+- decoding-policy selection (app/services/decoding_policy.py) with the
+  production_default profile reproducing the legacy generation parameters
+  bit-for-bit.
 """
 
 import logging
+import re
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -20,7 +38,8 @@ logger = logging.getLogger(__name__)
 LANGUAGE_CODES = frozenset(SUPPORTED_LANGUAGES)
 
 
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING  # noqa: E402  (baseline import order kept)
+
 if TYPE_CHECKING:
     from app.services.glossary import Glossary
 
@@ -106,6 +125,12 @@ class TranslationResult:
     latency_ms: float
 
 
+# Residual-sentinel scrubber: last-resort guarantee that no sentinel issued
+# by protection.protect() can reach an API consumer, even if every upstream
+# verification and fallback path somehow failed.
+_RESIDUAL_SENTINEL_RE = re.compile(r"@@\s*\d+@@")
+
+
 class TranslationService:
     """Translates text between English (eng) and Yoruba (yor) using NLLB.
 
@@ -125,7 +150,8 @@ class TranslationService:
         self._loaded = loaded
         self._settings = get_settings()
         self._overrides: PhraseOverrides | None = None
-        self._glossary: "Glossary | None" = None  # lazy; see translate()
+        self._glossary: Glossary | None = None  # lazy; see translate()
+        self._restorer = None  # lazy tone restorer (interface contract)
 
     @property
     def overrides(self) -> PhraseOverrides:
@@ -156,54 +182,11 @@ class TranslationService:
         if source_language == target_language:
             raise TranslationError("source_language and target_language must differ")
 
-    def translate(
-        self, text: str, source_language: str, target_language: str,
-        protect_numerics: bool | None = None,
-    ) -> "TranslationResult":
-        """Translate `text` from source_language to target_language.
+    # ------------------------------------------------------------------ core
 
-        Args:
-            text: Input text (non-empty, within max_input_chars).
-            source_language: "eng" or "yor".
-            target_language: "eng" or "yor" (must differ from source).
-            protect_numerics: reversible sentinel protection for numbers,
-                times, dates, currency, URLs, emails and identifiers
-                (Sprint TI-1). None = use the global setting. Safe
-                fallback: if placeholder restoration cannot be verified,
-                the plain model output is returned unchanged.
-
-        Returns:
-            TranslationResult with translated text and latency.
-
-        Raises:
-            TranslationError: on invalid input or unsupported languages.
-        """
-        start = time.perf_counter()
-        self._validate(text, source_language, target_language)
-
-        from app.services.protection import protect as prot_wrap, restore as prot_restore
-        protection_enabled = (self._settings.numeric_protection_enabled
-                              if protect_numerics is None else protect_numerics)
-        protection = prot_wrap(text) if protection_enabled else None
-        if protection is not None:
-            text = protection.protected_text
-
-        # Phrase-override table: exact matches bypass the model entirely.
-        # This fixes known model weaknesses (greeting idioms, market
-        # phrases) at zero latency cost.
-        override = self.overrides.lookup(text, source_language, target_language)
-        if override is not None:
-            latency_ms = (time.perf_counter() - start) * 1000
-            logger.info("Phrase override hit for %s->%s", source_language, target_language)
-            return TranslationResult(
-                translated_text=override,
-                source_language=source_language,
-                target_language=target_language,
-                latency_ms=round(latency_ms, 1),
-            )
-
-        src = SUPPORTED_LANGUAGES[source_language]
-        tgt = SUPPORTED_LANGUAGES[target_language]
+    def _generate(self, text: str, src: str, tgt: str) -> str:
+        """Run one NLLB generation pass with the resolved decoding policy."""
+        from app.services.decoding_policy import build_generate_kwargs, get_policy
 
         tokenizer = self._loaded.tokenizer
         model = self._loaded.model
@@ -220,41 +203,189 @@ class TranslationService:
         # 2. Force the decoder to start with the target language token.
         forced_bos = tokenizer.convert_tokens_to_ids(tgt)
 
-        # 3. Autoregressive beam-search generation.
-        # Config note (FLORES dev experiment, data/eval/decoding_exp_dev.json):
-        # length_penalty=1.1 + higher max_new_tokens gave a small, consistent
-        # eng→yor chrF++ gain over lp=1.0 (26.45 vs 26.20, n=30) with no extra
-        # truncation; beams=8 scored *worse* (25.87) at +60% latency. Kept at 4.
-        generated = model.generate(
-            **inputs,
-            forced_bos_token_id=forced_bos,
-            max_new_tokens=self._settings.translation_max_new_tokens,
-            num_beams=self._settings.translation_num_beams,
-            length_penalty=self._settings.translation_length_penalty,
+        # 3. Autoregressive beam-search generation, parameterized by the
+        #    decoding policy. The default ("production_default") mirrors the
+        #    settings-driven behavior exactly (beams=4, max_new=256, lp=1.1),
+        #    so switching here is output-neutral unless a profile is chosen.
+        policy = get_policy(settings=self._settings)
+        input_tokens = None
+        input_ids = getattr(inputs, "input_ids", None)
+        shape = getattr(input_ids, "shape", None)
+        if shape is not None and len(shape) >= 2:
+            input_tokens = int(shape[1])
+        generate_kwargs = build_generate_kwargs(
+            policy, self._settings, input_tokens=input_tokens,
+            direction=f"{self._current_source}_{self._current_target}",
         )
+        generated = model.generate(**inputs, forced_bos_token_id=forced_bos, **generate_kwargs)
 
         # 4. Detokenize. skip_special_tokens drops </s> and language tags;
         #    Yoruba diacritics are preserved because decoding is byte-level.
-        translated = tokenizer.batch_decode(
+        return tokenizer.batch_decode(
             generated, skip_special_tokens=True, clean_up_tokenization_spaces=True
         )[0]
 
-        # Restore protected expressions (verified; safe fallback on failure).
-        if protection is not None:
-            translated, ok, reason = prot_restore(translated, protection)
-            if not ok:
-                logger.warning("placeholder restoration failed (%s); returning raw model output", reason)
+    def _translate_once(self, text: str, source_language: str, target_language: str,
+                        protect_numerics: bool) -> str:
+        """One translation pass WITHOUT restoration; returns raw model text.
 
-        # Verified-term glossary (post-generation; context-aware). Runs on the
-        # restored text so placeholders can't shadow terms.
+        Called through `with_unprotected_fallback`, which owns the
+        protected/unprotected retry decision (explicit callable contract,
+        no signature guessing).
+        """
+        src = SUPPORTED_LANGUAGES[source_language]
+        tgt = SUPPORTED_LANGUAGES[target_language]
+        return self._generate(text, src, tgt)
+
+    def _finish(self, text: str, source_language: str, target_language: str) -> str:
+        """Post-generation enrichment shared by both protected/plain paths.
+
+        Order matters: glossary runs on fully restored text (placeholders
+        cannot shadow terms), then NFC normalization, then the tone-
+        restoration interface — Yoruba target only, and the default
+        restorer is a no-op pass-through that never fabricates diacritics.
+        """
+        from app.services.yoruba_orthography import nfc as yoruba_nfc
+
+        # Verified-term glossary (post-generation; context-aware, Unicode
+        # safe, occurrence-wise). Applied on restored text.
         if self._settings.glossary_enabled:
             from app.services.glossary import Glossary
             if self._glossary is None:
                 self._glossary = Glossary(self._settings.glossary_path)
-            translated, applied = self._glossary.apply(
-                translated, f"{source_language}_{target_language}")
+            text, applied = self._glossary.apply(
+                text, f"{source_language}_{target_language}")
             if applied:
                 logger.info("glossary applied: %s", applied)
+
+        is_yoruba_target = target_language == "yor"
+
+        # NFC normalization for Yoruba output (preserves every tone/underdot
+        # distinction; makes composed/decomposed representations consistent).
+        if is_yoruba_target:
+            text = yoruba_nfc(text)
+
+            # Tone-restoration interface (experiment). Default is the
+            # PassThroughRestorer behind a ThresholdGuard: it never changes
+            # text and never fabricates diacritics.
+            try:
+                from app.services.tone_restoration import propose_restoration
+                if self._restorer is None:
+                    self._restorer = propose_restoration
+                outcome = self._restorer(text, None)
+                text = outcome.restored_text
+                if outcome.fallback_used:
+                    logger.debug("tone restoration: %s", outcome.reason)
+            except Exception:  # noqa: BLE001 - tonality must never break serving
+                logger.warning("tone-restoration stage failed; text unchanged", exc_info=True)
+
+        return text
+
+    # ------------------------------------------------------------------- API
+
+    def translate(
+        self, text: str, source_language: str, target_language: str,
+        protect_numerics: bool | None = None,
+    ) -> "TranslationResult":
+        """Translate `text` from source_language to target_language.
+
+        Args:
+            text: Input text (non-empty, within max_input_chars).
+            source_language: "eng" or "yor".
+            target_language: "eng" or "yor" (must differ from source).
+            protect_numerics: reversible sentinel protection for numbers,
+                times, dates, currency, URLs, emails and identifiers
+                (Sprint TI-1). None = use the global setting. On
+                restoration failure the request is retried WITHOUT
+                protection (safe fallback), and a final residual-sentinel
+                scrub guarantees no placeholder ever reaches the caller.
+
+        Returns:
+            TranslationResult with translated text and latency.
+
+        Raises:
+            TranslationError: on invalid input or unsupported languages.
+        """
+        from app.services.protection import (
+            protect as prot_wrap,
+        )
+        from app.services.protection import (
+            restore_outcome as prot_restore_outcome,
+        )
+        from app.services.protection import (
+            with_unprotected_fallback,
+        )
+
+        start = time.perf_counter()
+        self._validate(text, source_language, target_language)
+
+        # Keep direction for the (optional) direction-aware decoding policy.
+        self._current_source = source_language
+        self._current_target = target_language
+
+        protection_enabled = (self._settings.numeric_protection_enabled
+                              if protect_numerics is None else protect_numerics)
+        protection = prot_wrap(text) if protection_enabled else None
+        protected_text = protection.protected_text if protection is not None else text
+
+        # Phrase-override table: exact matches bypass the model entirely.
+        # This fixes known model weaknesses (greeting idioms, market
+        # phrases) at zero latency cost.
+        override = self.overrides.lookup(text, source_language, target_language)
+        if override is not None:
+            latency_ms = (time.perf_counter() - start) * 1000
+            logger.info("Phrase override hit for %s->%s", source_language, target_language)
+            return TranslationResult(
+                translated_text=override,
+                source_language=source_language,
+                target_language=target_language,
+                latency_ms=round(latency_ms, 1),
+            )
+
+        if protection is not None:
+            # Protected path with a structured, explicit retry contract:
+            # the first callable translates with sentinels and returns the
+            # restoration outcome; the second (plain) callable is invoked
+            # by the helper ONLY when verification fails. No signature
+            # guessing, no broad TypeError catching in this module.
+            def _protected_attempt() -> "object":
+
+                raw = self._translate_once(
+                    protected_text, source_language, target_language,
+                    protect_numerics=True)
+                return prot_restore_outcome(raw, protection)
+
+            def _plain_attempt() -> str:
+                return self._translate_once(
+                    text, source_language, target_language, protect_numerics=False)
+
+            restored, used_fallback, failure = with_unprotected_fallback(
+                _protected_attempt, _plain_attempt)
+            if failure is not None:
+                logger.warning(
+                    "placeholder restoration failed (%s)%s",
+                    failure, "; retried without protection" if used_fallback else "")
+            if used_fallback:
+                translated = restored
+            else:
+                outcome = restored
+                translated = outcome.text if hasattr(outcome, "text") else str(restored)
+        else:
+            # Plain path (protection off, or nothing to protect).
+            translated = self._translate_once(
+                text, source_language, target_language, protect_numerics=False)
+
+        # Hard guarantee: unresolved placeholders can never reach users.
+        # After the safe-fallback retry there should be none; this scrub is
+        # defense-in-depth, logged loudly when it has to act.
+        if "@@" in translated:
+            scrubbed = _RESIDUAL_SENTINEL_RE.sub("", translated)
+            cleaned = re.sub(r"\s{2,}", " ", scrubbed).strip(" ,;")
+            if cleaned != translated:
+                logger.error("residual placeholder scrubbed from output")
+                translated = cleaned
+
+        translated = self._finish(translated, source_language, target_language)
 
         latency_ms = (time.perf_counter() - start) * 1000
         logger.info("Translated %s->%s in %.1f ms", source_language, target_language, latency_ms)

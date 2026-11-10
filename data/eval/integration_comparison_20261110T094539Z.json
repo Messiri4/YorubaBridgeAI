@@ -1,0 +1,84 @@
+{
+  "ran_at": "20261110T094539Z",
+  "model": ".model-local/nllb-600M-fixed",
+  "split": "dev",
+  "pairs": 2,
+  "chrf_kwargs": {
+    "char_order": 6,
+    "word_order": 2,
+    "beta": 2.0
+  },
+  "note": "sequential inference, single model instance, no downloads; overrides disabled in both arms",
+  "arms": {
+    "baseline": {
+      "eng_yor": {
+        "chrf_plus_plus": 39.6,
+        "bleu": 15.31,
+        "mean_latency_s": 13.107,
+        "median_latency_s": 13.107,
+        "numeric_expressions_total": 0,
+        "numeric_expressions_preserved": 0,
+        "numeric_preservation_rate": null,
+        "sentinel_leaks": 0,
+        "tone_marks": {
+          "low": 26,
+          "high": 21,
+          "underdot": 21
+        }
+      },
+      "yor_eng": {
+        "chrf_plus_plus": 48.84,
+        "bleu": 18.3,
+        "mean_latency_s": 4.578,
+        "median_latency_s": 4.578,
+        "numeric_expressions_total": 0,
+        "numeric_expressions_preserved": 0,
+        "numeric_preservation_rate": null,
+        "sentinel_leaks": 0,
+        "tone_marks": null
+      }
+    },
+    "integrated": {
+      "eng_yor": {
+        "chrf_plus_plus": 39.6,
+        "bleu": 15.31,
+        "mean_latency_s": 9.117,
+        "median_latency_s": 9.117,
+        "numeric_expressions_total": 0,
+        "numeric_expressions_preserved": 0,
+        "numeric_preservation_rate": null,
+        "sentinel_leaks": 0,
+        "tone_marks": {
+          "low": 26,
+          "high": 21,
+          "underdot": 21
+        }
+      },
+      "yor_eng": {
+        "chrf_plus_plus": 48.84,
+        "bleu": 18.3,
+        "mean_latency_s": 4.502,
+        "median_latency_s": 4.502,
+        "numeric_expressions_total": 0,
+        "numeric_expressions_preserved": 0,
+        "numeric_preservation_rate": null,
+        "sentinel_leaks": 0,
+        "tone_marks": null
+      }
+    }
+  },
+  "delta_integrated_minus_baseline": {
+    "eng_yor": {
+      "chrf_plus_plus_delta": 0.0,
+      "bleu_delta": 0.0,
+      "numeric_preservation_delta": null,
+      "mean_latency_delta_s": -3.99
+    },
+    "yor_eng": {
+      "chrf_plus_plus_delta": 0.0,
+      "bleu_delta": 0.0,
+      "numeric_preservation_delta": null,
+      "mean_latency_delta_s": -0.076
+    }
+  }
+}

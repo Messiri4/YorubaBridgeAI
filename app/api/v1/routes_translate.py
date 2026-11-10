@@ -34,14 +34,24 @@ def translate(payload: TranslationRequest, request: Request) -> TranslationRespo
 
     cache: TranslationCache = request.app.state.translation_cache
 
-    # 2. Cache hit -> skip the model entirely.
-    hit = cache.get(payload.text, payload.source_language, payload.target_language)
+    # 2. Cache hit -> skip the model entirely. The active decoding policy is
+    #    part of the key so hypotheses generated under an experimental policy
+    #    are never served as production-policy output (and vice versa).
+    from app.services.decoding_policy import get_policy
+
+    service = get_service(request)
+    try:
+        policy_name = get_policy(settings=service._settings).name
+    except ValueError:
+        policy_name = None
+    hit = cache.get(payload.text, payload.source_language, payload.target_language,
+                    decoding_policy=policy_name)
     if hit is not None:
         return TranslationResponse(**hit, cached=True)
 
     # 3. Cache miss -> phrase override or model inference.
     try:
-        result = get_service(request).translate(
+        result = service.translate(
             payload.text,
             source_language=payload.source_language,
             target_language=payload.target_language,
@@ -50,7 +60,7 @@ def translate(payload: TranslationRequest, request: Request) -> TranslationRespo
         raise HTTPException(status_code=422, detail=str(exc)) from exc
 
     override_hit = (
-        get_service(request).overrides.lookup(
+        service.overrides.lookup(
             payload.text, payload.source_language, payload.target_language
         )
         is not None
@@ -79,5 +89,6 @@ def translate(payload: TranslationRequest, request: Request) -> TranslationRespo
         payload.source_language,
         payload.target_language,
         result.__dict__,
+        decoding_policy=policy_name,
     )
     return response

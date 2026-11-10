@@ -40,7 +40,8 @@
       "translation": "diabetes",
       "context": [],
       "status": "verified",
-      "comment": "reverse mapping; 'ìtọ ṣúgà' is the FLORES-refs variant, both attested"
+      "allow_unaccented": true,
+      "comment": "reverse mapping; 'ìtọ ṣúgà' is the FLORES-refs variant, both attested. Fold form 'atogbe' is unambiguous in this table, so accent-folded matching is permitted."
     },
     {
       "term": "ìtọ ṣúgà",

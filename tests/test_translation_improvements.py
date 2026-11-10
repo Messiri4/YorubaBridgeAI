@@ -10,17 +10,14 @@ from unittest.mock import MagicMock
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
+from app.core.config import get_settings
+from app.services.glossary import Glossary
+from app.services.model_loader import LoadedModel
 from app.services.protection import (
-    ProtectionResult,
     protect,
     restore,
-    verify_placeholder_structure,
 )
-from app.services.glossary import Glossary
-from app.core.config import get_settings
-from app.services.model_loader import LoadedModel
 from app.services.translation import TranslationService
-
 
 # --- protection: capture & restore ---------------------------------------------
 
@@ -59,7 +56,8 @@ def test_restore_detects_dropped_sentinel() -> None:
     p = protect("Score 7–2 final.")
     restored, ok, reason = restore("Score final.", p)
     assert not ok and restored == "Score final."
-    assert "found 0" in reason
+    # structured failure names the dropped sentinel explicitly
+    assert "missing" in reason and "@@0@@" in reason
 
 
 def test_restore_missing_sentinel_index_reported() -> None:
@@ -69,7 +67,8 @@ def test_restore_missing_sentinel_index_reported() -> None:
     corrupted = "From @@0@@ users."      # @@1@@ dropped entirely
     restored, ok, reason = restore(corrupted, p)
     assert not ok and restored == corrupted
-    assert "found 1" in reason  # count mismatch catches the drop
+    # structured failure names the dropped sentinel explicitly
+    assert "missing" in reason and "@@1@@" in reason
 
 
 def test_protection_disabled_passthrough() -> None:
@@ -105,9 +104,11 @@ def test_glossary_longest_match_first() -> None:
 
 
 def test_glossary_diacritic_insensitive_matching() -> None:
+    # Unaccented matching is opt-in per entry ('àtògbẹ' is fold-unambiguous,
+    # so its entry sets allow_unaccented=true in glossary.json).
     g = Glossary("data/phrases/glossary.json")
     out, applied = g.apply("Ó ní atogbe.", "yor_eng")   # unaccented input
-    assert "diabetes" in out
+    assert "diabetes" in out and applied
 
 
 def test_glossary_empty_text() -> None:
@@ -142,8 +143,12 @@ def test_service_protection_fallback_on_corrupt_output() -> None:
     svc, _ = _service_with_output("Ìdíje náà wà ní @@0@@.")   # dropped one sentinel
     r = svc.translate("The score was 7–2 at 11:29.", "eng", "yor",
                       protect_numerics=True)
-    # safe fallback: raw model output, no partial restoration
-    assert r.translated_text == "Ìdíje náà wà ní @@0@@."
+    # No unresolved placeholder may EVER reach the caller: restoration fails
+    # verification, so the plain model output is regenerated, and residual
+    # sentinels are scrubbed as defense-in-depth (the stub model emits the
+    # same sentinel-laden text on the retry, so the scrub removes it).
+    assert "@@" not in r.translated_text
+    assert "Ìdíje náà" in r.translated_text
 
 
 def test_service_protection_off_keeps_legacy_path() -> None:
