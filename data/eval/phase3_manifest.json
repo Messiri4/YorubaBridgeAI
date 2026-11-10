@@ -1,7 +1,7 @@
 {
   "experiment_id": "phase3-sprint1-eval-foundation",
   "hypothesis": "Existing predictions, rescored under a unified schema, reproduce Phase-2B metrics and expose measurement conventions.",
-  "ran_at": "2026-11-10T01:37:38Z",
+  "ran_at": "2026-11-10T02:14:15Z",
   "config": "configs/evaluation.yaml",
   "inputs": {
     "data/eval/beams_ab_20261109T231413Z.csv": {
@@ -9,9 +9,9 @@
     }
   },
   "outputs": {
-    "phase3_scorecard.json": "b1b81fc14f7499d3639a9efda803ce07d2fad9d084cdf413453814229b3c0bbc",
-    "phase3_scorecard.csv": "0ca81abb9cc9d09bfbe256e4bad485133960ff4f19601bda40074c67b6466569",
-    "phase3_scorecard_report.md": "f9588c99a18041e2510cb55740b3fae287952237d161059b9e06fa5b7b16935f"
+    "phase3_scorecard.json": "bc23e4c19bf9283cb345a025d571c0468818623b43a97138678bc4dd06d2230d",
+    "phase3_scorecard.csv": "74e0611466d9f6880d1d8450a44c333b7acb57cd2299d3ba7decf66369965a54",
+    "phase3_scorecard_report.md": "3b2f2ab9cddee4589e980246445f93a93677875d76064905aa758f5fec02d28e"
   },
   "metric_versions": {
     "sacrebleu": "2.6.0",

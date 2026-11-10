@@ -1,5 +1,5 @@
 arm,n_sentences,bleu,chrfpp_standard,chrfpp_nfc,chrfpp_folded_diagnostic,numeric_consistency_rate,numeric_warnings,entity_warning_hits,repeat_warnings,short_warnings,latency_mean_ms,human_labels
-eng_yor|beams=2,30,3.86,26.07,29.3,37.42,0.5455,5,2,5,4,25666.1,unavailable
-eng_yor|beams=4,30,4.57,26.75,30.04,37.91,0.6364,4,2,5,7,30452.6,unavailable
+eng_yor|beams=2,30,3.86,26.07,29.3,37.42,0.5455,4,2,5,4,25666.1,unavailable
+eng_yor|beams=4,30,4.57,26.75,30.04,37.91,0.6364,3,2,5,7,30452.6,unavailable
 yor_eng|beams=2,30,19.21,43.56,43.56,43.56,0.8333,1,2,0,0,13480.4,unavailable
 yor_eng|beams=4,30,18.55,43.01,43.01,43.01,0.8333,1,2,0,0,17490.2,unavailable

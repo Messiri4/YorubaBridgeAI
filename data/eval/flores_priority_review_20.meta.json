@@ -1,0 +1,68 @@
+{
+  "seed": 20261110,
+  "n": 20,
+  "plan": [
+    {
+      "bucket": "meaning_change",
+      "n": 6,
+      "categories": [
+        [
+          "yor_eng",
+          2,
+          "office-title inversion: al\u00e1k\u00f2so \u00ecs\u00fara (treasurer) rendered 'prime minister' in both beams"
+        ],
+        [
+          "yor_eng",
+          6,
+          "polarity inversion: 'economically viable' rendered 'economically disadvantaged' in both beams"
+        ],
+        [
+          "eng_yor",
+          3,
+          "score corruption: '7\u20132' rendered '72' (beams=2) and '7 2' (beams=4)"
+        ],
+        [
+          "yor_eng",
+          22,
+          "role reversal: 'bosses had been reined in by Provenzano' rendered as Provenzano leading/overthrowing"
+        ],
+        [
+          "eng_yor",
+          13,
+          "measurement drift: '9,000-year lease' dropped/transformed differently per beam"
+        ],
+        [
+          "yor_eng",
+          4,
+          "actant flip: banks helping clients HIDE money became investors INVESTING money"
+        ]
+      ]
+    },
+    {
+      "bucket": "numeric",
+      "n": 4,
+      "categories": null
+    },
+    {
+      "bucket": "entity",
+      "n": 3,
+      "categories": null
+    },
+    {
+      "bucket": "omission",
+      "n": 3,
+      "categories": null
+    },
+    {
+      "bucket": "orthographic",
+      "n": 2,
+      "categories": null
+    },
+    {
+      "bucket": "control",
+      "n": 2,
+      "categories": null
+    }
+  ],
+  "trace": "pair_idx -> dev.997 line; worksheet -> flores_reference_review.csv"
+}

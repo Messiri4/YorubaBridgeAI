@@ -1,0 +1,42 @@
+{
+  "experiment_id": "phase3-sprint2a-eval-integrity",
+  "hypothesis": "Reconcile metric discrepancies and pin detector behavior; verify baseline under canonical chrF++.",
+  "ran_at": "2026-11-10",
+  "config": "configs/evaluation.yaml",
+  "inputs": {
+    "data/eval/beams_ab_20261109T231413Z.csv": {
+      "sha256": "ed88ebd53663361cd16be6e76e61fe5b9371a400ba7b2e3c8292c7b87119fc44"
+    }
+  },
+  "outputs": {
+    "phase3_scorecard_sprint2a.json": "ec5389711eecccdd727788b2f0e3569a0ea8f5aceba5df725e30b98c9672738e",
+    "phase3_scorecard_sprint2a.csv": "d02153dda5a81abea2e4656bc40f126c87938da962a8a1593e3f456dda3268e2",
+    "phase3_scorecard_sprint2a.md": "18575f9f557f282b94a3101665dc2fb3caa4b9d7ecbd44c3e32efddb30616ee7",
+    "flores_priority_review_20.csv": "89c0ee4598deda0994e391d60ffa63211592a3bb3a4bfd4909f4ab8595bac9db"
+  },
+  "metric_versions": {
+    "sacrebleu": "2.6.0",
+    "chrf_kwargs": {
+      "char_order": 6,
+      "word_order": 2,
+      "beta": 2.0
+    },
+    "bleu_tokenizer": "13a",
+    "note": "heuristic detector counts are warnings, not error rates; missing measurements are reported as unavailable, never zero."
+  },
+  "arms": [
+    "eng_yor|beams=2",
+    "eng_yor|beams=4",
+    "yor_eng|beams=2",
+    "yor_eng|beams=4"
+  ],
+  "n_per_arm": {
+    "eng_yor|beams=2": 30,
+    "eng_yor|beams=4": 30,
+    "yor_eng|beams=2": 30,
+    "yor_eng|beams=4": 30
+  },
+  "acceptance_decision": "accepted \u2014 discrepancies explained (plain chrF vs chrF++), baseline pinned, detector bugs fixed with regression tests",
+  "human_labels": "unavailable",
+  "decision_rationale": "No model change; historical artifacts untouched; all four historical chrF values reproduced exactly under word_order=0."
+}

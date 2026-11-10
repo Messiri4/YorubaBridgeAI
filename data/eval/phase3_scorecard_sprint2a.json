@@ -1,0 +1,81 @@
+{
+  "sprint": "2A",
+  "generated_note": "Canonical Sprint-2A baseline over the beam-A/B saved predictions. No inference; sacrebleu 2.6.0; chrF++ kwargs char_order=6 word_order=2 beta=2.0. Historical plain-chrF values (28.12/28.76/45.99/45.51) are preserved in the beam-A/B summary and are reproduced exactly by word_order=0 (see tests/test_phase3_sprint2a.py::test_plain_chrf_reproduces_historical_scores).",
+  "input_sha256": {
+    "data/eval/beams_ab_20261109T231413Z.csv": "ed88ebd53663361c… (full value in phase3_manifest_sprint2a.json)"
+  },
+  "metric_config": {
+    "sacrebleu": "2.6.0",
+    "char_order": 6,
+    "word_order": 2,
+    "beta": 2.0,
+    "bleu_tokenizer": "13a"
+  },
+  "arms": [
+    {
+      "arm": "eng_yor|beams=2",
+      "n": 30,
+      "bleu": 3.86,
+      "chrfpp_standard": 26.07,
+      "chrfpp_nfc": 29.3,
+      "chrfpp_folded_diagnostic": 37.42,
+      "chrf_plain_historical": 28.12,
+      "numeric_consistency_rate": 0.5455,
+      "entity_warning_hits": 2,
+      "repetition_warnings": 0,
+      "short_warnings": 2,
+      "mean_latency_ms": 25666.1,
+      "human_labels": "unavailable"
+    },
+    {
+      "arm": "eng_yor|beams=4",
+      "n": 30,
+      "bleu": 4.57,
+      "chrfpp_standard": 26.75,
+      "chrfpp_nfc": 30.04,
+      "chrfpp_folded_diagnostic": 37.91,
+      "chrf_plain_historical": 28.76,
+      "numeric_consistency_rate": 0.6364,
+      "entity_warning_hits": 2,
+      "repetition_warnings": 0,
+      "short_warnings": 2,
+      "mean_latency_ms": 30452.6,
+      "human_labels": "unavailable"
+    },
+    {
+      "arm": "yor_eng|beams=2",
+      "n": 30,
+      "bleu": 19.21,
+      "chrfpp_standard": 43.56,
+      "chrfpp_nfc": 43.56,
+      "chrfpp_folded_diagnostic": 43.56,
+      "chrf_plain_historical": 45.99,
+      "numeric_consistency_rate": 0.8333,
+      "entity_warning_hits": 2,
+      "repetition_warnings": 0,
+      "short_warnings": 0,
+      "mean_latency_ms": 13480.4,
+      "human_labels": "unavailable"
+    },
+    {
+      "arm": "yor_eng|beams=4",
+      "n": 30,
+      "bleu": 18.55,
+      "chrfpp_standard": 43.01,
+      "chrfpp_nfc": 43.01,
+      "chrfpp_folded_diagnostic": 43.01,
+      "chrf_plain_historical": 45.51,
+      "numeric_consistency_rate": 0.8333,
+      "entity_warning_hits": 2,
+      "repetition_warnings": 0,
+      "short_warnings": 0,
+      "mean_latency_ms": 17490.2,
+      "human_labels": "unavailable"
+    }
+  ],
+  "interpretation_guardrails": [
+    "folded chrF is a lossy diagnostic; it must not be reported as model accuracy",
+    "NFC/NFD differences arise from combining-mark n-gram dilution, NOT reference quality",
+    "human labels remain unavailable; no verified-error rate exists yet"
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T01:37:38Z",
+  "generated_at": "2026-11-10T02:14:15Z",
   "metric_provenance": {
     "sacrebleu": "2.6.0",
     "chrf_kwargs": {
@@ -21,8 +21,9 @@
       "numeric_consistency": {
         "sentences_with_source_digits": 11,
         "digits_preserved": 6,
-        "digits_missing": 2,
+        "digits_missing": 1,
         "digits_changed": 3,
+        "digits_spelled_out": 1,
         "consistency_rate": 0.5455
       },
       "named_entity_consistency": {
@@ -54,8 +55,9 @@
       "numeric_consistency": {
         "sentences_with_source_digits": 11,
         "digits_preserved": 7,
-        "digits_missing": 2,
+        "digits_missing": 1,
         "digits_changed": 2,
+        "digits_spelled_out": 1,
         "consistency_rate": 0.6364
       },
       "named_entity_consistency": {
@@ -89,6 +91,7 @@
         "digits_preserved": 5,
         "digits_missing": 0,
         "digits_changed": 1,
+        "digits_spelled_out": 0,
         "consistency_rate": 0.8333
       },
       "named_entity_consistency": {
@@ -122,6 +125,7 @@
         "digits_preserved": 5,
         "digits_missing": 0,
         "digits_changed": 1,
+        "digits_spelled_out": 0,
         "consistency_rate": 0.8333
       },
       "named_entity_consistency": {
