@@ -1,0 +1,262 @@
+{
+  "artifact": "integration_comparison_20261110T102741Z.csv",
+  "sacrebleu": "2.6.0",
+  "chrf_kwargs": {
+    "char_order": 6,
+    "word_order": 2,
+    "beta": 2.0
+  },
+  "arms": [
+    {
+      "arm": "baseline",
+      "n": 160,
+      "bleu": 13.24,
+      "chrfpp": 35.12,
+      "numeric_preserved": 25,
+      "numeric_rendered_as_words": 4,
+      "numeric_dropped": 7,
+      "numeric_accuracy_rate": 0.6944,
+      "negation_flip_warnings": 59,
+      "degeneration_loops": 1,
+      "omission_number_warnings": 7,
+      "omission_entity_warnings": 168,
+      "omission_paren_warnings": 1,
+      "mean_latency_s": 17.53
+    },
+    {
+      "arm": "integrated",
+      "n": 160,
+      "bleu": 13.14,
+      "chrfpp": 34.85,
+      "numeric_preserved": 28,
+      "numeric_rendered_as_words": 4,
+      "numeric_dropped": 4,
+      "numeric_accuracy_rate": 0.7778,
+      "negation_flip_warnings": 58,
+      "degeneration_loops": 1,
+      "omission_number_warnings": 3,
+      "omission_entity_warnings": 168,
+      "omission_paren_warnings": 1,
+      "mean_latency_s": 20.71
+    }
+  ],
+  "examples": [
+    {
+      "direction": "eng_yor",
+      "idx": 0,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "\"We now have 4-month-old mice that are non-diabetic that used to be diabetic,\" he added.",
+      "prediction": "Ó fi kún un pé: \"A ní àwọn ọ̀dọ́ ọ̀dọ́ tó ti pé oṣù mẹ́rin báyìí tí kò ní àrùn àtọ̀gbẹ, àmọ́ tí wọ́n ti ní àrùn àtọ̀gbẹ tẹ́lẹ̀.",
+      "reference": "“Ní báyìí a ní àwọn ẹku olóṣù mẹ́rin tí kò ní dayabẹ́tìsì tẹ́lẹ̀tẹ́lẹ̀ tó ti ní ayabẹ́tìsì̀,” o ṣe àfikún."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 0,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "\"We now have 4-month-old mice that are non-diabetic that used to be diabetic,\" he added.",
+      "prediction": "Ó fi kún un pé: \"A ní àwọn ọ̀dọ́ ọ̀dọ́ tó ti pé oṣù mẹ́rin báyìí tí kò ní àrùn àtọ̀gbẹ, àmọ́ tí wọ́n ti ní àrùn àtọ̀gbẹ tẹ́lẹ̀.",
+      "reference": "“Ní báyìí a ní àwọn ẹku olóṣù mẹ́rin tí kò ní dayabẹ́tìsì tẹ́lẹ̀tẹ́lẹ̀ tó ti ní ayabẹ́tìsì̀,” o ṣe àfikún."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 2,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "Like some other experts, he is skeptical about whether diabetes can be cured, noting that these findings have no relevance to people who already have Type 1 diabetes.",
+      "prediction": "Bíi ti àwọn ògbógi mìíràn, ó máa ń ṣiyèméjì bóyá a lè wo àrùn àtọ̀gbẹ sàn, ó sì sọ pé àwọn àbá yìí kò kan àwọn tó ti ní àrùn àtọ̀gbẹ Oríṣi Kìíní.",
+      "reference": "Bí àwọn àkọ́ṣẹ́mọṣẹ́, ó ṣiyèméjì bóyá àrùn ìtọ ṣúgá lè ní ìwòsàn, tí ó sì mọ̀ pé kò wúlò fún àwọn tó bá ní àrùn ìtọ ṣúgá Type 1."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 3,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+      "prediction": "Ní ọjọ́ Monday, Sara Danius, akẹ́kọ̀ọ́ alákòókò kíkún ti Ìgbìmọ̀ Nobel fún Èdè ní Swedish Academy, kéde ní gbangba nígbà ìtòlẹ́sẹẹsẹ rédíò kan lórí Sveriges Radio ní Sweden pé ìgbìmọ̀ náà, tí kò lè bá Bob Dylan pàdé ní tààràtà nípa gbígba àmì ẹ̀yẹ Nobel fún Èdè ní ọdún 2016, ti fi gbogbo ìsapá rẹ̀ sílẹ̀ láti bá a sọ̀rọ̀.",
+      "reference": "Ní ọjọ́ Ajé, Sara Danius, akọ̀wé àgbà ti ẹgbẹ́ Nobel fún ìtàn àròsọ ní ilé ẹ̀ka Swedin, tí wọ́n kéde ní ètò kan lóri rẹ́díò lóri rẹ́díò Svergies ní Sweden, àwọn ẹgbk kò lè dé ọ̀dọ̀ BobDylan nípa bíborí ní 2016 Nobel Prize Literature, ó ti rẹ̀ wọ́n láti kàn si."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 3,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "On Monday, Sara Danius, permanent secretary of the Nobel Committee for Literature at the Swedish Academy, publicly announced during a radio program on Sveriges Radio in Sweden the committee, unable to reach Bob Dylan directly about winning the 2016 Nobel Prize in Literature, had abandoned its efforts to reach him.",
+      "prediction": "Ní ọjọ́ Monday, Sara Danius, akẹ́kọ̀ọ́ alákòókò kíkún ti Ìgbìmọ̀ Nobel fún Èdè ní Swedish Academy, kéde ní gbangba nígbà ìtòlẹ́sẹẹsẹ rédíò kan lórí Sveriges Radio ní Sweden pé ìgbìmọ̀ náà, tí kò lè bá Bob Dylan pàdé ní tààràtà nípa gbígba àmì ẹ̀yẹ Nobel fún Èdè ní ọdún 2016, ti fi gbogbo ìsapá rẹ̀ sílẹ̀ láti bá a sọ̀rọ̀.",
+      "reference": "Ní ọjọ́ Ajé, Sara Danius, akọ̀wé àgbà ti ẹgbẹ́ Nobel fún ìtàn àròsọ ní ilé ẹ̀ka Swedin, tí wọ́n kéde ní ètò kan lóri rẹ́díò lóri rẹ́díò Svergies ní Sweden, àwọn ẹgbk kò lè dé ọ̀dọ̀ BobDylan nípa bíborí ní 2016 Nobel Prize Literature, ó ti rẹ̀ wọ́n láti kàn si."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 4,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\"",
+      "prediction": "Danius sọ pé, \"Ní báyìí, a kò ṣe nǹkan kan. Mo ti pe, mo sì ti fi imeeli ránṣẹ́ sí òṣìṣẹ́ tó sún mọ́ mi jù lọ, mo sì ti rí ìdáhùn tó dára gan-an gbà.",
+      "reference": "Daniusi wipe, “Nisin a o se nkankan. Mo ti meeli ranse mo de ti pe si awon ajo sise timo timo re won de fun mi lesi to loyaya. Fun igba yi, o daniloju pe iyen ti to.”"
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 4,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "Danius said, \"Right now we are doing nothing. I have called and sent emails to his closest collaborator and received very friendly replies. For now, that is certainly enough.\"",
+      "prediction": "Danius sọ pé, \"Ní báyìí, a kò ṣe nǹkan kan. Mo ti pe, mo sì ti fi imeeli ránṣẹ́ sí òṣìṣẹ́ tó sún mọ́ mi jù lọ, mo sì ti rí ìdáhùn tó dára gan-an gbà.",
+      "reference": "Daniusi wipe, “Nisin a o se nkankan. Mo ti meeli ranse mo de ti pe si awon ajo sise timo timo re won de fun mi lesi to loyaya. Fun igba yi, o daniloju pe iyen ti to.”"
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 5,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "Previously, Ring's CEO, Jamie Siminoff, remarked the company started when his doorbell wasn't audible from his shop in his garage.",
+      "prediction": "Ṣáájú ìgbà yẹn, Jamie Siminoff tó jẹ́ ọ̀gá àgbà fún Ring sọ pé ilé iṣẹ́ náà bẹ̀rẹ̀ nígbà tí a kò gbọ́ sí i nínú ilé ìtajà tó wà nínú yàrá rẹ̀.",
+      "reference": "Tẹ́lẹ̀rí, olùdarí àgbà iléeṣẹ́ Ring, Jamie Siminoff ní iléeṣẹ́ náà bẹ̀rẹ̀ iṣẹ́ nígbà tí aago ẹnu ọ̀nà òhun kò dún sókè látinú ṣọ́ọ̀bù dé inú gáràjì."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 5,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "Previously, Ring's CEO, Jamie Siminoff, remarked the company started when his doorbell wasn't audible from his shop in his garage.",
+      "prediction": "Ṣáájú ìgbà yẹn, Jamie Siminoff tó jẹ́ ọ̀gá àgbà fún Ring sọ pé ilé iṣẹ́ náà bẹ̀rẹ̀ nígbà tí a kò gbọ́ sí i nínú ilé ìtajà tó wà nínú yàrá rẹ̀.",
+      "reference": "Tẹ́lẹ̀rí, olùdarí àgbà iléeṣẹ́ Ring, Jamie Siminoff ní iléeṣẹ́ náà bẹ̀rẹ̀ iṣẹ́ nígbà tí aago ẹnu ọ̀nà òhun kò dún sókè látinú ṣọ́ọ̀bù dé inú gáràjì."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 6,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "He built a WiFi door bell, he said.",
+      "prediction": "Ó sọ pé ó kọ́ àtẹ́lẹ́kùn WiFi kan.",
+      "reference": "O ko ago ilekun WiFi, O wi."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 6,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "He built a WiFi door bell, he said.",
+      "prediction": "Ó sọ pé ó kọ́ àtẹ́lẹ́kùn WiFi kan.",
+      "reference": "O ko ago ilekun WiFi, O wi."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 7,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "Siminoff said sales boosted after his 2013 appearance in a Shark Tank episode where the show panel declined funding the startup.",
+      "prediction": "Siminoff sọ pe awọn tita pọ si lẹhin ifarahan rẹ ni ọdun 2013 ninu iṣẹlẹ Shark Tank nibiti igbimọ ifihan naa kọ lati ṣe inawo ibẹrẹ naa.",
+      "reference": "Siminoff sọ pé ọjà lọ sókè lẹ́yìn tí òun hàn nínú eré Shark Tank lọ́dún 2013, ní ibi tí àwọn aláṣẹ eré ti ṣẹ́ pẹ̀ẹ́ lórí ìkówó lé eré ìbẹ̀rẹ̀."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 7,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "Siminoff said sales boosted after his 2013 appearance in a Shark Tank episode where the show panel declined funding the startup.",
+      "prediction": "Siminoff sọ pe awọn tita pọ si lẹhin ifarahan rẹ ni ọdun 2013 ninu iṣẹlẹ Shark Tank nibiti igbimọ ifihan naa kọ lati ṣe inawo ibẹrẹ naa.",
+      "reference": "Siminoff sọ pé ọjà lọ sókè lẹ́yìn tí òun hàn nínú eré Shark Tank lọ́dún 2013, ní ibi tí àwọn aláṣẹ eré ti ṣẹ́ pẹ̀ẹ́ lórí ìkówó lé eré ìbẹ̀rẹ̀."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 10,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "While one experimental vaccine appears able to reduce Ebola mortality, up until now, no drugs have been clearly demonstrated suitable for treating existing infection.",
+      "prediction": "Bó tilẹ̀ jẹ́ pé ó dà bíi pé oògùn àjẹsára kan lè dín ikú táwọn èèyàn máa ń kú fún àrùn Ebola kù, síbẹ̀ títí dòní, kò tíì sí oògùn kankan tí wọ́n ti fi hàn kedere pé ó tọ́ láti wo àìsàn tó ń ṣe wọ́n.",
+      "reference": "Nígbàtí àwárí òògùn kan fojú hàn láti dín ikú èbólà kù, títí di àsìkò yìí, kò tí i sí òògùn kan pàtó tí a sàfihàn pé ó lágbára láti tọ́jú ààrùn tó wà nílẹ̀."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 10,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "While one experimental vaccine appears able to reduce Ebola mortality, up until now, no drugs have been clearly demonstrated suitable for treating existing infection.",
+      "prediction": "Bó tilẹ̀ jẹ́ pé ó dà bíi pé oògùn àjẹsára kan lè dín ikú táwọn èèyàn máa ń kú fún àrùn Ebola kù, síbẹ̀ títí dòní, kò tíì sí oògùn kankan tí wọ́n ti fi hàn kedere pé ó tọ́ láti wo àìsàn tó ń ṣe wọ́n.",
+      "reference": "Nígbàtí àwárí òògùn kan fojú hàn láti dín ikú èbólà kù, títí di àsìkò yìí, kò tí i sí òògùn kan pàtó tí a sàfihàn pé ó lágbára láti tọ́jú ààrùn tó wà nílẹ̀."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 11,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "One antibody cocktail, ZMapp, initially showed promise in the field, but formal studies indicated it had less benefit than sought in preventing death.",
+      "prediction": "Àkọlé kan tó ń jẹ́ ZMapp tó ń jẹ́ antibody cocktail, ní ìbẹ̀rẹ̀pẹ̀pẹ̀ fi hàn pé ó lè yọrí sí rere, àmọ́ àwọn ìwádìí tí wọ́n ṣe fi hàn pé kò wúlò tó bẹ́ẹ̀ nínú dídi ẹ̀mí èèyàn lọ́wọ́.",
+      "reference": "Àmúlùmálà apakòkòrò kan, ZMapp, ṣàfihàn ìlérí ní pápá, ṣùgbọ́n àwọn ẹ̀kọ́ ti tẹ́lẹ́ tóka pé o ní àǹfàní tó kéré láti dènà ikú."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 11,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "One antibody cocktail, ZMapp, initially showed promise in the field, but formal studies indicated it had less benefit than sought in preventing death.",
+      "prediction": "Àkọlé kan tó ń jẹ́ ZMapp tó ń jẹ́ antibody cocktail, ní ìbẹ̀rẹ̀pẹ̀pẹ̀ fi hàn pé ó lè yọrí sí rere, àmọ́ àwọn ìwádìí tí wọ́n ṣe fi hàn pé kò wúlò tó bẹ́ẹ̀ nínú dídi ẹ̀mí èèyàn lọ́wọ́.",
+      "reference": "Àmúlùmálà apakòkòrò kan, ZMapp, ṣàfihàn ìlérí ní pápá, ṣùgbọ́n àwọn ẹ̀kọ́ ti tẹ́lẹ́ tóka pé o ní àǹfàní tó kéré láti dènà ikú."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 13,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "USA Gymnastics supports the United States Olympic Committee's letter and accepts the absolute need of the Olympic family to promote a safe environment for all of our athletes.",
+      "prediction": "USA Gymnastics fọwọ́ sowọ́ pọ̀ pẹ̀lú lẹ́tà Ìgbìmọ̀ Òlíńpíìkì ti Orílẹ̀-Èdè Amẹ́ríkà, ó sì gbà pé ìdílé Òlíńpíìkì nílò gbogbo nǹkan láti mú kí àyíká tó dára wà fún gbogbo àwọn òṣèré wa.",
+      "reference": "Ẹgbẹ́ Ajìjàkadi ilẹ̀ Àmẹ́ríkà fọwọ́ sí lẹtà ìgbìmọ̀ Olympics, wọ́n sì gbà á wọlé pé Àpapọ̀-Ebi-Olympics nilò láti rí dájú pé wọ́n pèsè àyíká tí ó dára fún àwọn oníjàkadì/asáré-ìje wa gbogbo."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 13,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "USA Gymnastics supports the United States Olympic Committee's letter and accepts the absolute need of the Olympic family to promote a safe environment for all of our athletes.",
+      "prediction": "USA Gymnastics fọwọ́ sowọ́ pọ̀ pẹ̀lú lẹ́tà Ìgbìmọ̀ Òlíńpíìkì ti Orílẹ̀-Èdè Amẹ́ríkà, ó sì gbà pé ìdílé Òlíńpíìkì nílò gbogbo nǹkan láti mú kí àyíká tó dára wà fún gbogbo àwọn òṣèré wa.",
+      "reference": "Ẹgbẹ́ Ajìjàkadi ilẹ̀ Àmẹ́ríkà fọwọ́ sí lẹtà ìgbìmọ̀ Olympics, wọ́n sì gbà á wọlé pé Àpapọ̀-Ebi-Olympics nilò láti rí dájú pé wọ́n pèsè àyíká tí ó dára fún àwọn oníjàkadì/asáré-ìje wa gbogbo."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 14,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "We agree with the USOC's statement that the interests of our athletes and clubs, and their sport, may be better served by moving forward with meaningful change within our organization, rather than decertification.",
+      "prediction": "A fara mọ́ ọ̀rọ̀ tí Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ náà sọ pé a lè máa ṣe dáadáa sí i.",
+      "reference": "A gba ọ̀rọ̀ USOC pé a lẹ̀ sin ànfàní àwọn eléré ìdárayá wa àti àwọn ẹgbe ìdárayá, àti eré ìdárayá wọn tí a bá tẹ̀síwájú pẹ̀lú ayipada tó ní túmọ̀ ní ilé ìṣe wa, ju yiyo ìwé aṣe kuro."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 14,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "We agree with the USOC's statement that the interests of our athletes and clubs, and their sport, may be better served by moving forward with meaningful change within our organization, rather than decertification.",
+      "prediction": "A fara mọ́ ọ̀rọ̀ tí Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ Tó Ń Bójú Tó Ìgbìmọ̀ náà sọ pé a lè máa ṣe dáadáa sí i.",
+      "reference": "A gba ọ̀rọ̀ USOC pé a lẹ̀ sin ànfàní àwọn eléré ìdárayá wa àti àwọn ẹgbe ìdárayá, àti eré ìdárayá wọn tí a bá tẹ̀síwájú pẹ̀lú ayipada tó ní túmọ̀ ní ilé ìṣe wa, ju yiyo ìwé aṣe kuro."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 15,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "USA Gymnastics supports an independent investigation that may shine light on how abuse of the proportion described so courageously by the survivors of Larry Nassar could have gone undetected for so long and embraces any necessary and appropriate changes.",
+      "prediction": "Àjọ USA Gymnastics ń ṣètìlẹ́yìn fún ìwádìí alákòókò-kíkún kan tó lè tàn kálẹ̀ nípa bí àwọn tó ṣẹ́ kù lára Larry Nassar ṣe lè máà kíyè sí i fún àkókò gígùn tó bẹ́ẹ̀, èyí sì lè mú kí àwọn ìyípadà tó yẹ kí wọ́n ṣe hàn kedere.",
+      "reference": "Eréje Gymnastics ti ilẹ̀ USA sàtìlẹyìn fún ìwádìí olómìnira tí ó lè tan ìmọ́lẹ̀ lórí àsìlò ìpín ní àwọn tó móríye ìsẹ̀lẹ̀ Larry Nassar sàpéjúwe pẹ̀lú akitiyan. ní kò bá ti lọ láì rí fún ọjọ́ pípẹ́ àti gbígba àwọn àyípadà tó yẹ."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 15,
+      "arm": "integrated",
+      "kind": "negation_flip",
+      "source": "USA Gymnastics supports an independent investigation that may shine light on how abuse of the proportion described so courageously by the survivors of Larry Nassar could have gone undetected for so long and embraces any necessary and appropriate changes.",
+      "prediction": "Àjọ USA Gymnastics ń ṣètìlẹ́yìn fún ìwádìí alákòókò-kíkún kan tó lè tàn kálẹ̀ nípa bí àwọn tó ṣẹ́ kù lára Larry Nassar ṣe lè máà kíyè sí i fún àkókò gígùn tó bẹ́ẹ̀, èyí sì lè mú kí àwọn ìyípadà tó yẹ kí wọ́n ṣe hàn kedere.",
+      "reference": "Eréje Gymnastics ti ilẹ̀ USA sàtìlẹyìn fún ìwádìí olómìnira tí ó lè tan ìmọ́lẹ̀ lórí àsìlò ìpín ní àwọn tó móríye ìsẹ̀lẹ̀ Larry Nassar sàpéjúwe pẹ̀lú akitiyan. ní kò bá ti lọ láì rí fún ọjọ́ pípẹ́ àti gbígba àwọn àyípadà tó yẹ."
+    },
+    {
+      "direction": "eng_yor",
+      "idx": 26,
+      "arm": "baseline",
+      "kind": "negation_flip",
+      "source": "Turkey would also take over guarding captured ISIS fighters which, the statement said, European nations have refused to repatriate.",
+      "prediction": "Tọ́kì yóò tún gba àbójútó àwọn ọmọ ogun ISIS tí wọ́n kó lọ́wọ́, èyí tí àwọn orílẹ̀-èdè ilẹ̀ Yúróòpù ti kọ̀ láti dá padà sílé.",
+      "reference": "Turkey yíò pẹ̀lú àmójútó ìdábòbò àwọn ọlótè ISIS tí wọ́n mú, èyí tí àlàyé fi síta , àwọn orílẹ̀-èdè Yúróòpù tí kọ̀ jálè láti fi ipá gbé padà sí ìlú wọn."
+    }
+  ],
+  "disclaimer": "semantic counts are heuristic warnings, not verified error rates"
+}

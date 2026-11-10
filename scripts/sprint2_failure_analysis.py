@@ -65,17 +65,20 @@ _NUM_WORDS: dict[int, tuple[str, ...]] = {
     17: ("mẹ́tàdínlógún", "metadilogun", "seventeen"),
     18: ("mẹ́jìdínlógún", "mejidilogun", "eighteen"),
     19: ("mókàndínlógún", "mokandilogun", "nineteen"),
-    20: ("ogún", "ogbu", "twenty"),
+    20: ("ogún", "ogun", "twenty"),
     30: ("ọgbọ̀n", "ogbon", "thirty"),
     40: ("ogoji", "forty"),
-    50: ("ádọ́ta", "adota", "fifty"),
-    60: ("ọ́gbọ̀n", "ôgota", "sixty"),
-    70: ("àádọ́rin", "aadorin", " Seventy"),
-    78: ("mẹ́jìdínlọ́gbọ̀n", "seventy-eight"),
-    80: ("ọ́gbọ̀n", "eighty"),
-    90: ("àádọ́rùn-ún", "ninety"),
-    100: ("ọ̀kẹ́", "oke", "hundred"),
-    200: ("mezzi", "two hundred"),
+    50: ("àádọ́ta", "aadota", "fifty"),
+    # Sprint 3 fix: ọ́gbọ̀n was mapped to BOTH 60 and 80 (tone-fold collision
+    # that let a rendering of one value verify the other). 60 is properly
+    # ọ̀ọ́dọ́gbọ̀n (3x20), 80 is ọgọ́rin (4x20). Also fixed 'ôgota' (not an
+    # attested form), the ' Seventy' typo with a leading space, and 200
+    # 'mezzi' (not Yoruba).
+    60: ("ọ̀ọ́dọ́gbọ̀n", "oodogbon", "sixty"),
+    70: ("àádọ́rin", "aadorin", "seventy"),
+    80: ("ọgọ́rin", "ogorin", "eighty"),
+    90: ("àádọ́rùn-ún", "aadorun", "ninety"),
+    100: ("ọgọ́rùn", "ogorun", "hundred"),
 }
 
 # Vigesimal/substractive renderings attested in the devtest outputs themselves
@@ -89,7 +92,7 @@ _VIGESIMAL_EXTRA: dict[int, tuple[str, ...]] = {
     50: ("àádọ́ta", "aadota"),                    # 60-10
     70: ("àádọ́rin", "aadorin"),                  # 80-10
     78: ("mẹ́tàdínláàádọ́rin", "metadinlaadorin"), # 80-2
-    90: ("àádọ́rùn"),
+    90: ("àádọ́rùn", "aadorun"),
     100: ("ọ̀kẹ́ kan", "ọgọ́rùn"),
 }
 for _k, _v in _VIGESIMAL_EXTRA.items():
@@ -145,7 +148,27 @@ def _words_for(num_token: str) -> set[str]:
 
 
 def _is_rendered(num_token: str, pred: str) -> bool:
-    return any(w and _fold(w) in _fold(pred) for w in _words_for(num_token))
+    """Whole-token verification (Sprint 3 fix): the number word must appear
+    as a complete whitespace-separated token in the folded prediction.
+
+    Bug fixed: the previous implementation used substring containment, so
+    'aadorin' (70) matched inside 'mẹ́rìndínláàádọ́rin' (76), 'ogorin' (80)
+    matched inside 'ogorun' (100), and any unrelated word embedding a number
+    string verified wrongly. Whole-token matching requires the folded token
+    to EQUAL a candidate rendering (compound renderings spanning multiple
+    tokens are handled by checking the joined 2-token windows too)."""
+    pred_fold = _fold(pred)
+    tokens = {t.strip(".,;:!?()\"'“”") for t in pred_fold.split()}
+    candidates = {_fold(w) for w in _words_for(num_token) if w}
+    # single-token equality
+    if candidates & tokens:
+        return True
+    # two-token compound windows (e.g. 'ọ̀kẹ́ kan' for 100)
+    toks = pred_fold.split()
+    for a, b in zip(toks, toks[1:]):
+        if f"{a} {b}" in candidates:
+            return True
+    return False
 
 
 def classify_row(source: str, pred: str) -> tuple[str, list[str]]:

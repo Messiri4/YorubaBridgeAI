@@ -60,6 +60,13 @@ class Settings(BaseSettings):
     # fallback on restoration failure; disable to restore exact prior behavior.
     numeric_protection_enabled: bool = True
 
+    # Sprint 3 PHASE 2: bounded protected retry — before the unconditional
+    # unprotected fallback, re-attempt generation WITH sentinels up to N
+    # times. The retry costs one extra generation pass per attempt but keeps
+    # numeric values exact far more often than the plain retry; 0 disables
+    # (legacy one-shot behavior).
+    numeric_protection_max_retries: int = 1
+
     # Verified-term glossary (data/phrases/glossary.json). Applied after
     # generation; context-aware; contains only attested mappings.
     glossary_enabled: bool = True

@@ -182,6 +182,19 @@ class TranslationService:
         if source_language == target_language:
             raise TranslationError("source_language and target_language must differ")
 
+    def _diagnostic_trace(self):
+        """Sprint 3 PHASE 2: optional per-stage tracing for placeholder
+        diagnostics. Delegates to app.services.diagnostic_trace, which is
+        inert unless YB_TRANSLATION_TRACE is enabled, so the production path
+        never pays for diagnostics. The caller sets ``trace.source_text``
+        right after obtaining it."""
+        try:
+            from app.services.diagnostic_trace import diagnostic_trace
+            return diagnostic_trace()
+        except Exception:  # noqa: BLE001 - diagnostics must never break serving
+            logger.debug("diagnostic trace unavailable", exc_info=True)
+            return None
+
     # ------------------------------------------------------------------ core
 
     def _generate(self, text: str, src: str, tgt: str) -> str:
@@ -327,6 +340,12 @@ class TranslationService:
                               if protect_numerics is None else protect_numerics)
         protection = prot_wrap(text) if protection_enabled else None
         protected_text = protection.protected_text if protection is not None else text
+        trace = self._diagnostic_trace()  # no-op unless YB_TRANSLATION_TRACE
+        trace.source_text = text  # bound by the tracer (no-op otherwise)
+        if protection is not None:
+            trace.stage("protect", source=text, protected=protected_text,
+                        n_placeholders=protection.n,
+                        placeholders=dict(protection.placeholders))
 
         # Phrase-override table: exact matches bypass the model entirely.
         # This fixes known model weaknesses (greeting idioms, market
@@ -353,23 +372,54 @@ class TranslationService:
                 raw = self._translate_once(
                     protected_text, source_language, target_language,
                     protect_numerics=True)
-                return prot_restore_outcome(raw, protection)
+                if trace is not None:
+                    trace.stage("generate_protected", raw_model_output=raw)
+                outcome = prot_restore_outcome(raw, protection)
+                if trace is not None:
+                    trace.stage("restore", ok=outcome.ok,
+                                failure=str(outcome.failure) if outcome.failure else None,
+                                restored_text=getattr(outcome, "text", raw))
+                return outcome
 
             def _plain_attempt() -> str:
-                return self._translate_once(
+                plain = self._translate_once(
                     text, source_language, target_language, protect_numerics=False)
+                if trace is not None:
+                    trace.stage("generate_retry_unprotected", raw_model_output=plain)
+                return plain
 
-            restored, used_fallback, failure = with_unprotected_fallback(
-                _protected_attempt, _plain_attempt)
+            # Sprint 3 PHASE 2: bounded protected retries BEFORE the
+            # unconditional unprotected fallback. Each retry regenerates WITH
+            # sentinels. numeric_protection_max_retries=0 restores the legacy
+            # one-shot contract exactly (protected once, then plain retry).
+            max_protected_retries = max(
+                0, int(self._settings.numeric_protection_max_retries))
+            outcome = None
+            failure = None
+            for attempt in range(1 + max_protected_retries):
+                if attempt > 0 and trace is not None:
+                    trace.stage("protected_retry", attempt=attempt)
+                outcome = _protected_attempt()
+                if outcome.ok:
+                    failure = None
+                    break
+                failure = outcome.failure
+            if outcome is not None and outcome.ok:
+                used_fallback = False
+                translated = outcome.text
+            else:
+                # Protected attempts exhausted: documented safe fallback is
+                # one plain (unprotected) regeneration, then the residual
+                # sentinel scrub below as defense-in-depth.
+                translated = _plain_attempt()
+                used_fallback = True
+            if trace is not None:
+                trace.stage("fallback_decision", used_fallback=used_fallback,
+                            failure=str(failure) if failure else None)
             if failure is not None:
                 logger.warning(
                     "placeholder restoration failed (%s)%s",
                     failure, "; retried without protection" if used_fallback else "")
-            if used_fallback:
-                translated = restored
-            else:
-                outcome = restored
-                translated = outcome.text if hasattr(outcome, "text") else str(restored)
         else:
             # Plain path (protection off, or nothing to protect).
             translated = self._translate_once(
@@ -379,6 +429,8 @@ class TranslationService:
         # After the safe-fallback retry there should be none; this scrub is
         # defense-in-depth, logged loudly when it has to act.
         if "@@" in translated:
+            if trace is not None:
+                trace.stage("residual_scrub", before=translated)
             scrubbed = _RESIDUAL_SENTINEL_RE.sub("", translated)
             cleaned = re.sub(r"\s{2,}", " ", scrubbed).strip(" ,;")
             if cleaned != translated:
@@ -386,6 +438,9 @@ class TranslationService:
                 translated = cleaned
 
         translated = self._finish(translated, source_language, target_language)
+        if trace is not None:
+            trace.stage("finish", final_text=translated)
+            trace.close()
 
         latency_ms = (time.perf_counter() - start) * 1000
         logger.info("Translated %s->%s in %.1f ms", source_language, target_language, latency_ms)
