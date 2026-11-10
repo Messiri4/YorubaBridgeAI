@@ -1,0 +1,7 @@
+{
+  "source": "data/flores/dev.{eng,yor}_Latn (official Meta FLORES-200, CC-BY-SA 4.0, already in repo)",
+  "split": "dev",
+  "pairs": 30,
+  "sampling": "python random.Random(42).shuffle of all 997 dev indices, first 30 kept",
+  "note": "dev split used for tuning per project policy; devtest held out. Reproducible without network."
+}
