@@ -25,17 +25,17 @@ explicit `early_stopping` (transformers default).
 
 Saved results used (not re-measured):
 
-| Source | Finding |
-|---|---|
-| `data/eval/decoding_exp_dev.json` (n=30 dev) | beams=4/maxnew=256/lp=1.0 → chrF++ 26.20; beams=4/400/1.1 → 26.45 (adopted); beams=8/400/1.1 → 25.87, +60% latency (rejected) |
-| `data/eval/phase3_scorecard_sprint2a.csv` | beams=4 > beams=2 for eng→yor (26.75 vs 26.07 chrF++) but beams=4 < beams=2 for yor→eng (43.01 vs 43.56), at ~30% more latency |
-| `docs/translation_evaluation.md` | 0/30 dev hypotheses truncated at max_new_tokens=256; truncation is not the dominant eng→yor error |
-| `docs/translation_improvement_sprint1.md`, Sprint TI-1 | numeric protection wraps/restores around generate — any decoding change must not break sentinel restoration |
+| Source                                                 | Finding                                                                                                                        |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| `data/eval/decoding_exp_dev.json` (n=30 dev)           | beams=4/maxnew=256/lp=1.0 → chrF++ 26.20; beams=4/400/1.1 → 26.45 (adopted); beams=8/400/1.1 → 25.87, +60% latency (rejected)  |
+| `data/eval/phase3_scorecard_sprint2a.csv`              | beams=4 > beams=2 for eng→yor (26.75 vs 26.07 chrF++) but beams=4 < beams=2 for yor→eng (43.01 vs 43.56), at ~30% more latency |
+| `docs/translation_evaluation.md`                       | 0/30 dev hypotheses truncated at max_new_tokens=256; truncation is not the dominant eng→yor error                              |
+| `docs/translation_improvement_sprint1.md`, Sprint TI-1 | numeric protection wraps/restores around generate — any decoding change must not break sentinel restoration                    |
 
 ## 2. Design review conclusions
 
 - **Beam width**: 4 is the measured sweet spot on dev (n=30); 8 regressed
-  quality *and* speed. The beams=2-vs-4 asymmetry across directions is the
+  quality _and_ speed. The beams=2-vs-4 asymmetry across directions is the
   most interesting unexploited signal → direction-aware beams candidate.
 - **Length penalty**: 1.0→1.1 gave a small, consistent eng→yor gain.
   Extending to 1.2 is the natural next step, but n=30 is tiny.
@@ -126,14 +126,14 @@ bare beam count. Scoring continues through
 (BLEU, chrF++ standard/NFC/folded, numeric consistency, entity/repetition
 warnings, latency).
 
-| id | policy | question | promotion criteria |
-|---|---|---|---|
-| A0-baseline-fidelity | `production_default` | Routing through the module reproduces pre-module predictions byte-identically (gate; any diff = bug). | 0 divergent hypotheses vs `data/eval` beam-A/B predictions. |
-| A1-dynamic-budget | `conservative_guards` | Input-scaled output budget removes residual truncation on long sentences without quality loss. | truncation ↓, chrF++ ≥ A0−0.2 both directions, latency ↑ ≤10%. |
-| A2-length-penalty | `quality_lp12` | Extends measured lp 1.0→1.1 trend one step. | chrF++ ≥ A0 both directions; no truncation increase. |
-| A3-direction-aware-beams | `direction_aware_beams` | Keep yor→eng quality at beams=2 (~25% latency saving) while eng→yor stays at 4. | yor→eng chrF++ ≥ A0−0.3 and latency ↓ ≥15%; eng→yor unchanged. |
-| A4-anti-repeat | `anti_repeat_gentle` | Does `no_repeat_ngram_size=3` cut repetition loops without harming attested reduplication? | adjacent-repeat warnings ↓; reduplication-whitelist sentences unchanged; chrF++ within −0.2 of A0. |
-| A5-fast-fallback | `fast_latency` | Degraded-mode fallback profile. | documented deltas only; never promoted to default. |
+| id                       | policy                  | question                                                                                              | promotion criteria                                                                                 |
+| ------------------------ | ----------------------- | ----------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| A0-baseline-fidelity     | `production_default`    | Routing through the module reproduces pre-module predictions byte-identically (gate; any diff = bug). | 0 divergent hypotheses vs `data/eval` beam-A/B predictions.                                        |
+| A1-dynamic-budget        | `conservative_guards`   | Input-scaled output budget removes residual truncation on long sentences without quality loss.        | truncation ↓, chrF++ ≥ A0−0.2 both directions, latency ↑ ≤10%.                                     |
+| A2-length-penalty        | `quality_lp12`          | Extends measured lp 1.0→1.1 trend one step.                                                           | chrF++ ≥ A0 both directions; no truncation increase.                                               |
+| A3-direction-aware-beams | `direction_aware_beams` | Keep yor→eng quality at beams=2 (~25% latency saving) while eng→yor stays at 4.                       | yor→eng chrF++ ≥ A0−0.3 and latency ↓ ≥15%; eng→yor unchanged.                                     |
+| A4-anti-repeat           | `anti_repeat_gentle`    | Does `no_repeat_ngram_size=3` cut repetition loops without harming attested reduplication?            | adjacent-repeat warnings ↓; reduplication-whitelist sentences unchanged; chrF++ within −0.2 of A0. |
+| A5-fast-fallback         | `fast_latency`          | Degraded-mode fallback profile.                                                                       | documented deltas only; never promoted to default.                                                 |
 
 ### How to compare dimensions
 
