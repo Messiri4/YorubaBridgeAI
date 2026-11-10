@@ -1,0 +1,9 @@
+{
+  "model": "facebook/nllb-200-distilled-600M (local safetensors)",
+  "split": "devtest",
+  "pairs": 20,
+  "beams": 4,
+  "overrides": "disabled",
+  "ran_at": "20261109T201142Z",
+  "csv": "flores_baseline_devtest_20_20261109T201142Z.csv"
+}
