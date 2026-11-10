@@ -1,0 +1,53 @@
+{
+  "split": "dev",
+  "pairs": 2,
+  "ran_at": "20261109T230518Z",
+  "model": "nllb-200-distilled-600M (local safetensors)",
+  "beams_tested": [
+    2,
+    4
+  ],
+  "configs": {
+    "beams=2": {
+      "eng_yor": {
+        "chrf": 28.41,
+        "bleu": 2.16,
+        "n": 2,
+        "total_s": 112.9,
+        "mean_s": 56.47,
+        "median_s": 56.47,
+        "max_s": 70.04
+      },
+      "yor_eng": {
+        "chrf": 43.55,
+        "bleu": 12.88,
+        "n": 2,
+        "total_s": 42.2,
+        "mean_s": 21.09,
+        "median_s": 21.09,
+        "max_s": 21.62
+      }
+    },
+    "beams=4": {
+      "eng_yor": {
+        "chrf": 26.84,
+        "bleu": 2.91,
+        "n": 2,
+        "total_s": 113.3,
+        "mean_s": 56.66,
+        "median_s": 56.66,
+        "max_s": 65.56
+      },
+      "yor_eng": {
+        "chrf": 44.82,
+        "bleu": 13.16,
+        "n": 2,
+        "total_s": 52.0,
+        "mean_s": 25.99,
+        "median_s": 25.99,
+        "max_s": 26.98
+      }
+    }
+  },
+  "csv": "beams_ab_20261109T230518Z.csv"
+}
