@@ -1,25 +1,36 @@
 {
   "_meta": {
-    "description": "Verified English-Yoruba terminology. Every mapping is attested (FLORES renderings or established usage); nothing invented. Entries with a 'context' list are applied only when those words appear near the term (disambiguation). Multi-word entries precede single words.",
-    "policy": "No invented Yoruba. Ambiguous single words require context. Corrections go through human review before entry."
+    "description": "Verified English-Yoruba terminology. Every mapping is attested (FLORES renderings or established usage); nothing invented. Entries with a 'context' list are applied only when those words appear near THE OCCURRENCE (disambiguation, evaluated occurrence-wise). Multi-word entries precede single words; overlapping matches are rejected in favour of the longest.",
+    "policy": "No invented Yoruba. Ambiguous single words require context. Corrections go through human review before entry.",
+    "schema": {
+      "term": "source-language term (may be multi-word)",
+      "translation": "target-language rendering (must be attested, never generated)",
+      "context": "optional list of words; ALL must appear within +/-6 tokens of the candidate occurrence for the entry to fire",
+      "status": "'verified' = attested and reviewed, applied by the glossary; 'assumed' = plausible but unreviewed, loaded for human review and NEVER substituted",
+      "allow_unaccented": "optional bool (default false); permits accent-folded matching. Automatically disabled when the folded form collides with a different term (e.g. igba), preventing silent meaning merges. Tone marks and underdots in input are otherwise matched exactly and always preserved in output.",
+      "comment": "provenance note"
+    }
   },
   "eng_yor": [
     {
       "term": "diabetes",
       "translation": "àrùn àtògbẹ",
       "context": [],
+      "status": "verified",
       "comment": "attested FLORES rendering; 'àtògbẹ' alone also attested"
     },
     {
       "term": "Type 1 diabetes",
       "translation": "àrùn àtògbẹ Oríṣi Kìíní",
       "context": ["diabetes"],
-      "comment": "multi-word entry; only when 'diabetes' co-occurs"
+      "status": "verified",
+      "comment": "multi-word entry; fires only where 'diabetes' co-occurs with the occurrence"
     },
     {
       "term": "Shark Tank",
       "translation": "Shark Tank",
       "context": [],
+      "status": "verified",
       "comment": "show title kept in Latin script, attested in refs"
     }
   ],
@@ -28,18 +39,21 @@
       "term": "àtògbẹ",
       "translation": "diabetes",
       "context": [],
+      "status": "verified",
       "comment": "reverse mapping; 'ìtọ ṣúgà' is the FLORES-refs variant, both attested"
     },
     {
       "term": "ìtọ ṣúgà",
       "translation": "diabetes",
       "context": [],
+      "status": "verified",
       "comment": "alternative attested rendering"
     },
     {
       "term": "aago ẹnu ọ̀nà",
       "translation": "doorbell",
       "context": [],
+      "status": "verified",
       "comment": "attested FLORES rendering"
     }
   ]
