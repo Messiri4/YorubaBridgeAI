@@ -1,6 +1,6 @@
 # Unified evaluation scorecard (Phase 3 Sprint 1)
 
-Generated: 2026-11-10T02:38:26Z · sacrebleu 2.6.0 · chrF kwargs: {'char_order': 6, 'word_order': 2, 'beta': 2.0}
+Generated: 2026-11-10T12:52:54Z · sacrebleu 2.6.0 · chrF kwargs: {'char_order': 6, 'word_order': 2, 'beta': 2.0}
 
 | arm | n | BLEU | chrF++ std | chrF++ NFC | chrF++ folded(diag) | num rate | ent warns | rep warns | lat ms |
 |---|---|---|---|---|---|---|---|---|---|
