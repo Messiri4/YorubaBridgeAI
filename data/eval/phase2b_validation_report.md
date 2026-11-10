@@ -77,24 +77,33 @@ Cross-checked Phase-2's 314 findings against reference-audit ground truth:
 Config: sacrebleu **2.6.0**, `corpus_chrf(char_order=6, word_order=2, beta=2.0)`
 (chrF++), applied identically to hypotheses and references in every regime.
 
-| Direction/config | original | NFC   | NFD   | fold-underdots | fold-all-accents |
-| ---------------- | -------- | ----- | ----- | -------------- | ---------------- |
-| eng_yor, beams=2 | 28.12    | 28.27 | 28.27 | **33.72**      | **36.86**        |
-| eng_yor, beams=4 | 28.76    | 28.92 | 28.92 | **34.57**      | **37.86**        |
-| yor_eng, beams=2 | 45.99    | 46.04 | 46.04 | 46.61          | 47.40            |
-| yor_eng, beams=4 | 45.51    | 45.56 | 45.56 | 46.01          | 46.78            |
+| Direction/config | original | NFC   | NFD       | fold-underdots | fold-all-accents |
+| ---------------- | -------- | ----- | --------- | -------------- | ---------------- |
+| eng_yor, beams=2 | 26.07    | 29.30 | **35.72** | 29.80          | **37.42**        |
+| eng_yor, beams=4 | 26.75    | 30.04 | **36.01** | 30.48          | **37.91**        |
+| yor_eng, beams=2 | 43.56    | 43.56 | 43.56     | 44.10          | 43.56            |
+| yor_eng, beams=4 | 43.01    | 43.01 | 43.01     | 43.52          | 43.01            |
 
-- NFC/NFD move eng→yor by only +0.15 (they equalize the 77 mixed-encoding refs
-  but can't restore missing tone marks; NFC≠full unification for ọ vs o+U+0323 —
-  see test `test_nfc_nfd_equivalence_of_score_inputs`).
-- **Underdot folding: +5.0 to +5.8 chrF for eng→yor; full accent folding: +8.7
-  to +9.1.** yor→eng barely moves (+0.6/+1.3) because English references carry
-  no Yoruba diacritics to fold away.
-- Interpretation: **up to a third of the eng→yor chrF gap versus yor→eng is a
-  measurement artifact of diacritic variance**, not translation error.
-  Folded scores are diagnostics; fold-all-accents is lossy (destroys tonal
-  information) and must not become the production metric. Per-config deltas:
-  `data/eval/chrf_normalization_comparison.csv`.
+> **Correction (2026-11-10, Phase 3 Sprint 1):** the table as originally
+> published above contained transcription errors. The authoritative numbers
+> are those in `chrf_normalization_comparison.csv`, now mirrored here.
+> Key correction: **NFD (35.72) exceeds NFC (29.30)** for eng→yor — the
+> references are fully decomposed (NFD-style), predictions precomposed; NFC
+> partially closes the gap (+3.2) while NFD harmonizes both sides (+9.7).
+> For yor→eng all regimes are nearly identical because English carries no
+> combining marks. Interpretation unchanged: diacritic variance is a major
+> measurement artifact for eng→yor.
+
+- **Corrected interpretation (authoritative numbers from
+  `chrf_normalization_comparison.csv`):** NFC composes the fully-decomposed
+  references toward the model's precomposed encoding (+3.2 chrF); NFD
+  decomposes both sides and harmonizes best (+9.7). Underdot folding +3.7,
+  full accent folding +11.2. yor→eng moves <1 point in every regime.
+- Interpretation: **a large share of the eng→yor chrF level (and its gap vs
+  yor→eng) is a measurement artifact of diacritic-encoding variance**, not
+  translation error. Folded scores are diagnostics; fold-all-accents is
+  lossy (destroys tonal information) and must not become the production
+  metric. Per-config deltas: `data/eval/chrf_normalization_comparison.csv`.
 
 ## 5. Human-review sample
 
@@ -115,7 +124,7 @@ pre-filled from heuristics or model output.
 2. **Detector false positives? Yes, ~9%** of eng→yor model-side findings were
    reference-attributable; 3 detector bugs fixed with regression tests.
 3. **Diacritics/normalization effect on chrF? Large for eng→yor**
-   (+5.6 with underdot folding, +9.1 with full folding) — a measurement
+   (NFC +3.2, NFD +9.7, full folding +11.4) — a measurement
    artifact, negligible for yor→eng.
 4. **Reliably evidenced model problems?** Entity carryover failures (41
    eng→yor), verbatim source-copying (16/22 per direction), and number/time

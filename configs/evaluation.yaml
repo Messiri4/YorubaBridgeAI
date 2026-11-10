@@ -1,0 +1,38 @@
+# YorubaBridgeAI unified evaluation configuration (Phase 3 Sprint 1)
+# Used by: python -m scripts.evaluate_quality --config configs/evaluation.yaml
+# The CLI never loads NLLB: it scores existing prediction files.
+
+dataset:
+  name: flores200
+  # Full dev split (997 pairs) used for experiments; devtest is reserved.
+  dev_source_en: data/flores_eval/dev.997.en.txt
+  dev_source_yo: data/flores_eval/dev.997.yo.txt
+  provenance: data/flores_eval/dev.997.provenance.json
+  # Reserved for final held-out evaluation only (never scored in experiments):
+  heldout_split: devtest
+  leakage_guard: devtest_files_must_not_appear_in_experiment_inputs
+
+predictions:
+  # Each arm: a prediction CSV with columns
+  # direction,idx,config,source,reference,prediction,latency_s
+  - name: beam_ab_20261109
+    path: data/eval/beams_ab_20261109T231413Z.csv
+    format: beam_ab_csv
+    # arm selection: all (direction, config) combos found in the file
+
+metrics:
+  bleu: true
+  chrfpp_standard: true
+  chrfpp_nfc: true
+  chrfpp_folded_diagnostic: true # diagnostic only — lossy
+  numeric_consistency: true
+  named_entity_consistency: true
+  repetition_omission_warnings: true
+  latency_from_file: true
+  human_labels_from: null # path to a completed review CSV; null = unavailable
+
+report:
+  out_json: data/eval/phase3_scorecard.json
+  out_csv: data/eval/phase3_scorecard.csv
+  out_markdown: data/eval/phase3_scorecard_report.md
+  manifest: data/eval/phase3_manifest.json

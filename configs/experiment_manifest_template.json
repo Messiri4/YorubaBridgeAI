@@ -1,0 +1,73 @@
+{
+  "$schema_note": "Fill every field per experiment; acceptance_decision is written only after results are reviewed. Keep one file per experiment under data/eval/manifests/.",
+  "experiment_id": "phase3-sprint<N>-<short-name>",
+  "hypothesis": "One sentence: what change is being tested and the expected effect.",
+  "created_at": "UTC ISO-8601",
+  "owner": "quality-review agent",
+  "baseline_config": {
+    "description": "current production behavior",
+    "code_ref": "commit hash or branch+file",
+    "num_beams": 4,
+    "length_penalty": 1.1,
+    "max_new_tokens": 256
+  },
+  "candidate_config": {
+    "description": "the proposed change",
+    "code_ref": "commit hash or branch+file",
+    "diff_summary": "one-paragraph description of exactly what differs"
+  },
+  "datasets": [
+    {
+      "role": "development",
+      "name": "flores200-dev",
+      "files": [
+        "data/flores_eval/dev.997.en.txt",
+        "data/flores_eval/dev.997.yo.txt"
+      ],
+      "sha256": "filled by tooling; never hand-edited",
+      "n_pairs": 997
+    },
+    {
+      "role": "heldout-final",
+      "name": "flores200-devtest",
+      "files": [],
+      "note": "MUST remain empty until final evaluation; experiments never touch devtest."
+    }
+  ],
+  "predictions_hashes": {
+    "note": "sha256 of every prediction file consumed, recorded by the eval CLI"
+  },
+  "metrics": {
+    "primary": "chrfpp_standard",
+    "secondary": ["bleu", "chrfpp_nfc", "numeric_consistency.consistency_rate"],
+    "diagnostic": ["chrfpp_folded_diagnostic"],
+    "versions": {
+      "sacrebleu": "recorded-by-tooling",
+      "chrf_kwargs": "char_order=6,word_order=2,beta=2.0"
+    }
+  },
+  "latency_memory": {
+    "status": "unavailable",
+    "note": "fill only with measured values from the same machine and conditions; never estimate"
+  },
+  "human_review": {
+    "status": "unavailable",
+    "worksheet": "data/eval/flores_reference_review.csv",
+    "rubric": "docs/human_review_rubric.md",
+    "n_reviewed": null
+  },
+  "regressions": [
+    {
+      "description": "any metric/category that got worse vs baseline",
+      "value": null
+    }
+  ],
+  "acceptance_criteria": [
+    "chrfpp_standard improves or is within noise (+/-1.0) on dev",
+    "no new repetition or omission warnings vs baseline",
+    "numeric consistency does not decrease",
+    "no leakage: all inputs hashed and dev-split-verified"
+  ],
+  "acceptance_decision": "pending|accepted|rejected",
+  "decision_rationale": ""
+}

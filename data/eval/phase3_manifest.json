@@ -1,0 +1,40 @@
+{
+  "experiment_id": "phase3-sprint1-eval-foundation",
+  "hypothesis": "Existing predictions, rescored under a unified schema, reproduce Phase-2B metrics and expose measurement conventions.",
+  "ran_at": "2026-11-10T01:37:38Z",
+  "config": "configs/evaluation.yaml",
+  "inputs": {
+    "data/eval/beams_ab_20261109T231413Z.csv": {
+      "sha256": "ed88ebd53663361cd16be6e76e61fe5b9371a400ba7b2e3c8292c7b87119fc44"
+    }
+  },
+  "outputs": {
+    "phase3_scorecard.json": "b1b81fc14f7499d3639a9efda803ce07d2fad9d084cdf413453814229b3c0bbc",
+    "phase3_scorecard.csv": "0ca81abb9cc9d09bfbe256e4bad485133960ff4f19601bda40074c67b6466569",
+    "phase3_scorecard_report.md": "f9588c99a18041e2510cb55740b3fae287952237d161059b9e06fa5b7b16935f"
+  },
+  "metric_versions": {
+    "sacrebleu": "2.6.0",
+    "chrf_kwargs": {
+      "char_order": 6,
+      "word_order": 2,
+      "beta": 2.0
+    },
+    "bleu_tokenizer": "13a",
+    "note": "heuristic detector counts are warnings, not error rates; missing measurements are reported as unavailable, never zero."
+  },
+  "arms": [
+    "eng_yor|beams=2",
+    "eng_yor|beams=4",
+    "yor_eng|beams=2",
+    "yor_eng|beams=4"
+  ],
+  "n_per_arm": {
+    "eng_yor|beams=2": 30,
+    "eng_yor|beams=4": 30,
+    "yor_eng|beams=2": 30,
+    "yor_eng|beams=4": 30
+  },
+  "acceptance_decision": "pending \u2014 foundation sprint, no candidate change",
+  "human_labels": "unavailable"
+}
