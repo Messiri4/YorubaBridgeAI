@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "sprint": "phase3_sprint2b",
+  "description": "Reproducible latency benchmark plan. Executed later with explicit opt-in; identical sentences, weights, directions per configuration.",
+  "baseline_config": {
+    "model_id": "facebook/nllb-200-distilled-600M (local safetensors)",
+    "num_beams": 4,
+    "length_penalty": 1.1,
+    "max_new_tokens": 256,
+    "max_input_chars": 2000,
+    "device": "cpu"
+  },
+  "datasets": {
+    "primary": "data/flores_eval/dev.30.{en,yo}.txt",
+    "upgrade_dependency": "Replace with the quality agent's verified evaluation framework output once integrated. Do not read from the quality worktree."
+  },
+  "protocol": {
+    "same_source_sentences_across_configs": true,
+    "warmup_passes_discarded": 1,
+    "timed_passes_min": 5,
+    "metrics": ["median_s", "p95_s", "mean_s", "peak_rss_mb", "chrf"],
+    "cold_vs_warm": "first pass after model init recorded with cold_start=true and excluded from warm aggregates",
+    "quality_regression_gate": "chrF must not drop more than 0.5 vs baseline on the same split"
+  },
+  "experiment_matrix": [
+    {
+      "id": "BASE",
+      "change": "production config, unchanged",
+      "directions": ["eng_yor", "yor_eng"]
+    },
+    {
+      "id": "B2",
+      "change": "num_beams=2 both directions",
+      "directions": ["eng_yor", "yor_eng"]
+    },
+    {
+      "id": "B2-YO",
+      "change": "num_beams=4 eng_yor / num_beams=2 yor_eng (direction-specific)",
+      "directions": ["eng_yor", "yor_eng"]
+    },
+    {
+      "id": "MX128",
+      "change": "max_new_tokens 256->128",
+      "directions": ["eng_yor", "yor_eng"]
+    },
+    {
+      "id": "T1",
+      "change": "torch.set_num_threads(1)",
+      "directions": ["eng_yor"]
+    },
+    {
+      "id": "T2",
+      "change": "torch.set_num_threads(2)",
+      "directions": ["eng_yor"]
+    },
+    {
+      "id": "T4",
+      "change": "torch.set_num_threads(4)",
+      "directions": ["eng_yor"]
+    }
+  ],
+  "runner": "scripts/profile_inference.py --real-inference ... (explicit opt-in; not executed in Sprint 2B)",
+  "historical_inputs": [
+    "data/eval/beams_ab_20261109T231413Z.csv",
+    "data/eval/beams_ab_20261109T231413Z.summary.json"
+  ]
+}
