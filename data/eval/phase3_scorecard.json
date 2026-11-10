@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-10T02:14:15Z",
+  "generated_at": "2026-11-10T02:38:26Z",
   "metric_provenance": {
     "sacrebleu": "2.6.0",
     "chrf_kwargs": {
@@ -20,11 +20,16 @@
       "chrfpp_folded_diagnostic": 37.42,
       "numeric_consistency": {
         "sentences_with_source_digits": 11,
+        "exact_digits_preserved": 6,
+        "verified_number_word_equivalent": 1,
+        "numeric_mismatch_warning": 3,
+        "numeric_review_required": 1,
         "digits_preserved": 6,
         "digits_missing": 1,
         "digits_changed": 3,
         "digits_spelled_out": 1,
-        "consistency_rate": 0.5455
+        "consistency_rate": 0.5455,
+        "verified_total_rate": 0.6364
       },
       "named_entity_consistency": {
         "entity_checks": 2,
@@ -54,11 +59,16 @@
       "chrfpp_folded_diagnostic": 37.91,
       "numeric_consistency": {
         "sentences_with_source_digits": 11,
+        "exact_digits_preserved": 7,
+        "verified_number_word_equivalent": 1,
+        "numeric_mismatch_warning": 2,
+        "numeric_review_required": 1,
         "digits_preserved": 7,
         "digits_missing": 1,
         "digits_changed": 2,
         "digits_spelled_out": 1,
-        "consistency_rate": 0.6364
+        "consistency_rate": 0.6364,
+        "verified_total_rate": 0.7273
       },
       "named_entity_consistency": {
         "entity_checks": 2,
@@ -88,11 +98,16 @@
       "chrfpp_folded_diagnostic": 43.56,
       "numeric_consistency": {
         "sentences_with_source_digits": 6,
+        "exact_digits_preserved": 5,
+        "verified_number_word_equivalent": 0,
+        "numeric_mismatch_warning": 1,
+        "numeric_review_required": 0,
         "digits_preserved": 5,
         "digits_missing": 0,
         "digits_changed": 1,
         "digits_spelled_out": 0,
-        "consistency_rate": 0.8333
+        "consistency_rate": 0.8333,
+        "verified_total_rate": 0.8333
       },
       "named_entity_consistency": {
         "entity_checks": 2,
@@ -122,11 +137,16 @@
       "chrfpp_folded_diagnostic": 43.01,
       "numeric_consistency": {
         "sentences_with_source_digits": 6,
+        "exact_digits_preserved": 5,
+        "verified_number_word_equivalent": 0,
+        "numeric_mismatch_warning": 1,
+        "numeric_review_required": 0,
         "digits_preserved": 5,
         "digits_missing": 0,
         "digits_changed": 1,
         "digits_spelled_out": 0,
-        "consistency_rate": 0.8333
+        "consistency_rate": 0.8333,
+        "verified_total_rate": 0.8333
       },
       "named_entity_consistency": {
         "entity_checks": 2,

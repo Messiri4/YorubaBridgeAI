@@ -53,13 +53,20 @@ def test_spelled_out_time_not_counted_missing() -> None:
     res = numeric_consistency(
         ["Ètò náà bẹ̀rẹ̀ ní aago mọ́kànlá."],       # 11 o'clock (prediction)
         ["The show starts at 11:29."])               # (source)
-    assert res["digits_missing"] == 0
-    assert res["digits_spelled_out"] == 1
+    # Sprint 2C-Q: a time expression (11:29) can never be word-verified —
+    # only 'eleven' of the two groups is present, and time semantics need
+    # human review. Updated from Sprint 2A's looser 'digits_spelled_out == 1'.
+    assert res["numeric_review_required"] == 1
+    assert res["digits_spelled_out"] == 0
 
 
 def test_genuinely_missing_digits_still_flagged() -> None:
+    # 72 has no word counterpart in the prediction and the value 72 is not in
+    # the trusted table -> review_required under Sprint 2C-Q semantics (an
+    # unverifiable rendering cannot be upgraded to a confirmed mismatch).
     res = numeric_consistency(["Ó gba ipò kan."], ["He scored 72."])
-    assert res["digits_missing"] == 1 and res["digits_spelled_out"] == 0
+    assert res["numeric_review_required"] == 1
+    assert res["digits_spelled_out"] == 0 and res["exact_digits_preserved"] == 0
 
 
 def test_spelled_bucket_does_not_count_into_rate() -> None:

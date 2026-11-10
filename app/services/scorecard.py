@@ -58,18 +58,30 @@ REGIMES: dict[str, Any] = {
 
 _DIGITS = __import__("re").compile(r"\d+(?:[.,]\d+)?")
 
-
-# Spelled-out number words whose VALUES count as digit equivalents when a
-# prediction renders a numeral in words (Bug 2A-2 fix: '11:29' rendered as
-# 'aago mọ́kànlá lékirin-dín-logójì' is semantically faithful). Values are
-# approximate for Yoruba's vigesimal system; only confident core terms.
+# Number words with RELIABLY determined values. Keys are tone- and underdot-
+# FOLDED (see _fold_tones); the table is looked up via the same folding, so
+# Yoruba tone/underdot variants resolve to a single key without altering the
+# original text anywhere. Entries are restricted to forms whose value is
+# unambiguous: units 1-10, teens 11-12 (the only ones attested consistently in
+# FLORES text), exact tens, 100 and 1000. COMPOUND Yoruba numerals (e.g.
+# 'ogójì-ọ̀kànlá' 41, 'aádọ́rùn-ún-dín-ọ̀kànlá' 69) are deliberately EXCLUDED —
+# the vigesimal system produces long analytic compounds we cannot verify
+# without risking wrong equivalences; those become review_required.
+#
+# Sprint 2C-Q (duplicate/contradiction cleanup): the Sprint-2A dict contained
+# conflicting duplicate keys (Python silently kept the last: 'aadota' mapped
+# to both 30 and 50; 'àádọ́ta' likewise) and several tone-folded variants that
+# collided (e.g. 'aadota' can fold from both 30 and 50 spellings). Folded keys
+# are now UNIQUE per value; contradictions removed.
 _NUMBER_WORD_VALUES = {
-    "ọ̀kan": 1, "meji": 2, "méjì": 2, "meta": 3, "mẹ́ta": 3, "merin": 4,
-    "mẹ́rin": 4, "marun": 5, "márùn-ún": 5, "mẹ́fà": 6, "meje": 7, "méje": 7,
-    "mejo": 8, "mẹ́jọ": 8, "mesan": 9, "mẹ́sànán": 9, "mẹ̀wá": 10,
-    "mokanla": 11, "mọ́kànlá": 11, "kanla": 11, "mejila": 12, "méjìlá": 12,
-    "aadota": 30, "àádọ́ta": 30, "ogoji": 40, "ogójì": 40, "aadota": 50,
-    "àádọ́ta": 50, "ogorin": 80, "ọgọ́rin": 80, "ogorun": 100, "ọ̀ọ́dúnrún": 100,
+    # Yoruba units (folded keys)
+    "okan": 1, "meji": 2, "meta": 3, "merin": 4, "marun": 5,
+    "mefa": 6, "meje": 7, "mejo": 8, "mesan": 9, "mewa": 10,
+    "mokanla": 11, "mejila": 12, "okanla": 11, "ejila": 12,
+    # exact tens (folded): ogójì(40)/àádọ́ta(50)/ọgọ́rin(80) are distinct keys
+    "ogun": 20, "ogoji": 40, "aadota": 50, "aadorin": 70, "ogorin": 80,
+    "aadorun": 90, "ogorun": 100,
+    # English
     "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
     "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12,
     "twenty": 20, "thirty": 30, "forty": 40, "fifty": 50, "sixty": 60,
@@ -77,51 +89,135 @@ _NUMBER_WORD_VALUES = {
 }
 
 
-def _pred_has_number_words(pred: str, needed: list[str]) -> bool:
-    """True if the prediction contains any known number word (tone/underdot-
-    folded). Conservative by design: we accept word-rendering as *plausibly*
-    faithful and route it to the informational 'digits_spelled_out' bucket
-    rather than counting it as an error. Value-exact verification of Yoruba's
-    vigesimal numerals is deliberately out of scope (documented limitation)."""
+def _strip_combining(text: str) -> str:
+    """Remove combining marks (tones + dot-below) WITHOUT altering any base
+    character. Needed because Python's \w treats a base letter followed by a
+    combining tone mark as a word boundary (e.g. 'àádọ́ta' tokenizes as
+    'àádọ'+'ta'), which silently splits Yoruba words. Unicode normalization
+    of the ORIGINAL text is never changed — this only affects tokenization
+    inside detectors."""
+    decomposed = unicodedata.normalize("NFD", text)
+    return "".join(c for c in decomposed if not unicodedata.combining(c))
+
+
+def _pred_number_word_values(pred: str) -> set[int]:
+    """Set of numeric values the prediction's number words denote EXACTLY.
+
+    Looks up each folded token in _NUMBER_WORD_VALUES; multi-token exact
+    matches like 'fifty percent' are handled by the caller for unit checks.
+    Only unambiguous single-word values are returned; compound or partially
+    matching expressions are NOT included (they become review_required)."""
     import re
-    words = {t for t in re.findall(r"[^\W_]+",
-             unicodedata.normalize("NFC", pred.lower()), re.UNICODE)}
-    folded = {_fold_tones(w) for w in words}
-    return bool(folded & set(_NUMBER_WORD_VALUES))
+    words = re.findall(r"[^\W_]+", _strip_combining(pred.lower()), re.UNICODE)
+    values: set[int] = set()
+    for w in words:
+        v = _NUMBER_WORD_VALUES.get(_fold_tones(w))
+        if v is not None:
+            values.add(v)
+    return values
+
+
+def _classify_numeric(s_digits: list[str], p_digits: list[str],
+                      pred: str, src: str) -> str:
+    """Sprint 2C-Q classification for one sentence with source digits.
+
+    Returns one of:
+      exact_digits_preserved        digit multiset identical
+      verified_number_word_equivalent  no digits in pred, but every source
+                                    numeral group has a word counterpart of
+                                    EQUAL VALUE (single-token trusted forms)
+      numeric_mismatch_warning      digits differ (incl. value-changing errors
+                                    like 7–2→72 or 9,000→900)
+      numeric_review_required       no digits in pred and equivalence can't be
+                                    verified (compound Yoruba numerals, partial
+                                    matches like 11:29→'eleven', times/ranges)
+    """
+    if sorted(s_digits) == sorted(p_digits):
+        return "exact_digits_preserved"
+    if not p_digits:
+        # Split source numeral groups into comparable value tokens.
+        # Source values from digits: e.g. ['11', '29'] for 11:29;
+        # ['9,000'] -> 9000; ['7','2'] -> 7,2.
+        src_vals: list[int] = []
+        ambiguous = False
+        for g in s_digits:
+            clean = g.replace(",", "").replace(".", "")
+            if ":" in src[max(0, src.find(g) - 1): src.find(g) + len(g) + 1]:
+                ambiguous = True  # time-like context (e.g. 11:29)
+            try:
+                src_vals.append(int(clean))
+            except ValueError:
+                ambiguous = True
+        pred_vals = _pred_number_word_values(pred)
+        if not pred_vals:
+            return "numeric_review_required"  # no verifiable word either
+        if ambiguous:
+            return "numeric_review_required"  # times/ranges need human review
+        # Compound/unsupported source values (e.g. 41, 977 — anything outside
+        # the trusted single-word table) can't be word-verified: a Yoruba
+        # compound rendering would produce multiple partial tokens we cannot
+        # responsibly equate. Review rather than verify.
+        if any(v not in set(_NUMBER_WORD_VALUES.values()) for v in src_vals):
+            return "numeric_review_required"
+        if all(v in pred_vals for v in src_vals):
+            return "verified_number_word_equivalent"
+        # A supported word with the WRONG value proves the numeral changed
+        # (source 11 -> 'twelve'): verified mismatch, not mere suspicion.
+        # Only when pred values cover ALL source values would it be equivalent;
+        # wrong-value coverage of every group is a definite error.
+        if len(src_vals) == len(pred_vals) and len(src_vals) > 0:
+            return "numeric_mismatch_warning"
+        # Partial coverage (e.g. source 11 & 29, pred only 'eleven') -> review
+        return "numeric_review_required"
+    return "numeric_mismatch_warning"
 
 
 def numeric_consistency(preds: list[str], srcs: list[str]) -> dict:
-    """Per-sentence digit multiset agreement. Report counts + rate; the rate
-    is over sentences where the source contains digits at all.
+    """Per-sentence numeric classification (Sprint 2C-Q).
 
-    Bug 2A-2 fix: a prediction that renders source numerals as number WORDS
-    (e.g. 11:29 -> 'aago mọ́kànlá') is no longer counted as digits_missing;
-    it moves to a separate 'digits_spelled_out' bucket (informational, since
-    word-value verification is approximate for Yoruba's vigesimal numerals).
+    Classifications per sentence with source digits:
+      exact_digits_preserved / verified_number_word_equivalent /
+      numeric_mismatch_warning / numeric_review_required
+
+    Schema change vs Sprint 2A (documented, intentional):
+      - 'digits_spelled_out' renamed conceptually to
+        verified_number_word_equivalent + numeric_review_required split:
+        legacy keys 'digits_preserved'/'digits_missing'/'digits_changed' are
+        kept for backward compatibility, and legacy 'digits_spelled_out' now
+        counts ONLY verified_number_word_equivalent (no longer includes
+        unverifiable cases). New key 'review_required' added.
+      - 'consistency_rate' remains exact-digit preservation rate (unchanged
+        semantics); a new 'verified_total_rate' adds word-verified cases.
     """
-    both = changed = missing = spelled = checked = 0
+    counts = {
+        "exact_digits_preserved": 0,
+        "verified_number_word_equivalent": 0,
+        "numeric_mismatch_warning": 0,
+        "numeric_review_required": 0,
+    }
+    checked = 0
     for s, p in zip(srcs, preds):
         s_d, p_d = _DIGITS.findall(s), _DIGITS.findall(p)
         if not s_d:
             continue
         checked += 1
-        if sorted(s_d) == sorted(p_d):
-            both += 1
-        elif not p_d:
-            if _pred_has_number_words(p, s_d):
-                spelled += 1
-            else:
-                missing += 1
-        else:
-            changed += 1
-    denom = checked
+        cls = _classify_numeric(s_d, p_d, p, s)
+        counts[cls] += 1
     return {
         "sentences_with_source_digits": checked,
-        "digits_preserved": both,
-        "digits_missing": missing,
-        "digits_changed": changed,
-        "digits_spelled_out": spelled,
-        "consistency_rate": round(both / denom, 4) if denom else None,
+        # explicit classification counts (Sprint 2C-Q)
+        **counts,
+        # backward-compatible aliases (documented)
+        "digits_preserved": counts["exact_digits_preserved"],
+        "digits_missing": counts["numeric_review_required"],
+        "digits_changed": counts["numeric_mismatch_warning"],
+        "digits_spelled_out": counts["verified_number_word_equivalent"],
+        "consistency_rate": (round(counts["exact_digits_preserved"] / checked, 4)
+                             if checked else None),
+        "verified_total_rate": (round(
+            (counts["exact_digits_preserved"]
+             + counts["verified_number_word_equivalent"]) / checked, 4)
+            if checked else None),
     }
 
 

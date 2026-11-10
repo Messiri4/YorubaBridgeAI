@@ -162,8 +162,13 @@ def test_scorecard_heuristic_counts_distinct_from_verified() -> None:
     d = r.to_dict()
     # heuristic warning counts exist...
     assert d["numeric_consistency"]["digits_changed"] >= 1
-    # ...but no "verified error rate" field is ever emitted by heuristics
-    assert not any("verified" in k for k in d["numeric_consistency"])
+    # ...but the only "verified" rate field is verified_total_rate — the sum
+    # of exact preservation + *verified-equivalent* word renderings, neither
+    # of which is a heuristic-warning count posing as ground truth
+    nc = d["numeric_consistency"]
+    assert "verified_error_rate" not in nc
+    assert nc["verified_total_rate"] == 0.0  # 7–2->72: not preserved, not equivalent
+    assert nc["numeric_mismatch_warning"] == 1  # stays a warning, not an error rate
 
 
 def test_dataset_alignment_997() -> None:
