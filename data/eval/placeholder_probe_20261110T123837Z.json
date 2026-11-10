@@ -1,0 +1,367 @@
+{
+  "model_local": "True",
+  "cases": [
+    {
+      "case": "two_sentinels",
+      "src_lang": "eng_Latn",
+      "n_tokens": 15,
+      "roundtrip_identical": true,
+      "roundtrip": "The score was @@0@@ at @@1@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1"
+      ]
+    },
+    {
+      "case": "two_sentinels",
+      "src_lang": "yor_Latn",
+      "n_tokens": 15,
+      "roundtrip_identical": true,
+      "roundtrip": "The score was @@0@@ at @@1@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1"
+      ]
+    },
+    {
+      "case": "sentinel_then_comma",
+      "src_lang": "eng_Latn",
+      "n_tokens": 14,
+      "roundtrip_identical": true,
+      "roundtrip": "It costs @@0@@, and ships today.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "sentinel_then_comma",
+      "src_lang": "yor_Latn",
+      "n_tokens": 14,
+      "roundtrip_identical": true,
+      "roundtrip": "It costs @@0@@, and ships today.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "sentinel_full_stop",
+      "src_lang": "eng_Latn",
+      "n_tokens": 11,
+      "roundtrip_identical": true,
+      "roundtrip": "Attendance was @@0@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "sentinel_full_stop",
+      "src_lang": "yor_Latn",
+      "n_tokens": 11,
+      "roundtrip_identical": true,
+      "roundtrip": "Attendance was @@0@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "yoruba_context",
+      "src_lang": "eng_Latn",
+      "n_tokens": 17,
+      "roundtrip_identical": true,
+      "roundtrip": "Ìdíje náà wà ní @@0@@ ní @@1@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1"
+      ]
+    },
+    {
+      "case": "yoruba_context",
+      "src_lang": "yor_Latn",
+      "n_tokens": 17,
+      "roundtrip_identical": true,
+      "roundtrip": "Ìdíje náà wà ní @@0@@ ní @@1@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1"
+      ]
+    },
+    {
+      "case": "yoruba_sentinel_period",
+      "src_lang": "eng_Latn",
+      "n_tokens": 9,
+      "roundtrip_identical": true,
+      "roundtrip": "Ó ní @@0@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "yoruba_sentinel_period",
+      "src_lang": "yor_Latn",
+      "n_tokens": 9,
+      "roundtrip_identical": true,
+      "roundtrip": "Ó ní @@0@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "repeated_number",
+      "src_lang": "eng_Latn",
+      "n_tokens": 23,
+      "roundtrip_identical": true,
+      "roundtrip": "He ran @@0@@ laps and @@1@@ laps, @@2@@ in total.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1",
+        "▁@@",
+        "2"
+      ]
+    },
+    {
+      "case": "repeated_number",
+      "src_lang": "yor_Latn",
+      "n_tokens": 23,
+      "roundtrip_identical": true,
+      "roundtrip": "He ran @@0@@ laps and @@1@@ laps, @@2@@ in total.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1",
+        "▁@@",
+        "2"
+      ]
+    },
+    {
+      "case": "decimal",
+      "src_lang": "eng_Latn",
+      "n_tokens": 17,
+      "roundtrip_identical": true,
+      "roundtrip": "The value is @@0@@ units (was @@1@@).",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1"
+      ]
+    },
+    {
+      "case": "decimal",
+      "src_lang": "yor_Latn",
+      "n_tokens": 17,
+      "roundtrip_identical": true,
+      "roundtrip": "The value is @@0@@ units (was @@1@@).",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1"
+      ]
+    },
+    {
+      "case": "negative",
+      "src_lang": "eng_Latn",
+      "n_tokens": 14,
+      "roundtrip_identical": true,
+      "roundtrip": "Temperatures fell to @@0@@ overnight.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "negative",
+      "src_lang": "yor_Latn",
+      "n_tokens": 14,
+      "roundtrip_identical": true,
+      "roundtrip": "Temperatures fell to @@0@@ overnight.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "date_time",
+      "src_lang": "eng_Latn",
+      "n_tokens": 20,
+      "roundtrip_identical": true,
+      "roundtrip": "On @@0@@ at @@1@@ the score was @@2@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1",
+        "▁@@",
+        "2"
+      ]
+    },
+    {
+      "case": "date_time",
+      "src_lang": "yor_Latn",
+      "n_tokens": 20,
+      "roundtrip_identical": true,
+      "roundtrip": "On @@0@@ at @@1@@ the score was @@2@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1",
+        "▁@@",
+        "2"
+      ]
+    },
+    {
+      "case": "currency",
+      "src_lang": "eng_Latn",
+      "n_tokens": 17,
+      "roundtrip_identical": true,
+      "roundtrip": "Revenue reached @@0@@ while costs hit @@1@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1"
+      ]
+    },
+    {
+      "case": "currency",
+      "src_lang": "yor_Latn",
+      "n_tokens": 17,
+      "roundtrip_identical": true,
+      "roundtrip": "Revenue reached @@0@@ while costs hit @@1@@.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1"
+      ]
+    },
+    {
+      "case": "sentinel_adjacent_yoruba_word",
+      "src_lang": "eng_Latn",
+      "n_tokens": 10,
+      "roundtrip_identical": true,
+      "roundtrip": "Wọn ní @@0@@ ọmọ.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "sentinel_adjacent_yoruba_word",
+      "src_lang": "yor_Latn",
+      "n_tokens": 10,
+      "roundtrip_identical": true,
+      "roundtrip": "Wọn ní @@0@@ ọmọ.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "sentinel_in_quotes",
+      "src_lang": "eng_Latn",
+      "n_tokens": 12,
+      "roundtrip_identical": true,
+      "roundtrip": "The sign read \"@@0@@\".",
+      "sentinel_related_tokens": [
+        "0"
+      ]
+    },
+    {
+      "case": "sentinel_in_quotes",
+      "src_lang": "yor_Latn",
+      "n_tokens": 12,
+      "roundtrip_identical": true,
+      "roundtrip": "The sign read \"@@0@@\".",
+      "sentinel_related_tokens": [
+        "0"
+      ]
+    },
+    {
+      "case": "sentinel_percentage",
+      "src_lang": "eng_Latn",
+      "n_tokens": 12,
+      "roundtrip_identical": true,
+      "roundtrip": "About @@0@@ of voters agree.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "sentinel_percentage",
+      "src_lang": "yor_Latn",
+      "n_tokens": 12,
+      "roundtrip_identical": true,
+      "roundtrip": "About @@0@@ of voters agree.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0"
+      ]
+    },
+    {
+      "case": "three_sentinels",
+      "src_lang": "eng_Latn",
+      "n_tokens": 21,
+      "roundtrip_identical": true,
+      "roundtrip": "From @@0@@ to @@1@@ between @@2@@ and dusk.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1",
+        "▁@@",
+        "2"
+      ]
+    },
+    {
+      "case": "three_sentinels",
+      "src_lang": "yor_Latn",
+      "n_tokens": 21,
+      "roundtrip_identical": true,
+      "roundtrip": "From @@0@@ to @@1@@ between @@2@@ and dusk.",
+      "sentinel_related_tokens": [
+        "▁@@",
+        "0",
+        "▁@@",
+        "1",
+        "▁@@",
+        "2"
+      ]
+    }
+  ],
+  "summary": {
+    "two_sentinels": true,
+    "sentinel_then_comma": true,
+    "sentinel_full_stop": true,
+    "yoruba_context": true,
+    "yoruba_sentinel_period": true,
+    "repeated_number": true,
+    "decimal": true,
+    "negative": true,
+    "date_time": true,
+    "currency": true,
+    "sentinel_adjacent_yoruba_word": true,
+    "sentinel_in_quotes": true,
+    "sentinel_percentage": true,
+    "three_sentinels": true
+  }
+}
