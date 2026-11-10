@@ -1,0 +1,853 @@
+pair_idx,side,category,severity,detail,snippet
+2,reference,NUM_DIGIT_DIFF,warning,"EN ['0230', '30', '39', '9'] vs YO ['0230', '39']",
+2,reference,ENTITY_NOT_CARRIED,warning,EN entity 'The JAS' not found (even fuzzily) in YO,The JAS
+3,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,olori skwodroni dilokrit pattavee gege awako
+3,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+4,reference,MISSING_UNDERDOT_CANDIDATE,warning,'isé' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),isé
+4,reference,MISSING_UNDERDOT_CANDIDATE,warning,'isé' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),isé
+5,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 28% over 11 content words,fidali odun darapọ ẹgbẹ agbáboolu basilona
+5,reference,MISSING_UNDERDOT_CANDIDATE,warning,'omo' should likely be 'ọmọ' (missing ẹ/ọ/ṣ),omo
+5,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Bar' not found (even fuzzily) in YO,Bar
+6,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,lati igba koja catalan vidal ninu
+6,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+6,reference,NUM_DIGITS_DROPPED,warning,EN digits ['49'] absent in YO reference,
+7,reference,NUM_DIGIT_DIFF,warning,"EN ['00', '1', '11'] vs YO ['1']",
+8,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['00', '11'] absent in YO reference",
+9,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['11', '20'] absent in YO reference",
+10,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['11', '29'] absent in YO reference",
+11,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['2', '7'] absent in YO reference",
+12,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,laipe padanu raoniki sisi brisbeni
+12,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+16,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,awon iiwe fihan ifowopamo merinla awon
+16,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+17,reference,ODD_MID_SENTENCE_CAPITAL,warning,mid-sentence capitalized 'The',The
+19,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,hong kong kẹkọ giga york ofin
+19,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+20,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,hsieh soro nigba kuro ninu nigba
+20,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+22,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+23,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 19% over 6 content words,agbábọ tòní alex overchkin washington capitals
+23,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Day' not found (even fuzzily) in YO,Day
+26,reference,NUM_DIGIT_DIFF,warning,"EN ['1995', '60', '60', '96'] vs YO ['1995', '96']",
+28,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,keko jade sayensi giga virginia odun
+28,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+28,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+29,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+30,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 28% over 9 content words,wariri inita àwọn níbẹ nígbàtí awon
+31,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,akopa piquet remi ninu idije 2008
+31,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+34,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,gangan idakeje lati sami akoko ofurufu
+34,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+35,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Two' not found (even fuzzily) in YO,Two
+37,reference,ENTITY_NOT_CARRIED,warning,EN entity 'The PBS' not found (even fuzzily) in YO,The PBS
+38,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Each' not found (even fuzzily) in YO,Each
+40,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 17 content words,johanu granti lati wned bufalo redio
+40,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+42,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,iwon bata ibuso 1040 oorun petele
+42,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+44,reference,MISSING_UNDERDOT_CANDIDATE,warning,'òjò' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),òjò
+45,reference,NUM_DIGIT_DIFF,warning,"EN ['1759', '24', '9,000'] vs YO ['1759', '9,000']",
+46,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['10', '14.7', '250'] absent in YO reference",
+47,reference,NUM_DIGIT_DIFF,warning,"EN ['1', '48'] vs YO ['1']",
+48,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,ogbeni reidi agbara lati a1gp silandi
+48,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+49,reference,NUM_DIGITS_DROPPED,warning,EN digits ['160'] absent in YO reference,
+50,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['3', '80'] absent in YO reference",
+51,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+51,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osù' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osù
+51,reference,NUM_DIGITS_DROPPED,warning,EN digits ['24'] absent in YO reference,
+53,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+57,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+58,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+59,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 16 content words,profenasano kapa awon nigba pari ogun
+59,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+59,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+61,reference,NUM_DIGITS_DROPPED,warning,EN digits ['2'] absent in YO reference,
+61,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+62,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+63,reference,NUM_DIGITS_DROPPED,warning,EN digits ['10'] absent in YO reference,
+66,reference,NUM_DIGITS_DROPPED,warning,EN digits ['20'] absent in YO reference,
+67,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 19 content words,nigbati awon olugbe bere sini iriri
+67,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+68,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+68,reference,NUM_DIGITS_DROPPED,warning,EN digits ['40'] absent in YO reference,
+69,reference,NUM_DIGIT_DIFF,warning,"EN ['9,000'] vs YO ['9000']",
+70,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,amojuto management pataki fagi september sugbon
+70,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+70,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+70,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ojo' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),ojo
+71,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 27% over 14 content words,gbajúgbajà amòfin greek sakis kechagioglou george
+75,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 22 content words,roberts jalẹ lati nipa akoko gbagbọ
+75,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+76,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,atenumo akoso wipe wade ofin fidi
+76,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+76,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+76,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ejo' should likely be 'ẹjọ́' (missing ẹ/ọ/ṣ),ejo
+79,reference,NUM_DIGITS_DROPPED,warning,EN digits ['11'] absent in YO reference,
+80,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 28% over 5 content words,maroochydore caboolture nínú ìkópa kòmẹsẹ
+81,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,hesperonychus elizabethae dromaeosauridae egbon tabi aburo
+81,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+81,reference,MISSING_UNDERDOT_CANDIDATE,warning,'omo' should likely be 'ọmọ' (missing ẹ/ọ/ṣ),omo
+82,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,gbagbo apaje nigbogbo alara gbigbona lori
+82,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+83,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Its' not found (even fuzzily) in YO,Its
+84,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+87,reference,NUM_DIGITS_DROPPED,warning,EN digits ['21'] absent in YO reference,
+89,reference,NUM_DIGITS_DROPPED,warning,EN digits ['16'] absent in YO reference,
+92,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 11 content words,àwọn aṣojú orílẹ ọkàn sílẹ òfin
+95,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+96,reference,ENTITY_NOT_CARRIED,warning,EN entity 'The Il-' not found (even fuzzily) in YO,The Il-
+97,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osù' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osù
+97,reference,NUM_DIGIT_DIFF,warning,"EN ['7', '76'] vs YO ['76']",
+98,reference,NUM_DIGITS_DROPPED,warning,EN digits ['800'] absent in YO reference,
+99,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+100,reference,UNBALANCED_QUOTES,mechanical,unbalanced (),
+102,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,ipele keji ikeru miran anfani lati
+102,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+104,reference,NUM_DIGITS_DROPPED,warning,EN digits ['80'] absent in YO reference,
+105,reference,NUM_DIGITS_DROPPED,warning,EN digits ['2.8'] absent in YO reference,
+106,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,alakoso ayatola kamneyi ifojule robi idẹkun
+106,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+107,reference,NUM_DIGITS_DROPPED,warning,EN digits ['5'] absent in YO reference,
+109,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['12.8', '8'] absent in YO reference",
+110,reference,ENTITY_NOT_CARRIED,warning,EN entity 'May' not found (even fuzzily) in YO,May
+111,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,sori orun kalifonia ariwa orun lati
+111,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+111,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+114,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,ohun tobi itan gbogbo ebay
+114,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+114,reference,MISSING_UNDERDOT_CANDIDATE,warning,'oja' should likely be 'ọjà' (missing ẹ/ọ/ṣ),oja
+116,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 24% over 9 content words,àwọn onímọ sáyẹnsì funra enceladus orísun
+117,reference,NUM_DIGITS_DROPPED,warning,EN digits ['90'] absent in YO reference,
+120,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 19 content words,acma wariri biotilejepe fidio lori intaneeti
+120,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+121,reference,ADJACENT_DUPLICATE,mechanical,'gbohun gbohun',
+122,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 18 content words,ijoba apapo orile amerika nairobi kenya
+122,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+122,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+128,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,oluya papo idije hoolu bukaresti irisi
+128,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+128,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+129,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osù' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osù
+130,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 17% over 7 content words,ikede ileri ijoba lati fowo gbigbe
+130,reference,ENTITY_NOT_CARRIED,warning,EN entity 'March' not found (even fuzzily) in YO,March
+131,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+131,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['1,300', '300'] absent in YO reference",
+132,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 26% over 9 content words,christopher garcia agbẹnusọ angeles ìwádìí lẹnu
+133,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,gbogbo bibaje atunde pelu pelu alaafia
+133,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+137,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,saba nitori awon ropo ninu
+137,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+137,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Fish' not found (even fuzzily) in YO,Fish
+139,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['149', '240'] absent in YO reference",
+140,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+140,reference,NUM_DIGITS_DROPPED,warning,EN digits ['83'] absent in YO reference,
+142,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 28% over 7 content words,ìpinu wáyé olórin jaasi láti utah
+142,reference,ENTITY_NOT_CARRIED,warning,EN entity 'The NBA's' not found (even fuzzily) in YO,The NBA's
+143,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+144,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+145,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+147,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 12% over 6 content words,àwọn yahu mikrosofti kere àwọn onibaara
+153,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,igba karun ninu itan awon eniyan
+153,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+154,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['24,000', '34'] absent in YO reference",
+154,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Out' not found (even fuzzily) in YO,Out
+155,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+155,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 19% over 7 content words,maarundinlogun lára awon òkúta mitiyo agëmọ
+155,reference,MISSING_UNDERDOT_CANDIDATE,warning,'òjò' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),òjò
+156,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['11,000', '22,500'] absent in YO reference",
+157,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+157,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 6 content words,keseloski nípo kíní ìdíje awakọ pointi
+159,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,keta amlini dinku pointi sugbon saju
+159,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+159,reference,NUM_DIGIT_DIFF,warning,"EN ['2,207', '2,220'] vs YO ['2,207', '2,220', '20']",
+160,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 28% over 10 content words,stewart gordon kenseth harvick parí ìdíje
+161,reference,ENTITY_NOT_CARRIED,warning,EN entity 'The US Navy' not found (even fuzzily) in YO,The US Navy
+162,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,tubo foro awon alaakoso agbara lati
+162,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+162,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+162,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+163,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,maini oniwonn afenja takoiwon loju puweto
+163,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+163,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+164,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+164,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 17% over 8 content words,ẹgbẹ keje àwọn sójà amerika sasebo
+165,reference,NUM_DIGIT_DIFF,warning,"EN ['2008', '26'] vs YO ['2008']",
+166,reference,NUM_DIGITS_DROPPED,warning,EN digits ['10'] absent in YO reference,
+167,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,ijakadi idinwo ibasepo aarin india pakistan
+167,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+168,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,pelu awon osise awon olugbe tegsasi
+168,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+170,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+172,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+174,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 20 content words,ikan ninu awon eyan lowo laye
+174,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+174,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ojo' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),ojo
+174,reference,ENTITY_NOT_CARRIED,warning,EN entity 'One' not found (even fuzzily) in YO,One
+175,reference,ENTITY_NOT_CARRIED,warning,EN entity 'She' not found (even fuzzily) in YO,She
+178,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,leyin igba iroyin ofin atlanta iroyinto
+178,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+180,reference,NUM_DIGIT_DIFF,warning,"EN ['2013', '34'] vs YO ['201']",
+183,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 21 content words,minista ilera kaanu itoju awon anfani
+183,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+187,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['1', '15'] absent in YO reference",
+188,reference,NUM_DIGITS_DROPPED,warning,EN digits ['9'] absent in YO reference,
+189,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,efufu morile china ibuso mokanla laarin
+189,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+189,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+191,reference,NUM_DIGITS_DROPPED,warning,EN digits ['90'] absent in YO reference,
+191,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+192,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Any' not found (even fuzzily) in YO,Any
+193,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,sumaka idasile 2006 leyin yege idije
+193,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+193,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+194,reference,NUM_DIGITS_DROPPED,warning,EN digits ['2009'] absent in YO reference,
+198,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,leyin egbo onafun araa lati gbogbo
+198,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+198,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+198,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+201,reference,MISSING_UNDERDOT_CANDIDATE,warning,'òjò' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),òjò
+201,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Its' not found (even fuzzily) in YO,Its
+202,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ojò' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),ojò
+203,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+203,reference,MISSING_UNDERDOT_CANDIDATE,warning,'òjò' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),òjò
+205,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+206,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+213,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,nigba awon olugbe kuro agbegbe
+213,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+216,reference,NUM_DIGIT_DIFF,warning,EN ['2005'] vs YO ['200'],
+218,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Not' not found (even fuzzily) in YO,Not
+221,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 7 content words,ìgbẹ wáyé birmingham crown parí kẹta
+221,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osù' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osù
+221,reference,NUM_DIGITS_DROPPED,warning,EN digits ['3'] absent in YO reference,
+222,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,adari eniti gbamu isele lori isele
+222,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+225,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,agbara okunkun ohun aiiri sise agbara
+225,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+226,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,wiwa laye nkan mimo nitori agbaye
+226,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+226,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Its' not found (even fuzzily) in YO,Its
+227,reference,ADJACENT_DUPLICATE,mechanical,'díè díè',
+230,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,nipe okunrin elese meta bombu
+230,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+232,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 7 content words,orúkọ mímọ àwọn aláṣẹ ṣùgbọ ẹgbẹ
+232,reference,ENTITY_NOT_CARRIED,warning,EN entity 'His' not found (even fuzzily) in YO,His
+233,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['1', '17', '17', '2007'] absent in YO reference",
+235,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+236,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+238,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+239,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 16 content words,bere sere nigbati opolopo awon agbegbe
+239,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+239,reference,MISSING_UNDERDOT_CANDIDATE,warning,'opolopo' should likely be 'ọ̀pọ̀lọ́pọ̀' (missing ẹ/ọ/ṣ),opolopo
+239,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+239,reference,ODD_MID_SENTENCE_CAPITAL,warning,mid-sentence capitalized 'Ise',Ise
+240,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['429', '600'] absent in YO reference",
+241,reference,NUM_DIGIT_DIFF,warning,"EN ['1', '1.5', '3000'] vs YO ['1']",
+242,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,pẹlu irin sayẹnsi pataki mẹta luna
+242,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+244,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+247,reference,NUM_DIGITS_DROPPED,warning,EN digits ['247'] absent in YO reference,
+248,reference,NUM_DIGITS_DROPPED,warning,EN digits ['10'] absent in YO reference,
+250,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,awon alejo itura united arab emirate
+250,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+250,reference,MISSING_UNDERDOT_CANDIDATE,warning,'omo' should likely be 'ọmọ' (missing ẹ/ọ/ṣ),omo
+252,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 9% over 8 content words,leonov cosmonaut lára àpapọ ẹgbẹ soviet
+253,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,kejidinlogun keta odun 1965 afihan ohun
+253,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+253,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ojo' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),ojo
+253,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osu' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osu
+253,reference,NUM_DIGIT_DIFF,warning,"EN ['18', '1965'] vs YO ['1965']",
+254,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,akọni soviet union soviet union
+254,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+255,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 25% over 9 content words,ọdún padà darí apollo soyuz àfihàn
+255,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Ten' not found (even fuzzily) in YO,Ten
+256,reference,ENTITY_NOT_CARRIED,warning,EN entity 'She' not found (even fuzzily) in YO,She
+256,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+257,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,sugbon ihale dinku abala kekere tumo
+257,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+257,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+260,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+262,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 22% over 7 content words,kọmíṣọ ìtajà albert muchanga kéde benin
+263,reference,NUM_DIGIT_DIFF,warning,"EN ['1', '2020'] vs YO ['2020']",
+263,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+268,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 21 content words,igba akọkọ eyan ẹwọn lati ofin
+268,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+269,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 20 content words,jesu odun mokanlelogun darapo egbe agbabolu
+269,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+269,reference,MISSING_UNDERDOT_CANDIDATE,warning,'omo' should likely be 'ọmọ' (missing ẹ/ọ/ṣ),omo
+269,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osu' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osu
+269,reference,NUM_DIGIT_DIFF,warning,"EN ['2017', '21', '27'] vs YO ['2017', '27']",
+272,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+277,reference,NUM_DIGITS_DROPPED,warning,EN digits ['46'] absent in YO reference,
+278,reference,NUM_DIGITS_DROPPED,warning,EN digits ['32'] absent in YO reference,
+280,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['100,000'] absent in YO reference",
+281,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['6,500'] absent in YO reference",
+281,reference,SUSPICIOUSLY_LONG,warning,YO 21 tokens vs EN 7 (300%),
+283,reference,MISSING_UNDERDOT_CANDIDATE,warning,'isé' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),isé
+284,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,koja itako pupo polandi nigbati orileede
+284,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+284,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osu' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osu
+286,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+286,reference,ADJACENT_DUPLICATE,mechanical,'pęran pęran',
+287,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 12 content words,rspca south wales olùbẹ david shanessy
+290,reference,NUM_DIGITS_DROPPED,warning,EN digits ['48'] absent in YO reference,
+291,reference,NUM_DIGITS_DROPPED,warning,EN digits ['10'] absent in YO reference,
+294,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+294,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['120', '160'] absent in YO reference",
+295,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,ofurufu awom mejila osise baalu enikan
+295,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+301,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+301,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+301,reference,ADJACENT_DUPLICATE,mechanical,'takun takun',
+302,reference,NUM_DIGITS_DROPPED,warning,EN digits ['15'] absent in YO reference,
+302,reference,ENTITY_NOT_CARRIED,warning,EN entity 'His' not found (even fuzzily) in YO,His
+304,reference,NUM_DIGIT_DIFF,warning,EN ['1960'] vs YO ['960'],
+305,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 28% over 11 content words,japanese judoka hitoshi saito olúborí olympic
+305,reference,NUM_DIGITS_DROPPED,warning,EN digits ['54'] absent in YO reference,
+307,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Tuesday' not found (even fuzzily) in YO,Tuesday
+309,reference,NUM_DIGITS_DROPPED,warning,EN digits ['100'] absent in YO reference,
+312,reference,NUM_DIGITS_DROPPED,warning,EN digits ['30'] absent in YO reference,
+313,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['9,000'] absent in YO reference",
+314,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,ninu ikosile awon awon buruku kilaasi
+314,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+315,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+317,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,akẹkọ nigba wipe isọkusọ ninu yara
+317,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+320,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,lati igba china gbera aadorun igba
+320,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+320,reference,NUM_DIGITS_DROPPED,warning,EN digits ['90'] absent in YO reference,
+321,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+322,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,orile china tobi orile united states
+322,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+323,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 26% over 14 content words,tropical storm danielle orúkọ kẹrin ọdún
+324,reference,NUM_DIGIT_DIFF,warning,"EN ['3,000', '40', '64'] vs YO ['64']",
+329,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+329,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['403', '468'] absent in YO reference",
+330,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+331,reference,MISSING_UNDERDOT_CANDIDATE,warning,'òsèré' should likely be 'ọṣèré' (missing ẹ/ọ/ṣ),òsèré
+333,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 19% over 14 content words,àwọn olórin stanbul state symphony àwọn
+335,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 7% over 16 content words,arabirin onidan turkeyi sezen aksu seré
+336,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+336,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 6 content words,níparí àwọn ẹgbẹ oníjó anatoliya troyi
+337,reference,NUM_DIGITS_DROPPED,warning,EN digits ['13'] absent in YO reference,
+339,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+341,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+342,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 18 content words,isoro isuna nkan odun seyin feju
+342,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+342,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osu' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osu
+342,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ojo' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),ojo
+342,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+345,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+347,reference,ENTITY_NOT_CARRIED,warning,EN entity 'One' not found (even fuzzily) in YO,One
+347,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+350,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 27% over 9 content words,rọgbọ lati ọdún púpọ kató àpere
+352,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 20% over 8 content words,surface tension ṣẹlẹ nítorí water molecules
+359,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+359,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 20% over 14 content words,àwọn onímọ sáyẹ stimulated emission radiation
+361,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Photons' not found (even fuzzily) in YO,Photons
+364,reference,ENTITY_NOT_CARRIED,warning,EN entity 'First' not found (even fuzzily) in YO,First
+371,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+373,reference,ENTITY_NOT_CARRIED,warning,EN entity 'How' not found (even fuzzily) in YO,How
+375,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,oorun erun duro lori gbogbo orun
+375,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+375,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Sun' not found (even fuzzily) in YO,Sun
+375,reference,ENTITY_NOT_CARRIED,warning,EN entity 'The Sun' not found (even fuzzily) in YO,The Sun
+376,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Sun' not found (even fuzzily) in YO,Sun
+377,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Sun' not found (even fuzzily) in YO,Sun
+379,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Sun' not found (even fuzzily) in YO,Sun
+380,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,nigbanaa lẹyin ọdun ọdun 1639 gẹẹsi
+380,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+382,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+385,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,hangooli alifabeeti soso moomo seda lojumo
+385,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+385,reference,UNBALANCED_QUOTES,mechanical,unbalanced (),
+386,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 8 content words,sejong kẹrin ìran joseon ìkan lára
+388,reference,ENTITY_NOT_CARRIED,warning,EN entity 'One' not found (even fuzzily) in YO,One
+390,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,akọkọ agbaye pẹlu sanskrit lẹyin akojọpọ
+390,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+391,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,lile aladun sanskriti wulo gege orisun
+391,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+392,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+394,reference,ENTITY_NOT_CARRIED,warning,EN entity 'But' not found (even fuzzily) in YO,But
+396,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Let's' not found (even fuzzily) in YO,Let's
+398,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,gbogbo aleba itili awon afirika lati
+398,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+400,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,nisin japani orileede irekusu japani gege
+400,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+400,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Now' not found (even fuzzily) in YO,Now
+403,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+406,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Yes' not found (even fuzzily) in YO,Yes
+409,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 24% over 7 content words,àwọn ohun tutankhamun lára ẹgbẹ irin
+415,reference,ADJACENT_DUPLICATE,mechanical,'gbẹ gbẹ',
+417,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+420,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 27% over 5 content words,15th century àríwá estonia germany
+421,reference,ENTITY_NOT_CARRIED,warning,EN entity 'God' not found (even fuzzily) in YO,God
+427,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,awon alawofunfun orile turkey oorun thrace
+427,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+428,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['1,000', '1,600', '500', '800'] absent in YO reference",
+429,reference,NUM_DIGIT_DIFF,warning,"EN ['23,764', '291,773', '300,948', '755,688', '783,562', '9,174'] vs YO ['291,773', '300,948', '9,174']",
+429,reference,SUSPICIOUSLY_LONG,warning,YO 103 tokens vs EN 40 (258%),
+430,reference,NUM_DIGITS_DROPPED,warning,EN digits ['37'] absent in YO reference,
+431,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,orile turkey eyiti okun meta okun
+431,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+433,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 26% over 10 content words,belgium luxembourg látẹ yìnwá sùgbọ belgian
+433,reference,NUM_DIGIT_DIFF,warning,EN ['1830'] vs YO ['183'],
+434,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,lusemboogi gbiyanju lati orileede sugbon ogun
+434,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+435,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,1957 lusembogi omoegbe ipile igbimo apapo
+435,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+436,reference,UNBALANCED_QUOTES,mechanical,unbalanced (),
+440,reference,NUM_DIGITS_DROPPED,warning,EN digits ['18'] absent in YO reference,
+441,reference,NUM_DIGIT_DIFF,warning,"EN ['1772', '18'] vs YO ['1772']",
+442,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 12% over 10 content words,àwọn ọdun aipẹ julọ century àwọn
+444,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Two' not found (even fuzzily) in YO,Two
+447,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 8 content words,ọdún 1981 vanda miss joaquim orchid
+448,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osù' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osù
+448,reference,MISSING_UNDERDOT_CANDIDATE,warning,'òjò' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),òjò
+448,reference,NUM_DIGITS_DROPPED,warning,EN digits ['1.5'] absent in YO reference,
+449,reference,MISSING_UNDERDOT_CANDIDATE,warning,'òjò' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),òjò
+450,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 19 content words,agbon serengeti akopo serengeti national park
+450,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+455,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,isoro pupo nitori awon lensi aseyori
+455,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+459,reference,ENTITY_NOT_CARRIED,warning,EN entity 'One' not found (even fuzzily) in YO,One
+461,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,gbogbo nkan lori amohunmaworan okoe isale
+461,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+466,reference,ENTITY_NOT_CARRIED,warning,EN entity 'But' not found (even fuzzily) in YO,But
+466,reference,ENTITY_NOT_CARRIED,warning,EN entity 'How' not found (even fuzzily) in YO,How
+466,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Why' not found (even fuzzily) in YO,Why
+468,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,ferese ogiri tirin duro diidi doju
+468,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+468,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Its' not found (even fuzzily) in YO,Its
+472,reference,ENTITY_NOT_CARRIED,warning,EN entity 'The War' not found (even fuzzily) in YO,The War
+473,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 18 content words,eleyi apẹẹrẹ pataki awọn alagbara alawọ
+473,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+474,reference,NUM_DIGIT_DIFF,warning,"EN ['21', '356'] vs YO ['356']",
+475,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,itan nkan iwuri gbajumo onakona awon
+475,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+475,reference,ADJACENT_DUPLICATE,mechanical,'lai lai',
+481,reference,ENTITY_NOT_CARRIED,warning,EN entity 'God' not found (even fuzzily) in YO,God
+484,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 21 content words,misticisimi yato laarin awon esin miin
+484,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+484,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+484,reference,ADJACENT_DUPLICATE,mechanical,'paa paa',
+485,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,sikhism esin awon india bere lati
+485,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+485,reference,MISSING_UNDERDOT_CANDIDATE,warning,'asa' should likely be 'àṣà' (missing ẹ/ọ/ṣ),asa
+486,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+488,reference,NUM_DIGIT_DIFF,warning,"EN ['1469', '15', '1539'] vs YO ['1469', '1539']",
+489,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+489,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Krushchev's' not found (even fuzzily) in YO,Krushchev's
+493,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 20 content words,biotilejepe awon omowe daba nitori awon
+493,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+497,reference,ENTITY_NOT_CARRIED,warning,EN entity 'They' not found (even fuzzily) in YO,They
+498,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,senturi ijoba roomu dari ninu iwosan
+498,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+501,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+502,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,apẹẹrẹ awọn damọ kere gbagbọ awọn
+502,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+503,reference,NUM_DIGITS_DROPPED,warning,EN digits ['54'] absent in YO reference,
+504,reference,MISSING_UNDERDOT_CANDIDATE,warning,'èkó' should likely be 'ẹ̀kọ́' (missing ẹ/ọ/ṣ),èkó
+505,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 17 content words,anfani lori awon saiti wonyi seese
+505,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+508,reference,UNBALANCED_QUOTES,mechanical,unbalanced “”,
+509,reference,NUM_DIGIT_DIFF,warning,"EN ['2', '3', '5'] vs YO ['3', '5']",
+510,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 20 content words,awon omode soro lati fokan nkan
+510,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+510,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+512,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+512,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 7% over 11 content words,lóri ibasepo àwọn ëgbẹ tori awon
+517,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+519,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+520,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+523,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,wipe eniyan nilo lati iseju ogun
+523,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+523,reference,ADJACENT_DUPLICATE,mechanical,'lera lera',
+525,reference,NUM_DIGIT_DIFF,warning,"EN ['10', '11', '1940'] vs YO ['1940']",
+526,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+527,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 24% over 13 content words,kẹfà mashal ìalo balbo governor general
+529,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,meji meji idaraya fensa elomiin
+529,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+529,reference,ADJACENT_DUPLICATE,mechanical,'meji meji',
+534,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+536,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Beaches' not found (even fuzzily) in YO,Beaches
+538,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,awọn olubẹwo arinrinajo abẹwo oriṣiriṣi pataki
+538,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+539,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,awon amunisin nigbati isele sele iranlowo
+539,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+540,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['1', '200', '3'] absent in YO reference",
+540,reference,UNBALANCED_QUOTES,mechanical,unbalanced (),
+542,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 18 content words,nigbati sisan egbe lule ojusan mystic
+542,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+543,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['100', '30'] absent in YO reference",
+545,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+546,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+546,reference,NUM_DIGITS_DROPPED,warning,EN digits ['700'] absent in YO reference,
+547,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+547,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['2,400'] absent in YO reference",
+551,reference,MISSING_UNDERDOT_CANDIDATE,warning,'àsà' should likely be 'àṣà' (missing ẹ/ọ/ṣ),àsà
+554,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ìsé' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ìsé
+555,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,awon elere idaraya feran pelu anfani
+555,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+555,reference,MISSING_UNDERDOT_CANDIDATE,warning,'oja' should likely be 'ọjà' (missing ẹ/ọ/ṣ),oja
+555,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Athletes' not found (even fuzzily) in YO,Athletes
+557,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 21% over 11 content words,ǹkan ṣẹlẹgẹ àwòṣe bohr nucleus àárín
+557,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Its' not found (even fuzzily) in YO,Its
+559,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 25% over 10 content words,protons agbára nígbàtí neutron agbára rárá
+560,reference,ENTITY_NOT_CARRIED,warning,EN entity 'To Check' not found (even fuzzily) in YO,To Check
+561,reference,ENTITY_NOT_CARRIED,warning,EN entity 'You' not found (even fuzzily) in YO,You
+562,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,farapa nigbati iranlọwọ awọn nkan bajẹ
+562,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+564,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,awọn ajalu nikan kiise ibanujẹ tabi
+564,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+565,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+567,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,orisirisi orisirisi lori awon ohun kokoro
+567,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+567,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+571,reference,MISSING_UNDERDOT_CANDIDATE,warning,'opolopo' should likely be 'ọ̀pọ̀lọ́pọ̀' (missing ẹ/ọ/ṣ),opolopo
+572,reference,ADJACENT_DUPLICATE,mechanical,'nípele nípele',
+575,reference,NUM_DIGITS_DROPPED,warning,EN digits ['17'] absent in YO reference,
+580,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,awon irora isan wonyi kaakiri daabo
+580,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+583,reference,NUM_DIGIT_DIFF,warning,"EN ['133', '300', '480'] vs YO ['133', '300']",
+584,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,awon eyan lensi iran egbegberun odun
+584,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+585,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,sibesibe awoye akoko awon alawo funfun
+585,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+586,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,awon iwoye apapo lensi meji ohun
+586,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+589,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+590,reference,ENTITY_NOT_CARRIED,warning,EN entity 'But' not found (even fuzzily) in YO,But
+591,reference,ADJACENT_DUPLICATE,mechanical,'ọmọ ọmọ',
+592,reference,ENTITY_NOT_CARRIED,warning,EN entity 'They' not found (even fuzzily) in YO,They
+593,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,awon eranko nikan opolo tile wipe
+593,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+593,reference,MISSING_UNDERDOT_CANDIDATE,warning,'eranko' should likely be 'ẹranko' (missing ẹ/ọ/ṣ),eranko
+593,reference,MISSING_UNDERDOT_CANDIDATE,warning,'eranko' should likely be 'ẹranko' (missing ẹ/ọ/ṣ),eranko
+594,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+594,reference,MISSING_UNDERDOT_CANDIDATE,warning,'eranko' should likely be 'ẹranko' (missing ẹ/ọ/ṣ),eranko
+594,reference,ENTITY_NOT_CARRIED,warning,EN entity 'They' not found (even fuzzily) in YO,They
+595,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,seeli awon alaye kere itosona
+595,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+595,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+596,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,seeli lati latiini cella tumo iyara
+596,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+598,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+598,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 7% over 10 content words,robaati hooki olùmọ bayọ láti skwia
+601,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 9 content words,nitrogen gáàsì ohun nitrogen olómi dìpọ
+602,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 9 content words,àpẹrẹ mìíràn compound water hydrogen atom
+609,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,igba isele ayipo sele isele ayipo
+609,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+609,reference,ENTITY_NOT_CARRIED,warning,EN entity 'You' not found (even fuzzily) in YO,You
+612,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+612,reference,SUSPICIOUSLY_LONG,warning,YO 29 tokens vs EN 13 (223%),
+617,reference,ENTITY_NOT_CARRIED,warning,EN entity 'They' not found (even fuzzily) in YO,They
+621,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 18 content words,nigba ayewo aseyori akiesi awon ijakule
+621,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+623,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Such' not found (even fuzzily) in YO,Such
+624,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,ijiroro lorisirisi isowopo ojutu awon isoro
+624,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+624,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+624,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+625,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,afojusun okan ijafafa ogbon isefefe otito
+625,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+626,reference,ENTITY_NOT_CARRIED,warning,EN entity 'You' not found (even fuzzily) in YO,You
+627,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,ironu nkan pelu ijinle gbedeke ilana
+627,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+630,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,tumọ wipe aṣeyọri lori sisọ asọtẹlẹ
+630,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+632,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,apeere enikan gilaasi rope oloko
+632,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+634,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 20% over 18 content words,dálórí kàyéfì fisiksi nuclear magnetic resonance
+636,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+637,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+638,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,1977 dokita damadiani pari kiko skana
+638,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+639,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,ijiroro waye akoko kanna sile arojinle
+639,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+642,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,lilo ayelujara itakun agbaye awọn akẹkọ
+642,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+646,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Our' not found (even fuzzily) in YO,Our
+647,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 7% over 10 content words,opolopo ninu amohunmaworan sàfihàn iriri tabi
+647,reference,MISSING_UNDERDOT_CANDIDATE,warning,'opolopo' should likely be 'ọ̀pọ̀lọ́pọ̀' (missing ẹ/ọ/ṣ),opolopo
+647,reference,ADJACENT_DUPLICATE,mechanical,'lai lai',
+648,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,moto pale orisun eyinkule peru lati
+648,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+648,reference,ADJACENT_DUPLICATE,mechanical,'lai lai',
+649,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 27% over 16 content words,ọpẹlopé àsopọ okùn fibre lábẹ òkun
+651,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,daruko loke biotilejepe amerika eskimo eebu
+651,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+653,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 4% over 9 content words,àwọn greenland pera inuit canada kalaalleq
+653,reference,REFERENCE_UNACCENTED,warning,reference has 1 tone marks total; likely accent-dropped text,
+653,reference,UNBALANCED_QUOTES,mechanical,unbalanced (),
+656,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,grinlandi igba otutu sumọ ariwa tutu
+656,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+657,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,awon igba ooru soro lati orun
+657,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+657,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ojo' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),ojo
+659,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+661,reference,MISSING_UNDERDOT_CANDIDATE,warning,'àsa' should likely be 'àṣà' (missing ẹ/ọ/ṣ),àsa
+661,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Its' not found (even fuzzily) in YO,Its
+663,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 18% over 11 content words,francisco lára àwọn dára orílẹ oúnjẹ
+667,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,awọn tikẹẹti lori ayelujara basa ebay
+667,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+667,reference,ADJACENT_DUPLICATE,mechanical,'fokiri fokiri',
+668,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 10% over 8 content words,biotilejepe saba waye awon disney lodi
+668,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+669,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+670,reference,ADJACENT_DUPLICATE,mechanical,'oṣù oṣù',
+670,reference,NUM_DIGITS_DROPPED,warning,EN digits ['1'] absent in YO reference,
+671,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,torinaa iwease odiilu bere ebibi anile
+671,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+671,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osu' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osu
+671,reference,ODD_MID_SENTENCE_CAPITAL,warning,mid-sentence capitalized 'Osu',Osu
+671,reference,NUM_DIGITS_DROPPED,warning,EN digits ['1'] absent in YO reference,
+671,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Jan' not found (even fuzzily) in YO,Jan
+671,reference,ENTITY_NOT_CARRIED,warning,EN entity 'May' not found (even fuzzily) in YO,May
+675,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,ayokele pelu sugbon saba amoran pelu
+675,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+676,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+679,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,victoria falls agbegbe oorun zimbabwe ibode
+679,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+681,reference,MISSING_UNDERDOT_CANDIDATE,warning,'òjò' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),òjò
+682,reference,MISSING_UNDERDOT_CANDIDATE,warning,'òjò' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),òjò
+682,reference,ENTITY_NOT_CARRIED,warning,EN entity 'You' not found (even fuzzily) in YO,You
+684,reference,ADJACENT_DUPLICATE,mechanical,'kv62 kv62',
+684,reference,NUM_DIGIT_DIFF,warning,"EN ['1922', '62', '62'] vs YO ['192', '62', '62']",
+687,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 27% over 5 content words,ibojì níbẹ sùgbọ cairo egypt
+688,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Visitors' not found (even fuzzily) in YO,Visitors
+689,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['12', '9'] absent in YO reference",
+692,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+693,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,jesusalemu isreli tobi julo awon orileede
+693,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+696,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Old City' not found (even fuzzily) in YO,Old City
+696,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Due' not found (even fuzzily) in YO,Due
+702,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osu' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osu
+702,reference,NUM_DIGITS_DROPPED,warning,EN digits ['6'] absent in YO reference,
+704,reference,ADJACENT_DUPLICATE,mechanical,'síbẹ síbẹ',
+707,reference,NUM_DIGITS_DROPPED,warning,EN digits ['45'] absent in YO reference,
+712,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['100', '60', '8'] absent in YO reference",
+715,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,eleyii daju awon ohun pato tabi
+715,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+716,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 18 content words,awon spain odun 16th century ariwa
+716,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+718,reference,UNBALANCED_QUOTES,mechanical,unbalanced (),
+719,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 2% over 10 content words,olominira dominikan speeni republica dominicana karibiani
+719,reference,REFERENCE_UNACCENTED,warning,reference has 1 tone marks total; likely accent-dropped text,
+721,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 28% over 9 content words,àwọn taínos caribes erékùsù àwọn caribes
+721,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['10,000'] absent in YO reference",
+723,reference,NUM_DIGIT_DIFF,warning,"EN ['100,000', '1492', '1498'] vs YO ['1492', '1498']",
+724,reference,NUM_DIGITS_DROPPED,warning,EN digits ['17'] absent in YO reference,
+727,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,callejon beso titi ifenukenu eyinkule meji
+727,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+727,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Two' not found (even fuzzily) in YO,Two
+731,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Sea' not found (even fuzzily) in YO,Sea
+731,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Sky' not found (even fuzzily) in YO,Sky
+732,reference,NUM_DIGIT_DIFF,warning,"EN ['1.5', '2010'] vs YO ['2010']",
+734,reference,ENTITY_NOT_CARRIED,warning,EN entity 'You' not found (even fuzzily) in YO,You
+735,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+735,reference,ADJACENT_DUPLICATE,mechanical,'ipago ipago',
+737,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,ogba idaraya minae eeyan eyan
+737,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+737,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+737,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osu' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osu
+738,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['10', '30'] absent in YO reference",
+739,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 14% over 11 content words,cook island island orílẹ ẹgbẹ zealand
+740,reference,NUM_DIGIT_DIFF,warning,"EN ['15', '2', '2.2'] vs YO ['15', '2', '2']",
+743,reference,NUM_DIGITS_DROPPED,warning,EN digits ['15'] absent in YO reference,
+746,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 17 content words,bakanna dara bayi eniyan lero lati
+746,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+746,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+750,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+752,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 8% over 6 content words,lilo dara irin ṣùgbọ lati ibud
+752,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+752,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+753,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,ibudo inuoko seese mnifaani station wagon
+753,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+753,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Car' not found (even fuzzily) in YO,Car
+754,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+761,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,akosile gbogbo awon agbalejo nile loju
+761,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+762,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,bere couchsurfing sere 2004 leyin onimo
+762,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+764,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Hostels' not found (even fuzzily) in YO,Hostels
+765,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+768,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['140', '220'] absent in YO reference",
+769,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+769,reference,ENTITY_NOT_CARRIED,warning,EN entity 'May' not found (even fuzzily) in YO,May
+769,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Mid' not found (even fuzzily) in YO,Mid
+771,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+772,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,ijade isipaya tabi espo lasan ayeye
+772,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+773,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,awon idan alara arikogbon awon iyewu
+773,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+773,reference,MISSING_UNDERDOT_CANDIDATE,warning,'asa' should likely be 'àṣà' (missing ẹ/ọ/ṣ),asa
+776,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 29% over 7 content words,kọjá mẹta ibikíbi àwọn gbọdọ kéré
+779,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['56', '56', '6', '6'] absent in YO reference",
+780,reference,NUM_DIGIT_DIFF,warning,"EN ['2', '3136', '35', '864'] vs YO ['2', '3136', '864']",
+783,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 18 content words,aworan yiya ẹranko igbo nilo lẹnsi
+783,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+785,reference,MISSING_UNDERDOT_CANDIDATE,warning,'eranko' should likely be 'ẹranko' (missing ẹ/ọ/ṣ),eranko
+786,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['5,000', '50'] absent in YO reference",
+788,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+789,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 28% over 10 content words,mancunian bostonian jamaican sydneysider jókòó tábílì
+796,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Have' not found (even fuzzily) in YO,Have
+797,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,irinjo pelu komputa alagbeka idakeji agbari
+797,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+803,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 17% over 10 content words,àwọn lòdì awon idooti ijamba pupo
+803,reference,ADJACENT_DUPLICATE,mechanical,'díẹ díẹ',
+806,reference,ENTITY_NOT_CARRIED,warning,EN entity 'High-end' not found (even fuzzily) in YO,High-end
+812,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Day' not found (even fuzzily) in YO,Day
+814,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,awon kekere nilo igbaradi sugbon seese
+814,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+814,reference,MISSING_UNDERDOT_CANDIDATE,warning,'omo' should likely be 'ọmọ' (missing ẹ/ọ/ṣ),omo
+814,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ojo' should likely be 'ọjọ́' (missing ẹ/ọ/ṣ),ojo
+814,reference,MISSING_UNDERDOT_CANDIDATE,warning,'omo' should likely be 'ọmọ' (missing ẹ/ọ/ṣ),omo
+814,reference,MISSING_UNDERDOT_CANDIDATE,warning,'omo' should likely be 'ọmọ' (missing ẹ/ọ/ṣ),omo
+815,reference,NUM_DIGITS_DROPPED,warning,EN digits ['200'] absent in YO reference,
+816,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,agbapo sisa irinajo agbaye running tours
+816,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+818,reference,ENTITY_NOT_CARRIED,warning,EN entity 'There' not found (even fuzzily) in YO,There
+819,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,nigbakugba irinajo daju gbogbo nkan kole
+819,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+819,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+821,reference,NUM_DIGITS_DROPPED,warning,EN digits ['19'] absent in YO reference,
+825,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,sipaya kekere pataki igbesiaye iyaju
+825,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+825,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+826,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,looto ipele meji boya sise nigba
+826,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+834,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,orilẹede ofin awọn itura kekeke moju
+834,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+836,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+839,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,pelu awon pueblos juna agbo igbadun
+839,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+840,reference,ADJACENT_DUPLICATE,mechanical,'wọn wọn',
+840,reference,UNBALANCED_QUOTES,mechanical,unbalanced (),
+842,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,nkan eyokan ariwa mexico isoro pelu
+842,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+849,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,ounje hangi sise ninu gbigbe gbigbona
+849,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+851,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 5 content words,saba hangi ounjẹ sisun abalaye
+851,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+853,reference,UNBALANCED_QUOTES,mechanical,unbalanced (),
+857,reference,ENTITY_NOT_CARRIED,warning,EN entity 'You' not found (even fuzzily) in YO,You
+858,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,diduro sori kopa ninu toripe awon
+858,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+859,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 11 content words,awon ijiya pupo koda dese igba
+859,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+859,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ejo' should likely be 'ẹjọ́' (missing ẹ/ọ/ṣ),ejo
+859,reference,NUM_DIGITS_DROPPED,warning,EN digits ['10'] absent in YO reference,
+861,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,nitori wipe ifarakinra pelu opolopo kokoro
+861,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+861,reference,MISSING_UNDERDOT_CANDIDATE,warning,'opolopo' should likely be 'ọ̀pọ̀lọ́pọ̀' (missing ẹ/ọ/ṣ),opolopo
+862,reference,ENTITY_NOT_CARRIED,warning,EN entity 'But' not found (even fuzzily) in YO,But
+863,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,awon agbegbe gbona kokoro bakteria tete
+863,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+863,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Also' not found (even fuzzily) in YO,Also
+867,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 15 content words,pupọ ninu awọn bibe lara irin
+867,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+869,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,mase lori ibusun lori ilele awon
+869,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+869,reference,MISSING_UNDERDOT_CANDIDATE,warning,'aso' should likely be 'aṣọ' (missing ẹ/ọ/ṣ),aso
+869,reference,MISSING_UNDERDOT_CANDIDATE,warning,'eranko' should likely be 'ẹranko' (missing ẹ/ọ/ṣ),eranko
+870,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ejò' should likely be 'ẹjọ́' (missing ẹ/ọ/ṣ),ejò
+874,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,boya sawari nkan mimu ounje aaro
+874,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+874,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+880,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,awon ibeere wonyi lori orile arinrinajo
+880,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+881,reference,ENTITY_NOT_CARRIED,warning,EN entity 'One' not found (even fuzzily) in YO,One
+882,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+883,reference,NUM_DIGITS_DROPPED,warning,EN digits ['20'] absent in YO reference,
+885,reference,NUM_DIGITS_DROPPED,warning,EN digits ['2'] absent in YO reference,
+887,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Nov-Feb' not found (even fuzzily) in YO,Nov-Feb
+888,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+889,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['2', '3'] absent in YO reference",
+891,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Highway' not found (even fuzzily) in YO,Highway
+893,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,jafafa itopa lati dojuko ibomiran agbegbe
+893,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+894,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,nkan saba sokunfa ijamba akoko otutu
+894,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+894,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+894,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+897,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 17 content words,awon bata igbabolu kookan botini abebeeni
+897,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+897,reference,MISSING_UNDERDOT_CANDIDATE,warning,'opolopo' should likely be 'ọ̀pọ̀lọ́pọ̀' (missing ẹ/ọ/ṣ),opolopo
+899,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,yinyin ohun ajeji yinyin pupo koja
+899,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+903,reference,NUM_DIGITS_DROPPED,warning,"EN digits ['100', '200'] absent in YO reference",
+904,reference,ENTITY_NOT_CARRIED,warning,EN entity 'They' not found (even fuzzily) in YO,They
+907,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+907,reference,ENTITY_NOT_CARRIED,warning,EN entity 'They' not found (even fuzzily) in YO,They
+909,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 6% over 14 content words,tooto koodi agbègbè kankan lori didaako
+909,reference,ADJACENT_DUPLICATE,mechanical,'die die',
+911,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,nitori ayelujara nilo ileiṣe onisorongbesi lẹgbẹ
+911,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+912,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 16 content words,ofin dandan lati numba adugbo eniyan
+912,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+914,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,komputa tumo lesekese awon komputa tumo
+914,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+917,reference,ENTITY_NOT_CARRIED,warning,EN entity 'One' not found (even fuzzily) in YO,One
+919,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 9 content words,maapi titun ninu adawa tabi yiyalo
+919,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+919,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+921,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Every' not found (even fuzzily) in YO,Every
+923,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+923,reference,MISSING_UNDERDOT_CANDIDATE,warning,'isé' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),isé
+926,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,drooni ṣaridaju nkan laye lati yaworan
+926,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+927,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+934,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 7 content words,sayewo pelu irina alaye awon nkan
+934,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+934,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+934,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+934,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Check' not found (even fuzzily) in YO,Check
+936,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+941,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+944,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,dara lati ipese duro nibe jepe
+944,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+944,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ona' should likely be 'ọ̀nà' (missing ẹ/ọ/ṣ),ona
+944,reference,MISSING_UNDERDOT_CANDIDATE,warning,'opolopo' should likely be 'ọ̀pọ̀lọ́pọ̀' (missing ẹ/ọ/ṣ),opolopo
+944,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+944,reference,MISSING_UNDERDOT_CANDIDATE,warning,'osu' should likely be 'oṣù' (missing ẹ/ọ/ṣ),osu
+946,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 19% over 14 content words,òkun funfun kànáà baltiki òkun atiki
+947,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 8 content words,onega folga tori seese rosia lati
+947,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+948,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,daju gele marinas ohun gbogbo kedere
+948,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+948,reference,ENTITY_NOT_CARRIED,warning,EN entity 'You' not found (even fuzzily) in YO,You
+950,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Try' not found (even fuzzily) in YO,Try
+951,reference,ENTITY_NOT_CARRIED,warning,EN entity 'You' not found (even fuzzily) in YO,You
+952,reference,MISSING_UNDERDOT_CANDIDATE,warning,'isé' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),isé
+952,reference,MISSING_UNDERDOT_CANDIDATE,warning,'isè' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),isè
+953,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 21 content words,awon ofurufu emirates etihad airways qatar
+953,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+953,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise
+953,reference,MISSING_UNDERDOT_CANDIDATE,warning,'opolopo' should likely be 'ọ̀pọ̀lọ́pọ̀' (missing ẹ/ọ/ṣ),opolopo
+954,reference,NUM_DIGIT_DIFF,warning,"EN ['2014', '30', '39'] vs YO ['2014']",
+956,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Don't' not found (even fuzzily) in YO,Don't
+959,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 9% over 14 content words,star alliance gbogbo ǹkan yàtọ south
+960,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 16% over 8 content words,nìkan south pacific west coast south
+961,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 12 content words,ọdun 1994 awọn eleyameya armenian nagorno
+961,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+963,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,ariyanjiyan awon oselu lori agbegbe tubo
+963,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+964,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 10 content words,canal district dutch grachtengordel gbajugbaja agbegbe
+964,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+966,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 25% over 18 content words,cinque terre túmọ márùn àkójọpọ àwọn
+967,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,koruko sile lori ohun agbaye unesc
+967,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+970,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 19% over 9 content words,oríṣiríṣi french belgium switzerland yàtọ french
+971,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 18 content words,pataki julo sise onka faranse belgium
+971,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+975,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 14 content words,arinrin geesi speeni sesi juwo odigba
+975,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+979,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+980,reference,ENTITY_NOT_CARRIED,warning,EN entity 'Hypothermia' not found (even fuzzily) in YO,Hypothermia
+981,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 13 content words,akoko paapajulo nilo lati akiyesi awon
+981,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+984,reference,MIXED_UNICODE_FORMS,mechanical,reference mixes precomposed underdots and combining dot-below marks,
+988,reference,LOW_TONE_MARK_COVERAGE,warning,tone-mark coverage 0% over 6 content words,gofalandi agda tumo ileoke heda saba
+988,reference,REFERENCE_UNACCENTED,warning,reference has 0 tone marks total; likely accent-dropped text,
+996,reference,MISSING_UNDERDOT_CANDIDATE,warning,'ise' should likely be 'iṣẹ́' (missing ẹ/ọ/ṣ),ise

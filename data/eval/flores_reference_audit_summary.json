@@ -1,0 +1,33 @@
+{
+  "pairs_audited": 997,
+  "provenance": {
+    "source": "huggingface:yash9439/flores200 (parquet mirror of Meta FLORES-200)",
+    "upstream": "https://github.com/facebookresearch/flores (CC-BY-SA 4.0)",
+    "split": "dev",
+    "pairs": 997,
+    "languages": {
+      "source_of_en": "eng_Latn",
+      "source_of_yo": "yor_Latn"
+    },
+    "extracted_files": [
+      "dev.997.en.txt",
+      "dev.997.yo.txt"
+    ]
+  },
+  "findings_total": 852,
+  "by_category_severity": {
+    "ADJACENT_DUPLICATE|mechanical": 21,
+    "ENTITY_NOT_CARRIED|warning": 98,
+    "LOW_TONE_MARK_COVERAGE|warning": 233,
+    "MISSING_UNDERDOT_CANDIDATE|warning": 102,
+    "MIXED_UNICODE_FORMS|mechanical": 77,
+    "NUM_DIGITS_DROPPED|warning": 82,
+    "NUM_DIGIT_DIFF|warning": 31,
+    "ODD_MID_SENTENCE_CAPITAL|warning": 3,
+    "REFERENCE_UNACCENTED|warning": 173,
+    "SUSPICIOUSLY_LONG|warning": 3,
+    "UNBALANCED_QUOTES|mechanical": 29
+  },
+  "pairs_with_any_finding": 499,
+  "disclaimer": "Heuristic warnings for review — not confirmed errors."
+}

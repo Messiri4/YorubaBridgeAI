@@ -1,0 +1,29 @@
+{
+  "sacrebleu_version": "2.6.0",
+  "chrf_kwargs": {
+    "char_order": 6,
+    "word_order": 2,
+    "beta": 2.0
+  },
+  "review_pairs": 100,
+  "validation_verdicts": {
+    "ENTITY_MISSING|plausible": 41,
+    "REPEATED_NGRAM|plausible": 48,
+    "LOW_CHRF|ref-attributable": 6,
+    "UNTRANSLATED|plausible": 16,
+    "BEAM_DIVERGENCE|plausible": 4,
+    "LOW_CHRF|plausible": 32,
+    "NUMBER_CHANGED|plausible": 1,
+    "NUMBER_CHANGED|ref-followed": 4,
+    "TOO_LONG|plausible": 2,
+    "NUMBER_MISSING|ref-followed": 2,
+    "NUMBER_MISSING|plausible": 2,
+    "ENTITY_MISSING|n/a-reverse": 15,
+    "UNTRANSLATED|n/a-reverse": 22,
+    "LOW_CHRF|n/a-reverse": 5,
+    "NUMBER_CHANGED|n/a-reverse": 10,
+    "REPEATED_NGRAM|n/a-reverse": 18,
+    "BEAM_DIVERGENCE|n/a-reverse": 2
+  },
+  "seed": 20261109
+}

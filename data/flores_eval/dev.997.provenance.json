@@ -1,0 +1,14 @@
+{
+  "source": "huggingface:yash9439/flores200 (parquet mirror of Meta FLORES-200)",
+  "upstream": "https://github.com/facebookresearch/flores (CC-BY-SA 4.0)",
+  "split": "dev",
+  "pairs": 997,
+  "languages": {
+    "source_of_en": "eng_Latn",
+    "source_of_yo": "yor_Latn"
+  },
+  "extracted_files": [
+    "dev.997.en.txt",
+    "dev.997.yo.txt"
+  ]
+}
