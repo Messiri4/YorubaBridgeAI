@@ -55,6 +55,16 @@ class Settings(BaseSettings):
     # Phrase-base overrides (exact-match table applied before the model)
     phrase_overrides_path: str = "data/phrases/overrides.json"
 
+    # Sprint TI-1: reversible numeric/identifier protection around NLLB
+    # generation (times, dates, scores, currency, URLs, emails). Safe
+    # fallback on restoration failure; disable to restore exact prior behavior.
+    numeric_protection_enabled: bool = True
+
+    # Verified-term glossary (data/phrases/glossary.json). Applied after
+    # generation; context-aware; contains only attested mappings.
+    glossary_enabled: bool = True
+    glossary_path: str = "data/phrases/glossary.json"
+
     # Persistence (Postgres). Disabled by default: the API runs fine
     # without a database until you set DATABASE_ENABLED=true.
     database_enabled: bool = False

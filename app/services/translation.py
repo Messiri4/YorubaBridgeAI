@@ -20,6 +20,11 @@ logger = logging.getLogger(__name__)
 LANGUAGE_CODES = frozenset(SUPPORTED_LANGUAGES)
 
 
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from app.services.glossary import Glossary
+
+
 class PhraseOverrides:
     """Exact-match translation table loaded from a JSON file.
 
@@ -120,6 +125,7 @@ class TranslationService:
         self._loaded = loaded
         self._settings = get_settings()
         self._overrides: PhraseOverrides | None = None
+        self._glossary: "Glossary | None" = None  # lazy; see translate()
 
     @property
     def overrides(self) -> PhraseOverrides:
@@ -151,7 +157,8 @@ class TranslationService:
             raise TranslationError("source_language and target_language must differ")
 
     def translate(
-        self, text: str, source_language: str, target_language: str
+        self, text: str, source_language: str, target_language: str,
+        protect_numerics: bool | None = None,
     ) -> "TranslationResult":
         """Translate `text` from source_language to target_language.
 
@@ -159,6 +166,11 @@ class TranslationService:
             text: Input text (non-empty, within max_input_chars).
             source_language: "eng" or "yor".
             target_language: "eng" or "yor" (must differ from source).
+            protect_numerics: reversible sentinel protection for numbers,
+                times, dates, currency, URLs, emails and identifiers
+                (Sprint TI-1). None = use the global setting. Safe
+                fallback: if placeholder restoration cannot be verified,
+                the plain model output is returned unchanged.
 
         Returns:
             TranslationResult with translated text and latency.
@@ -168,6 +180,13 @@ class TranslationService:
         """
         start = time.perf_counter()
         self._validate(text, source_language, target_language)
+
+        from app.services.protection import protect as prot_wrap, restore as prot_restore
+        protection_enabled = (self._settings.numeric_protection_enabled
+                              if protect_numerics is None else protect_numerics)
+        protection = prot_wrap(text) if protection_enabled else None
+        if protection is not None:
+            text = protection.protected_text
 
         # Phrase-override table: exact matches bypass the model entirely.
         # This fixes known model weaknesses (greeting idioms, market
@@ -219,6 +238,23 @@ class TranslationService:
         translated = tokenizer.batch_decode(
             generated, skip_special_tokens=True, clean_up_tokenization_spaces=True
         )[0]
+
+        # Restore protected expressions (verified; safe fallback on failure).
+        if protection is not None:
+            translated, ok, reason = prot_restore(translated, protection)
+            if not ok:
+                logger.warning("placeholder restoration failed (%s); returning raw model output", reason)
+
+        # Verified-term glossary (post-generation; context-aware). Runs on the
+        # restored text so placeholders can't shadow terms.
+        if self._settings.glossary_enabled:
+            from app.services.glossary import Glossary
+            if self._glossary is None:
+                self._glossary = Glossary(self._settings.glossary_path)
+            translated, applied = self._glossary.apply(
+                translated, f"{source_language}_{target_language}")
+            if applied:
+                logger.info("glossary applied: %s", applied)
 
         latency_ms = (time.perf_counter() - start) * 1000
         logger.info("Translated %s->%s in %.1f ms", source_language, target_language, latency_ms)

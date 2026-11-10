@@ -1,0 +1,46 @@
+{
+  "_meta": {
+    "description": "Verified English-Yoruba terminology. Every mapping is attested (FLORES renderings or established usage); nothing invented. Entries with a 'context' list are applied only when those words appear near the term (disambiguation). Multi-word entries precede single words.",
+    "policy": "No invented Yoruba. Ambiguous single words require context. Corrections go through human review before entry."
+  },
+  "eng_yor": [
+    {
+      "term": "diabetes",
+      "translation": "àrùn àtògbẹ",
+      "context": [],
+      "comment": "attested FLORES rendering; 'àtògbẹ' alone also attested"
+    },
+    {
+      "term": "Type 1 diabetes",
+      "translation": "àrùn àtògbẹ Oríṣi Kìíní",
+      "context": ["diabetes"],
+      "comment": "multi-word entry; only when 'diabetes' co-occurs"
+    },
+    {
+      "term": "Shark Tank",
+      "translation": "Shark Tank",
+      "context": [],
+      "comment": "show title kept in Latin script, attested in refs"
+    }
+  ],
+  "yor_eng": [
+    {
+      "term": "àtògbẹ",
+      "translation": "diabetes",
+      "context": [],
+      "comment": "reverse mapping; 'ìtọ ṣúgà' is the FLORES-refs variant, both attested"
+    },
+    {
+      "term": "ìtọ ṣúgà",
+      "translation": "diabetes",
+      "context": [],
+      "comment": "alternative attested rendering"
+    },
+    {
+      "term": "aago ẹnu ọ̀nà",
+      "translation": "doorbell",
+      "context": [],
+      "comment": "attested FLORES rendering"
+    }
+  ]
+}

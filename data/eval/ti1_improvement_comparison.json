@@ -1,0 +1,83 @@
+{
+  "sprint": "TI-1",
+  "model": "facebook/nllb-200-distilled-600M (local safetensors snapshot)",
+  "n_cases": 8,
+  "numeric_protection": true,
+  "glossary_enabled": true,
+  "rows": [
+    {
+      "direction": "eng",
+      "source": "The head-to-head record is 7–2.",
+      "why": "verified: score corrupted to 72",
+      "baseline": "Àkọsílẹ̀ tí wọ́n fi ń bára wọn sọ̀rọ̀ jẹ́ 72.",
+      "baseline_ms": 17891.9,
+      "improved": "Àkọsílẹ̀ orí sí orí ni 7–2.",
+      "improved_ms": 4889.2
+    },
+    {
+      "direction": "eng",
+      "source": "The show starts at 11:29.",
+      "why": "time garbling",
+      "baseline": "Àwòrán náà máa ń bẹ̀rẹ̀ ní aago mọ́kànlá ó lé mọ́kàndínláàádọ́rùn-ún.",
+      "baseline_ms": 10758.1,
+      "improved": "Àwòrán náà ń bẹ̀rẹ̀ ní 11:29.",
+      "improved_ms": 5365.9
+    },
+    {
+      "direction": "eng",
+      "source": "About 9,000 people attended the fair.",
+      "why": "9,000 dropped/changed",
+      "baseline": "Nǹkan bí ẹgbẹ̀rún mẹ́sàn-án èèyàn ló wá síbi ayẹyẹ náà.",
+      "baseline_ms": 8391.2,
+      "improved": "Nǹkan bí 9,000 àwọn èèyàn ló wá síbi ayẹyẹ náà.",
+      "improved_ms": 6340.8
+    },
+    {
+      "direction": "eng",
+      "source": "Email support@example.com for a refund of $1,000.",
+      "why": "email+currency",
+      "baseline": "Fi imeeli ranṣẹ sí support@example.com fún ìmúpadà owó tó tó ẹgbẹ̀rún kan dọ́là.",
+      "baseline_ms": 9198.4,
+      "improved": "Ímeèlì support@example.com fún àtúnpadà $1,000.",
+      "improved_ms": 7120.4
+    },
+    {
+      "direction": "yor",
+      "source": "Ẹ kú ìrọ̀lẹ́, ọ̀rẹ́ mi.",
+      "why": "greeting idiom (regression canary)",
+      "baseline": "Good evening, my friend.",
+      "baseline_ms": 0.1,
+      "improved": "Good evening, my friend.",
+      "improved_ms": 0.1
+    },
+    {
+      "direction": "yor",
+      "source": "Òjò ń rò ní ìlú Kano.",
+      "why": "simple sentence (regression canary)",
+      "baseline": "It is raining in Kano.",
+      "baseline_ms": 3468.2,
+      "improved": "It is raining in Kano.",
+      "improved_ms": 3305.6
+    },
+    {
+      "direction": "yor",
+      "source": "Ọgbẹ́n àtògbẹ́ ń pọ̀ ní àárín ìlú náà.",
+      "why": "glossary term àtògbẹ→diabetes",
+      "baseline": "In the middle of the city there was a lot of drought.",
+      "baseline_ms": 5299.2,
+      "improved": "In the middle of the city there was a lot of drought.",
+      "improved_ms": 4487.2
+    },
+    {
+      "direction": "yor",
+      "source": "Ó ń kọ́ ẹ̀kọ́ nípa àìsàn àtògbẹ́.",
+      "why": "glossary term",
+      "baseline": "He was teaching a course on diabetes.",
+      "baseline_ms": 3256.8,
+      "improved": "He was teaching a course on diabetes.",
+      "improved_ms": 2975.2
+    }
+  ],
+  "mean_latency_baseline_ms": 7283.0,
+  "mean_latency_improved_ms": 4310.6
+}
