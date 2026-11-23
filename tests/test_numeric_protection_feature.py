@@ -11,6 +11,7 @@ module's public interface.
 from __future__ import annotations
 
 import re
+from pathlib import Path
 
 import pytest
 
@@ -104,6 +105,53 @@ def test_iso_and_dotted_dates():
     p = protect("from 2019-06-04 until 04.06.2019")
     assert "2019-06-04" in p.placeholders.values()
     assert "04.06.2019" in p.placeholders.values()
+
+
+def test_utf8_fixture_repeated_values_currency_phone_id_url():
+    source = Path("tests/fixtures/numeric_preservation_utf8.txt").read_text(encoding="utf-8")
+    p = protect(source)
+    values = list(p.placeholders.values())
+    assert values.count("3") == 2
+    for expected in (
+        "$2.3 billion",
+        "2026-11-23",
+        "+234 803 123 4567",
+        "AK-4410",
+        "https://example.com/report?q=1",
+    ):
+        assert expected in values
+    restored, ok, reason = restore(p.protected_text, p)
+    assert ok, reason
+    assert restored == source
+
+
+def test_stray_at_removed_only_for_currency_or_url_span_boundary():
+    p = protect("$2.3 billion https://example.com/a@b")
+    model_output = p.protected_text.replace("@@", "@@", 1) + "@ "
+    model_output = re.sub(r"\s+$", "", model_output)
+
+    restored, ok, reason = restore(model_output, p)
+    assert ok, reason
+    assert "@b" in restored
+    assert restored.startswith("$2.3 billion ")
+    assert "@@" not in restored
+
+
+def test_legitimate_at_characters_survive_full_restoration():
+    source = "Email ada@example.com, mention @Adebayo, and visit https://example.com/a@b beside $2.3 billion."
+    p = protect(source)
+    restored, ok, reason = restore(p.protected_text, p)
+    assert ok, reason
+    assert restored == source
+
+
+def test_stray_at_removed_but_handle_and_adjacent_at_remain():
+    p = protect("$2.3 billion https://example.com/a@b")
+    model_output = p.protected_text + "@"
+    restored, ok, reason = restore(model_output, p)
+    assert ok, reason
+    assert "$2.3 billion" in restored
+    assert "https://example.com/a@b" in restored
 
 
 # ---------------------------------------------------------------------------

@@ -91,10 +91,12 @@ _COMPILED: list[re.Pattern[str]] = [
     re.compile(r"\b(?:https?://|www\.)[^\s]+", re.IGNORECASE),
     re.compile(r"\b\d{4}-\d{2}-\d{2}\b|\b\d{2}\.\d{2}\.\d{4}\b"),
     re.compile(r"\b\d{1,2}:\d{2}(?:\s?(?:am|pm|AM|PM))?\b"),
+    re.compile(r"(?<![\w])\+\d{1,3}(?:[\s.-]\d{2,4}){2,4}(?![\w])"),
+    re.compile(r"\b[A-Z]{1,12}(?:[-_/][A-Z0-9]+)+\b"),
     re.compile(r"(?<![\w:])(?<!\d[-–:])\d{1,4}\s?[–\-:]\s?\d{1,4}\b(?![\w:])(?![:\d])"),
     re.compile(
-        r"[$€£₦¥]\s?-?\d+(?:,\d{3})*(?:\.\d+)?"
-        r"|\b\d+(?:,\d{3})*(?:\.\d+)?\s?(?:dollars|euros|naira|pounds|yen)\b",
+        r"[$€£₦¥]\s?-?\d+(?:,\d{3})*(?:\.\d+)?(?:\s+(?:million|billion|trillion|thousand))?"
+        r"|\b\d+(?:,\d{3})*(?:\.\d+)?\s?(?:million|billion|trillion|thousand)?\s?(?:dollars|euros|naira|pounds|yen)\b",
         re.IGNORECASE,
     ),
     re.compile(r"(?<![\w.])-?\d{1,3}(?:,\d{3})+(?:\.\d+)?(?![\d,])|(?<![\w.])-?\d+\.\d+(?!\d)"),
@@ -255,7 +257,7 @@ def analyze_placeholder_structure(
     if missing:
         return RestorationFailure(
             kind="missing",
-            detail=f"missing sentinels: {list(missing)}",
+            detail=f"missing sentinels: {list(missing)}; found {len(found)}",
             expected=expected_n,
             found=len(found),
             missing=missing,
@@ -305,6 +307,15 @@ def restore_outcome(model_output: str, protection: ProtectionResult) -> Restorat
     """restore() with a structured RestorationFailure on the failure path."""
     if protection.n == 0:
         return RestorationOutcome(text=model_output, ok=True)
+    # Some SentencePiece/NLLB runs append '@' at a sentinel boundary for
+    # currency and URL spans. Remove that mutation only for such issued spans.
+    for sentinel, original in protection.placeholders.items():
+        if original.startswith("$") or original.startswith(("http://", "https://", "www.")):
+            model_output = re.sub(
+                re.escape(sentinel) + r"@(?=$|[\s.,;!?])",
+                sentinel,
+                model_output,
+            )
     failure = analyze_placeholder_structure(model_output, protection.placeholders)
     if failure is not None:
         return RestorationOutcome(text=model_output, ok=False, failure=failure)
