@@ -1,0 +1,46 @@
+{
+  "commit": "2a2c91d65e96bc86bc9f84d93fb0d1dd46bea9db",
+  "model": "facebook/nllb-200-distilled-600M",
+  "model_local_path": "C:\\Users\\User\\Documents\\AI Projects\\YorubaBridgeAI\\models\\nllb-200-distilled-600M-safetensors",
+  "dataset": "FLORES-200",
+  "split": "dev",
+  "sampling_rule": "first 30 aligned lines",
+  "n": 30,
+  "source_ids": {
+    "eng": "eng_Latn",
+    "yor": "yor_Latn"
+  },
+  "num_beams": 2,
+  "max_new_tokens": 400,
+  "length_penalty": 1.1,
+  "phrase_overrides": "disabled",
+  "number_entity_protection": "disabled",
+  "cache": "disabled",
+  "hardware": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "device": "cpu",
+    "torch_threads": 14,
+    "cuda_available": false
+  },
+  "metric_settings": {
+    "bleu": "sacrebleu.corpus_bleu default 13a",
+    "chrF++": "sacrebleu.corpus_chrf(hyps, refs, word_order=2)",
+    "unicode": "NFC"
+  },
+  "latency_method": "time.perf_counter around model.generate only, after model load and warm-up",
+  "scores": {
+    "eng_yor": {
+      "chrfpp": 28.498043896933588,
+      "bleu": 5.205346801560141,
+      "median_latency_ms": 3797.709100006614,
+      "p95_latency_ms": 7526.048045037896
+    },
+    "yor_eng": {
+      "chrfpp": 44.381743018933136,
+      "bleu": 20.697934693035023,
+      "median_latency_ms": 2091.0520500328857,
+      "p95_latency_ms": 4145.783474997734
+    }
+  },
+  "csv": "C:\\Users\\User\\Documents\\AI Projects\\YorubaBridgeAI\\data\\eval\\beam_eval_dev_beams2_max400_lp11.csv"
+}

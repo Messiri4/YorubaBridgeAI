@@ -1,0 +1,7 @@
+comparison,direction,sample,metric_variant,beam_setting,bleu,chrf,hardware,matched
+historical_mac_context,EN→YO,40,plain_chrf,2,4.7,25.1,Mac historical,no
+historical_mac_context,YO→EN,40,plain_chrf,2,20.7,44.4,Mac historical,no
+matched_windows_30_dev,EN→YO,30,chrf++,2,5.205,28.498,Windows CPU,yes
+matched_windows_30_dev,EN→YO,30,chrf++,4,5.683,28.872,Windows CPU,yes
+matched_windows_30_dev,YO→EN,30,chrf++,2,20.698,44.382,Windows CPU,yes
+matched_windows_30_dev,YO→EN,30,chrf++,4,20.391,44.274,Windows CPU,yes

@@ -1,0 +1,39 @@
+{
+  "commit": "2a2c91d65e96bc86bc9f84d93fb0d1dd46bea9db",
+  "model": "facebook/nllb-200-distilled-600M",
+  "model_local_path": "C:\\Users\\User\\Documents\\AI Projects\\YorubaBridgeAI\\models\\nllb-200-distilled-600M-safetensors",
+  "dataset": "FLORES-200",
+  "dataset_version": "official archive dl.fbaipublicfiles.com/nllb/flores200_dataset.tar.gz",
+  "split": "devtest",
+  "n": 1012,
+  "completed_pairs": 150,
+  "status": "partial",
+  "direction": "eng_yor",
+  "num_beams": 2,
+  "max_new_tokens": 400,
+  "length_penalty": 1.1,
+  "phrase_overrides": "disabled",
+  "cache": "disabled",
+  "span_protection": "disabled",
+  "metric_settings": {
+    "bleu": "sacrebleu.corpus_bleu default 13a",
+    "chrF++": "sacrebleu.corpus_chrf(hyps, refs, word_order=2)",
+    "unicode": "NFC"
+  },
+  "hardware": {
+    "platform": "Windows-10-10.0.26300-SP0",
+    "device": "cpu",
+    "torch_threads": 14,
+    "cuda_available": false
+  },
+  "latency_method": "time.perf_counter around model.generate only, after load and warm-up",
+  "scores": {
+    "chrfpp": 27.25631589356524,
+    "bleu": 5.667404112897404,
+    "median_latency_ms": 4152.279,
+    "p95_latency_ms": 8862.740999999975,
+    "completed_pairs": 150,
+    "truncated_pairs": 3
+  },
+  "csv": "C:\\Users\\User\\Documents\\AI Projects\\YorubaBridgeAI\\data\\eval\\full_flores_devtest\\flores_devtest_full_beams2_max400_lp11.csv"
+}
