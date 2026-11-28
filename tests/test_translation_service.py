@@ -87,3 +87,62 @@ def test_diacritics_preserved_in_output() -> None:
 
     result = service.translate("hello", "eng", "yor")
     assert result.translated_text == "Ilé àti ọjà, Ọmọ ṣeun"
+
+
+@pytest.mark.parametrize(
+    ("text", "src", "tgt", "protected"),
+    [
+        ("The report date is 2026-11-23.", "eng", "yor", "2026-11-23"),
+        ("The price is $2.3 billion.", "eng", "yor", "$2.3 billion"),
+        ("Use 98.6F and 12.5%", "eng", "yor", ["98.6F", "12.5%"]),
+        ("Call +234 803 123 4567.", "eng", "yor", "+234 803 123 4567"),
+        ("Install v2.4.1-ID_2026.", "eng", "yor", ["v2.4.1-ID_2026"]),
+        ("Customer AK-4410 confirmed.", "eng", "yor", "AK-4410"),
+        ("Visit https://example.com/report?q=1.", "eng", "yor", "https://example.com/report?q=1"),
+        ("Adebayo met Alex Ovechkin on 2026-11-23.", "eng", "yor",
+         ["Adebayo", "Alex Ovechkin", "2026-11-23"]),
+    ],
+)
+def test_number_and_entity_spans_are_preserved_through_service(
+    text: str, src: str, tgt: str, protected: str | list[str],
+) -> None:
+    service, tokenizer, _ = make_service([[1]])
+
+    def decode(_ids: object, **_kwargs: object) -> list[str]:
+        return [tokenizer.call_args[0][0] if tokenizer.call_args else "translated"]
+
+    tokenizer.batch_decode.side_effect = decode
+    result = service.translate(text, src, tgt)
+
+    spans = [protected] if isinstance(protected, str) else protected
+    for span in spans:
+        assert span in result.translated_text
+    assert "__YBPROTECT_" not in result.translated_text
+
+
+@pytest.mark.parametrize(
+    ("text", "protected"),
+    [
+        ("O ti rí 2026-11-23.", ["2026-11-23"]),
+        ("O pamọ́ $12.75 gbọ̀ngàn.", ["$12.75"]),
+        ("O jẹ́ 99.5% fun 0.25.", ["99.5%", "0.25"]),
+        ("Ẹ pè +234 803 123 4567.", ["+234 803 123 4567"]),
+        ("Vẹ̀ẹ́sín 3.12.0-ID_77.", ["3.12.0-ID_77"]),
+        ("Olùkọ́ Adebayo àti Alex Ovechkin wà.", ["Adebayo", "Alex Ovechkin"]),
+        ("Ẹ lọ sí https://example.ng/ìwé.", ["https://example.ng/ìwé"]),
+    ],
+)
+def test_number_and_named_spans_preserved_yoruba_to_eng(
+    text: str, protected: list[str],
+) -> None:
+    service, tokenizer, _ = make_service([[1]])
+
+    def decode(_ids: object, **_kwargs: object) -> list[str]:
+        return [tokenizer.call_args[0][0] if tokenizer.call_args else "translated"]
+
+    tokenizer.batch_decode.side_effect = decode
+    result = service.translate(text, "yor", "eng")
+
+    for span in protected:
+        assert span in result.translated_text
+    assert "__YBPROTECT_" not in result.translated_text

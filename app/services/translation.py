@@ -13,6 +13,7 @@ from typing import Protocol
 
 from app.core.config import get_settings
 from app.services.model_loader import SUPPORTED_LANGUAGES, LoadedModel
+from app.services.protection import SpanProtector
 
 logger = logging.getLogger(__name__)
 
@@ -189,10 +190,13 @@ class TranslationService:
         tokenizer = self._loaded.tokenizer
         model = self._loaded.model
 
+        protector = SpanProtector()
+        protected_text = protector.protect(text)
+
         # 1. Tokenize with the source language prefix (NLLB convention).
         tokenizer.src_lang = src
         inputs = tokenizer(
-            text,
+            protected_text,
             return_tensors="pt",
             truncation=True,
             max_length=self._settings.translation_max_input_chars,
@@ -219,6 +223,7 @@ class TranslationService:
         translated = tokenizer.batch_decode(
             generated, skip_special_tokens=True, clean_up_tokenization_spaces=True
         )[0]
+        translated = protector.restore(translated)
 
         latency_ms = (time.perf_counter() - start) * 1000
         logger.info("Translated %s->%s in %.1f ms", source_language, target_language, latency_ms)
