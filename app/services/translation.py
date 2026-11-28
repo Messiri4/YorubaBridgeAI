@@ -99,6 +99,7 @@ class TranslationResult:
     source_language: str
     target_language: str
     latency_ms: float
+    override_key: str | None = None
 
 
 class TranslationService:
@@ -151,7 +152,15 @@ class TranslationService:
             raise TranslationError("source_language and target_language must differ")
 
     def translate(
-        self, text: str, source_language: str, target_language: str
+        self,
+        text: str,
+        source_language: str,
+        target_language: str,
+        *,
+        num_beams: int | None = None,
+        max_new_tokens: int | None = None,
+        length_penalty: float | None = None,
+        use_phrase_overrides: bool = True,
     ) -> "TranslationResult":
         """Translate `text` from source_language to target_language.
 
@@ -159,6 +168,10 @@ class TranslationService:
             text: Input text (non-empty, within max_input_chars).
             source_language: "eng" or "yor".
             target_language: "eng" or "yor" (must differ from source).
+            num_beams: Optional per-call beam count; defaults to application settings.
+            max_new_tokens: Optional per-call token limit; defaults to application settings.
+            length_penalty: Optional per-call length penalty; defaults to application settings.
+            use_phrase_overrides: Whether to consult curated exact-match translations.
 
         Returns:
             TranslationResult with translated text and latency.
@@ -172,7 +185,11 @@ class TranslationService:
         # Phrase-override table: exact matches bypass the model entirely.
         # This fixes known model weaknesses (greeting idioms, market
         # phrases) at zero latency cost.
-        override = self.overrides.lookup(text, source_language, target_language)
+        override = (
+            self.overrides.lookup(text, source_language, target_language)
+            if use_phrase_overrides
+            else None
+        )
         if override is not None:
             latency_ms = (time.perf_counter() - start) * 1000
             logger.info("Phrase override hit for %s->%s", source_language, target_language)
@@ -181,6 +198,7 @@ class TranslationService:
                 source_language=source_language,
                 target_language=target_language,
                 latency_ms=round(latency_ms, 1),
+                override_key=PhraseOverrides._normalize(text),
             )
 
         src = SUPPORTED_LANGUAGES[source_language]
@@ -209,9 +227,19 @@ class TranslationService:
         generated = model.generate(
             **inputs,
             forced_bos_token_id=forced_bos,
-            max_new_tokens=self._settings.translation_max_new_tokens,
-            num_beams=self._settings.translation_num_beams,
-            length_penalty=self._settings.translation_length_penalty,
+            max_new_tokens=(
+                max_new_tokens
+                if max_new_tokens is not None
+                else self._settings.translation_max_new_tokens
+            ),
+            num_beams=(
+                num_beams if num_beams is not None else self._settings.translation_num_beams
+            ),
+            length_penalty=(
+                length_penalty
+                if length_penalty is not None
+                else self._settings.translation_length_penalty
+            ),
         )
 
         # 4. Detokenize. skip_special_tokens drops </s> and language tags;

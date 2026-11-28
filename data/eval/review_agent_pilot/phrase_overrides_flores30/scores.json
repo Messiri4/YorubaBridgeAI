@@ -1,0 +1,39 @@
+{
+  "dataset": "FLORES-200",
+  "split": "dev",
+  "direction": "English-to-Yorùbá",
+  "n": 30,
+  "historical_2beam": {
+    "bleu": 5.205346801560141,
+    "chrf++": 28.498043896933588
+  },
+  "historical_4beam": {
+    "bleu": 5.682983940102768,
+    "chrf++": 28.871807846840415
+  },
+  "phrase_override_off": {
+    "bleu": 5.682983940102768,
+    "chrf++": 28.871807846840415,
+    "override_hits": 0
+  },
+  "phrase_override_on": {
+    "bleu": 5.682983940102768,
+    "chrf++": 28.871807846840415,
+    "override_hits": 0
+  },
+  "paired_comparison": {
+    "phrase_on_output_changes_from_off": 0,
+    "phrase_off_outputs_matching_saved_4beam": 30,
+    "phrase_on_outputs_matching_saved_4beam": 30,
+    "score_deltas_on_minus_off": {
+      "bleu": 0.0,
+      "chrf++": 0.0
+    }
+  },
+  "scorer": {
+    "sacrebleu_version": "2.6.0",
+    "bleu_tokenizer": "13a",
+    "chrf++_word_order": 2,
+    "unicode_normalization": "NFC"
+  }
+}

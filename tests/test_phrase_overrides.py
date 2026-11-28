@@ -69,10 +69,12 @@ def test_service_uses_override_before_model(overrides: PhraseOverrides) -> None:
 
     result = service.translate("Good morning.", "eng", "yor")
     assert result.translated_text == "Ẹ kú àárọ̀."
+    assert result.override_key == "good morning"
     model.generate.assert_not_called()  # the model was bypassed
 
     # Non-table text still goes through the model.
-    service.translate("What time is it?", "eng", "yor")
+    model_result = service.translate("What time is it?", "eng", "yor")
+    assert model_result.override_key is None
     model.generate.assert_called_once()
 
 

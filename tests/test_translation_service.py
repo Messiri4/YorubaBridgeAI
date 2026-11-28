@@ -87,3 +87,25 @@ def test_diacritics_preserved_in_output() -> None:
 
     result = service.translate("hello", "eng", "yor")
     assert result.translated_text == "Ilé àti ọjà, Ọmọ ṣeun"
+
+
+def test_raw_generation_options_bypass_phrase_overrides_and_reach_model() -> None:
+    service, tokenizer, model = make_service([[7, 8, 9]])
+    tokenizer.batch_decode.return_value = ["Ọ̀rọ̀ Yorùbá."]
+    service._overrides = MagicMock()
+
+    service.translate(
+        "A source sentence.",
+        "eng",
+        "yor",
+        num_beams=4,
+        max_new_tokens=256,
+        length_penalty=1.1,
+        use_phrase_overrides=False,
+    )
+
+    service._overrides.lookup.assert_not_called()
+    kwargs = model.generate.call_args.kwargs
+    assert kwargs["num_beams"] == 4
+    assert kwargs["max_new_tokens"] == 256
+    assert kwargs["length_penalty"] == 1.1

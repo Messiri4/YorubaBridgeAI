@@ -1,0 +1,75 @@
+{
+  "run_date": "2026-11-27",
+  "dataset": "FLORES-200",
+  "split": "dev",
+  "direction": "English-to-Yorùbá",
+  "row_ids": [
+    "dev-0001",
+    "dev-0002",
+    "dev-0003",
+    "dev-0004",
+    "dev-0005",
+    "dev-0006",
+    "dev-0007",
+    "dev-0008",
+    "dev-0009",
+    "dev-0010",
+    "dev-0011",
+    "dev-0012",
+    "dev-0013",
+    "dev-0014",
+    "dev-0015",
+    "dev-0016",
+    "dev-0017",
+    "dev-0018",
+    "dev-0019",
+    "dev-0020",
+    "dev-0021",
+    "dev-0022",
+    "dev-0023",
+    "dev-0024",
+    "dev-0025",
+    "dev-0026",
+    "dev-0027",
+    "dev-0028",
+    "dev-0029",
+    "dev-0030"
+  ],
+  "translation_model": "facebook/nllb-200-distilled-600M",
+  "checkpoint": "local checkpoint configured through TRANSLATION_MODEL_ID",
+  "offline": {
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "generation": {
+    "num_beams": 4,
+    "max_new_tokens": 400,
+    "length_penalty": 1.1,
+    "tokenizer_max_length": 2000,
+    "phrase_overrides": "disabled in both numeric conditions",
+    "glossary": "disabled in both numeric conditions",
+    "cache": "bypassed; direct TranslationService calls",
+    "actual_generate_calls": 60,
+    "actual_generate_settings_verified": true
+  },
+  "protection_implementation": {
+    "repository_branch": "review/numeric-preservation",
+    "commit": "42db01fd71ce921292ffe680dac15e9a9a26916a",
+    "toggle": "TranslationService.translate(..., protect_numerics=False/True)",
+    "restoration_behavior": "Failed sentinel verification returns raw model output unchanged without retry."
+  },
+  "baseline_verification": {
+    "phrase_override_off_matches_saved_4beam": 30,
+    "numeric_protection_off_matches_saved_4beam": 30,
+    "shared_4beam_baseline": true,
+    "same_source_reference_pairs": true
+  },
+  "scoring": {
+    "sacrebleu_version": "2.6.0",
+    "bleu": "corpus BLEU, default 13a",
+    "chrf++": "corpus chrF++, word_order=2",
+    "preprocessing": "NFC",
+    "sample_count_per_condition": 30
+  },
+  "interpretation": "Numeric protection was enabled on all 30 ON calls. The matcher also selected five non-digit hyphenated expressions; eight matched rows had restoration fallbacks. Main scores include every row, including those without numeric spans."
+}

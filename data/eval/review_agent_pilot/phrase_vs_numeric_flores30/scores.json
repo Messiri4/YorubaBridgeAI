@@ -1,0 +1,47 @@
+{
+  "dataset": "FLORES-200",
+  "split": "dev",
+  "direction": "English-to-Yorùbá",
+  "n": 30,
+  "historical_2beam": {
+    "bleu": 5.205346801560141,
+    "chrf++": 28.498043896933588
+  },
+  "shared_4beam_baseline": {
+    "bleu": 5.682983940102768,
+    "chrf++": 28.871807846840415,
+    "phrase_override_off_outputs_matching": 30,
+    "numeric_protection_off_outputs_matching": 30
+  },
+  "phrase_override_on": {
+    "bleu": 5.682983940102768,
+    "chrf++": 28.871807846840415,
+    "hits": 0
+  },
+  "numeric_protection_on": {
+    "bleu": 3.441592314450623,
+    "chrf++": 26.19457456329131,
+    "detector_matched_inputs": 17,
+    "digit_bearing_inputs": 15,
+    "digit_bearing_spans": 26,
+    "non_digit_hyphen_matches": 5,
+    "inputs_with_all_spans_restored": 9,
+    "restoration_fallbacks": 8,
+    "outputs_changed_vs_off": 17
+  },
+  "on_minus_off": {
+    "bleu": -2.2413916256521453,
+    "chrf++": -2.6772332835491035
+  },
+  "phrase_override_summary": {
+    "off_hits": 0,
+    "on_hits": 0,
+    "on_output_changes_from_off": 0
+  },
+  "scorer": {
+    "sacrebleu_version": "2.6.0",
+    "bleu_tokenizer": "13a",
+    "chrf++_word_order": 2,
+    "unicode_normalization": "NFC"
+  }
+}

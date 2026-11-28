@@ -1,0 +1,85 @@
+{
+  "dataset": "curated_override_cases",
+  "direction": "English-to-Yorùbá",
+  "input_count": 13,
+  "translation_runs": 26,
+  "groups": {
+    "exact": {
+      "inputs": 5,
+      "expected_matches": 5,
+      "actual_override_hits": 5,
+      "output_changes": 5,
+      "unexpected_matches": 0
+    },
+    "variation": {
+      "inputs": 5,
+      "expected_matches": 0,
+      "actual_override_hits": 0,
+      "output_changes": 0,
+      "unexpected_matches": 0
+    },
+    "control": {
+      "inputs": 3,
+      "expected_matches": 0,
+      "actual_override_hits": 0,
+      "output_changes": 0,
+      "unexpected_matches": 0
+    }
+  },
+  "reference_backed_subset": {
+    "n": 5,
+    "reference_ids": [
+      "greet-001",
+      "greet-002",
+      "expr-001",
+      "q-001",
+      "q-002"
+    ],
+    "phrase_override_off": {
+      "bleu": 7.545101622752174,
+      "chrf++": 33.84817801343964,
+      "ter": 133.33333333333331
+    },
+    "phrase_override_on": {
+      "bleu": 100.00000000000004,
+      "chrf++": 100.0,
+      "ter": 0.0
+    },
+    "on_minus_off": {
+      "bleu": 92.45489837724787,
+      "chrf++": 66.15182198656035,
+      "ter": -133.33333333333331
+    },
+    "scorer": {
+      "sacrebleu_version": "2.6.0",
+      "bleu_tokenizer": "13a",
+      "chrf++_word_order": 2,
+      "ter_normalized": false
+    },
+    "meteor_reported": false,
+    "caveat": "The five ON translations exactly match saved references that may have informed the overrides; scores are in-sample, not independent evidence."
+  },
+  "local_agent_review": {
+    "model": "gemma3:4b",
+    "off": {
+      "attempted": 13,
+      "needs_review": 6,
+      "no_issue_flagged": 7,
+      "incomplete": 0
+    },
+    "on": {
+      "attempted": 13,
+      "needs_review": 4,
+      "no_issue_flagged": 9,
+      "incomplete": 0
+    },
+    "human_judgments_received": false
+  },
+  "blind_packet": {
+    "seed": 20261126,
+    "rows": 13,
+    "identical_output_ties": 8,
+    "private_answer_key_included": false,
+    "human_review_notes_included": false
+  }
+}

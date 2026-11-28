@@ -1,0 +1,50 @@
+{
+  "run_date": "2026-11-26",
+  "dataset": "curated_override_cases",
+  "direction": "English-to-Yorùbá",
+  "sample_size": 13,
+  "groups": {
+    "exact_phrases": 5,
+    "longer_variations": 5,
+    "unrelated_controls": 3
+  },
+  "translation_model": "facebook/nllb-200-distilled-600M",
+  "checkpoint": "local checkpoint configured through TRANSLATION_MODEL_ID",
+  "offline": {
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "generation": {
+    "num_beams": 4,
+    "max_new_tokens": 256,
+    "length_penalty": 1.1,
+    "phrase_overrides_off": false,
+    "phrase_overrides_on": true,
+    "numeric_protection": "disabled in both conditions",
+    "cache": "bypassed; direct TranslationService calls"
+  },
+  "override_match": "Direction-specific whole-input exact match after NFC, punctuation removal, whitespace collapse, and lowercasing; Yorùbá diacritics remain significant.",
+  "reviewer": {
+    "model": "gemma3:4b",
+    "method": "Each paired output reviewed independently with the existing review-agent prompt and decision logic.",
+    "human_decisions_received": false
+  },
+  "scoring": {
+    "sacrebleu_version": "2.6.0",
+    "bleu": "corpus BLEU, 13a tokenizer",
+    "chrf++": "corpus chrF++, word_order=2",
+    "ter": "corpus TER",
+    "meteor": "omitted; no vetted Yorùbá implementation/resources"
+  },
+  "references": {
+    "file": "en_yor_eval.json",
+    "reference_count": 5,
+    "provenance": "Pre-existing verified project references; overlap with override curation is possible."
+  },
+  "human_packet": {
+    "seed": 20261126,
+    "reviewer_packet_included": false,
+    "private_key_included": false,
+    "notes_included": false
+  }
+}

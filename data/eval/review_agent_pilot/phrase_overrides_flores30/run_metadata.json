@@ -1,0 +1,70 @@
+{
+  "run_date": "2026-11-27",
+  "dataset": "FLORES-200",
+  "split": "dev",
+  "direction": "English-to-Yorùbá",
+  "row_ids": [
+    "dev-0001",
+    "dev-0002",
+    "dev-0003",
+    "dev-0004",
+    "dev-0005",
+    "dev-0006",
+    "dev-0007",
+    "dev-0008",
+    "dev-0009",
+    "dev-0010",
+    "dev-0011",
+    "dev-0012",
+    "dev-0013",
+    "dev-0014",
+    "dev-0015",
+    "dev-0016",
+    "dev-0017",
+    "dev-0018",
+    "dev-0019",
+    "dev-0020",
+    "dev-0021",
+    "dev-0022",
+    "dev-0023",
+    "dev-0024",
+    "dev-0025",
+    "dev-0026",
+    "dev-0027",
+    "dev-0028",
+    "dev-0029",
+    "dev-0030"
+  ],
+  "translation_model": "facebook/nllb-200-distilled-600M",
+  "checkpoint": "local checkpoint configured through TRANSLATION_MODEL_ID",
+  "offline": {
+    "HF_HUB_OFFLINE": "1",
+    "TRANSFORMERS_OFFLINE": "1"
+  },
+  "generation": {
+    "num_beams": 4,
+    "max_new_tokens": 400,
+    "length_penalty": 1.1,
+    "tokenizer_max_length": 2000,
+    "phrase_overrides": "off and on paired; no matches in either run",
+    "numeric_protection": "disabled in both conditions",
+    "cache": "bypassed; direct TranslationService calls",
+    "actual_generate_calls": 60,
+    "actual_settings_verified_at_model_generate": true
+  },
+  "baseline_inputs": {
+    "historical_2beam_csv": "beam_eval_dev_beams2_max400_lp11.csv",
+    "historical_2beam_sha256": "d9241704052448af4a9210503bde559aab2e2f6df1353ed798839f808ddf4f2d",
+    "historical_4beam_csv": "beam_eval_dev_beams4_max400_lp11.csv",
+    "historical_4beam_sha256": "0326b1f40fb04fb03e4f6a954210f7763cedbf73be64763916d9cc1ed27c1371",
+    "same_30_pairs_verified": true
+  },
+  "scoring": {
+    "sacrebleu_version": "2.6.0",
+    "bleu": "corpus BLEU, default 13a",
+    "chrf++": "corpus chrF++, word_order=2",
+    "preprocessing": "NFC",
+    "sample_count_per_condition": 30
+  },
+  "interpretation": "The historical benchmark used the same 30 source/reference pairs. OFF, ON, and the saved 4-beam baseline outputs matched row by row; no phrase override fired."
+}
